@@ -1,0 +1,9 @@
+services:
+
+  Mooc.courses.CreateCourse:
+    class: ../../../../Mooc/Courses/application/CreateCourse
+    arguments: []
+
+  Apps.mooc.controllers.CreateCourseController:
+    class: ../../infrastructure/controllers/CreateCourseController
+    arguments: ['@Mooc.courses.CreateCourse']
