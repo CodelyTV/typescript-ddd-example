@@ -6,3 +6,7 @@ services:
   Apps.mooc.controllers.CreateCourseController:
     class: ../../controllers/CreateCourseController
     arguments: ["@Mooc.courses.CreateCourse"]
+
+  Apps.mooc.controllers.StatusController:
+    class: ../../controllers/StatusController
+    arguments: []
