@@ -10,13 +10,14 @@
     "test": "NODE_ENV=test jest",
     "test:unit": "NODE_ENV=test jest --watch",
     "test:features": "./node_modules/.bin/cucumber-js -p default",
-    "start": "NODE_ENV=production node dist/src/apps/mooc/server",
+    "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.yaml' dist/src",
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "@types/bson": "^4.0.0",
     "@types/compression": "^1.0.1",
     "@types/convict": "^4.2.1",
     "@types/errorhandler": "0.0.32",
@@ -25,6 +26,7 @@
     "@types/node": "~11.13.0",
     "@types/uuid": "^3.4.5",
     "body-parser": "^1.19.0",
+    "bson": "^4.0.2",
     "compression": "^1.7.4",
     "convict": "^5.1.0",
     "copy": "^0.3.2",
