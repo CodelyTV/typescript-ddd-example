@@ -3,11 +3,15 @@ import CreateCourse from '../../../Mooc/Courses/application/CreateCourse';
 import httpStatus from 'http-status';
 
 export default class CreateCourseController {
-  constructor(private createUser: CreateCourse) {}
+  constructor(private createCourse: CreateCourse) {}
 
   async create(req: Request, res: Response) {
+    const id: string = req.params.id;
+    const name: string = req.body.name;
+    const duration: string = req.body.duration;
+
     try {
-      await this.createUser.run();
+      await this.createCourse.run(id, name, duration);
     } catch (e) {
       res.status(500).json(e);
     }
