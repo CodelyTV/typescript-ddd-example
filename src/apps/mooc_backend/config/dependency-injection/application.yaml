@@ -1,0 +1,16 @@
+services:
+  Mooc.courses.CourseRepository:
+    class: ../../../../Mooc/Courses/infrastructure/FileCourseRepository
+    arguments: []
+
+  Mooc.courses.CreateCourse:
+    class: ../../../../Mooc/Courses/application/CreateCourse
+    arguments: ["@Mooc.courses.CourseRepository"]
+
+  Apps.mooc.controllers.CreateCourseController:
+    class: ../../controllers/CreateCourseController
+    arguments: ["@Mooc.courses.CreateCourse"]
+
+  Apps.mooc.controllers.StatusController:
+    class: ../../controllers/StatusController
+    arguments: []
