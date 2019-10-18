@@ -4,5 +4,5 @@ import CreateCourseController from '../controllers/CreateCourseController';
 
 export const createUserRoute = (app: Express) => {
   const controller: CreateCourseController = container.get('Apps.mooc.controllers.CreateCourseController');
-  app.post('/courses', (req, res) => controller.create(req, res));
+  app.put('/courses/:id', (req, res) => controller.create(req, res));
 };
