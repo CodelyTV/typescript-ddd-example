@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../../../src/apps/mooc/app';
+import app from '../../../../src/apps/mooc_backend/app';
 
 describe('Create Course Feature', () => {
   it('should respond with a 201 Created code', async () => {

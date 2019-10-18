@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import helmet from 'helmet';
 import compress from 'compression';
-import { registerRoutes } from './infrastructure/routes';
+import { registerRoutes } from './routes';
 
 const app: express.Express = express();
 

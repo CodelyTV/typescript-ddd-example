@@ -9,7 +9,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest",
     "test:unit": "NODE_ENV=test jest --watch",
-    "start": "NODE_ENV=production node dist/src/apps/mooc/server",
+    "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.yaml' dist/src",
