@@ -7,9 +7,9 @@
     "npm": ">=6.7.0"
   },
   "scripts": {
-    "test": "NODE_ENV=test jest",
-    "test:unit": "NODE_ENV=test jest --watch",
-    "test:features": "./node_modules/.bin/cucumber-js -p default",
+    "test": "npm run test:unit && npm run test:features",
+    "test:unit": "NODE_ENV=test jest",
+    "test:features": "NODE_ENV=test cucumber-js -p default",
     "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
