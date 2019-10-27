@@ -1,5 +1,6 @@
 import errorHandler from 'errorhandler';
 import app from './app';
+import container from './config/dependency-injection';
 
 /**
  * Error Handler. Provides full stack - remove for production
@@ -11,7 +12,9 @@ app.use(errorHandler());
  */
 const server = app.listen(app.get('port'), () => {
   // tslint:disable: no-console
-  console.log('  App is running at http://localhost:%d in %s mode', app.get('port'), app.get('env'));
+  const winstonLogger = container.get('Mooc.shared.WinstonLogger');
+
+  winstonLogger.info(`  App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
   console.log('  Press CTRL-C to stop\n');
 });
 

@@ -7,6 +7,10 @@ services:
     class: ../../../../Mooc/Courses/application/CreateCourse
     arguments: ["@Mooc.courses.CourseRepository"]
 
+  Mooc.shared.WinstonLogger:
+    class: ../../../../Mooc/Shared/infrastructure/WinstonLogger
+    arguments: []
+
   Apps.mooc.controllers.CreateCourseController:
     class: ../../controllers/CreateCourseController
     arguments: ["@Mooc.courses.CreateCourse"]
