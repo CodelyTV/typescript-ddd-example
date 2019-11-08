@@ -11,6 +11,6 @@ export default class CreateCourse {
   async run(id: string, name: string, duration: string): Promise<void> {
     const course = new Course(id, name, duration);
 
-    this.repository.save(course);
+    return this.repository.save(course);
   }
 }
