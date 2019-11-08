@@ -14,7 +14,7 @@ export default class CoursePutController implements Controller {
     try {
       await this.createCourse.run(id, name, duration);
     } catch (e) {
-      res.status(500).json(e);
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json(e);
     }
 
     res.status(httpStatus.CREATED).send();
