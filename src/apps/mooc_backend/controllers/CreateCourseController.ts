@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import CreateCourse from '../../../Mooc/Courses/application/CreateCourse';
+import CreateCourse from '../../../Contexts/Mooc/Courses/application/CreateCourse';
 import httpStatus from 'http-status';
 
 export default class CreateCourseController {

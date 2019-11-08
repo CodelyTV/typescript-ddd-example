@@ -1,10 +1,10 @@
 services:
   Mooc.courses.CourseRepository:
-    class: ../../../../Mooc/Courses/infrastructure/FileCourseRepository
+    class: ../../../../Contexts/Mooc/Courses/infrastructure/FileCourseRepository
     arguments: []
 
   Mooc.courses.CreateCourse:
-    class: ../../../../Mooc/Courses/application/CreateCourse
+    class: ../../../../Contexts/Mooc/Courses/application/CreateCourse
     arguments: ["@Mooc.courses.CourseRepository"]
 
   Apps.mooc.controllers.CreateCourseController:
