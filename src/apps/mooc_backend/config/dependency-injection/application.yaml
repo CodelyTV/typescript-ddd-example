@@ -3,13 +3,13 @@ services:
     class: ../../../../Contexts/Mooc/Courses/infrastructure/FileCourseRepository
     arguments: []
 
-  Mooc.courses.CreateCourse:
-    class: ../../../../Contexts/Mooc/Courses/application/CreateCourse
+  Mooc.courses.CourseCreator:
+    class: ../../../../Contexts/Mooc/Courses/application/CourseCreator
     arguments: ["@Mooc.courses.CourseRepository"]
 
   Apps.mooc.controllers.CoursePutController:
     class: ../../controllers/CoursePutController
-    arguments: ["@Mooc.courses.CreateCourse"]
+    arguments: ["@Mooc.courses.CourseCreator"]
 
   Apps.mooc.controllers.StatusGetController:
     class: ../../controllers/StatusGetController

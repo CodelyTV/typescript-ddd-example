@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import CreateCourse from '../../../Contexts/Mooc/Courses/application/CreateCourse';
+import CourseCreator from '../../../Contexts/Mooc/Courses/application/CourseCreator';
 import httpStatus from 'http-status';
 import Controller from './Controller';
 import CourseAlreadyExists from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
 
 export default class CoursePutController implements Controller {
-  constructor(private createCourse: CreateCourse) {}
+  constructor(private courseCreator: CourseCreator) {}
 
   async run(req: Request, res: Response) {
     const id: string = req.params.id;
@@ -13,7 +13,7 @@ export default class CoursePutController implements Controller {
     const duration: string = req.body.duration;
 
     try {
-      await this.createCourse.run(id, name, duration);
+      await this.courseCreator.run(id, name, duration);
     } catch (e) {
 
       if (e instanceof CourseAlreadyExists) {

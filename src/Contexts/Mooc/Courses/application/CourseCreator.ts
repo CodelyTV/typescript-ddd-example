@@ -1,7 +1,7 @@
 import CourseRepository from '../domain/CourseRepository';
 import Course from '../domain/Course';
 
-export default class CreateCourse {
+export default class CourseCreator {
   private repository: CourseRepository;
 
   constructor(repository: CourseRepository) {
