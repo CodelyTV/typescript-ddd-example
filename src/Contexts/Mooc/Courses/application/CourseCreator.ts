@@ -1,7 +1,7 @@
 import CourseRepository from '../domain/CourseRepository';
 import Course from '../domain/Course';
 
-export default class CreateCourse {
+export default class CourseCreator {
   private repository: CourseRepository;
 
   constructor(repository: CourseRepository) {
@@ -11,6 +11,6 @@ export default class CreateCourse {
   async run(id: string, name: string, duration: string): Promise<void> {
     const course = new Course(id, name, duration);
 
-    this.repository.save(course);
+    return this.repository.save(course);
   }
 }

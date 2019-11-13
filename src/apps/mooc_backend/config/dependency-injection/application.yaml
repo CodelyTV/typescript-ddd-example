@@ -1,16 +1,16 @@
 services:
   Mooc.courses.CourseRepository:
-    class: ../../../../Mooc/Courses/infrastructure/FileCourseRepository
+    class: ../../../../Contexts/Mooc/Courses/infrastructure/FileCourseRepository
     arguments: []
 
-  Mooc.courses.CreateCourse:
-    class: ../../../../Mooc/Courses/application/CreateCourse
+  Mooc.courses.CourseCreator:
+    class: ../../../../Contexts/Mooc/Courses/application/CourseCreator
     arguments: ["@Mooc.courses.CourseRepository"]
 
-  Apps.mooc.controllers.CreateCourseController:
-    class: ../../controllers/CreateCourseController
-    arguments: ["@Mooc.courses.CreateCourse"]
+  Apps.mooc.controllers.CoursePutController:
+    class: ../../controllers/CoursePutController
+    arguments: ["@Mooc.courses.CourseCreator"]
 
-  Apps.mooc.controllers.StatusController:
-    class: ../../controllers/StatusController
+  Apps.mooc.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
     arguments: []
