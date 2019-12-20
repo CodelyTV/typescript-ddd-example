@@ -7,7 +7,7 @@ services:
     class: ../../../../Mooc/Courses/application/CreateCourse
     arguments: ["@Mooc.courses.CourseRepository"]
 
-  Mooc.shared.WinstonLogger:
+  Mooc.shared.Logger:
     class: ../../../../Mooc/Shared/infrastructure/WinstonLogger
     arguments: []
 
