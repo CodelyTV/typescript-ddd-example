@@ -2,3 +2,4 @@ node_modules/
 dist/
 .tmp
 logs/
+src/Contexts/Mooc/Courses/infrastructure/courses.*
