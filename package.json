@@ -41,7 +41,8 @@
     "node-dependency-injection": "^2.4.2",
     "ts-node": "^8.3.0",
     "typescript": "^3.4.5",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.31",
