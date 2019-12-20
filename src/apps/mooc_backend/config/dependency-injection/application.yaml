@@ -12,7 +12,7 @@ services:
     arguments: []
   
   Apps.mooc.controllers.CoursePutController:
-    class: ../../controllers/CoursePutController.CoursePutController
+    class: ../../controllers/CoursePutController
     arguments: ["@Mooc.courses.CourseCreator"]
 
   Apps.mooc.controllers.StatusGetController:
