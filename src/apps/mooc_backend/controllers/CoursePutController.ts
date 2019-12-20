@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import Controller from './Controller';
 import CourseAlreadyExists from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
 
-export default class CoursePutController implements Controller {
+export class CoursePutController implements Controller {
   constructor(private courseCreator: CourseCreator) {}
 
   async run(req: Request, res: Response) {
