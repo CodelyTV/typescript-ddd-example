@@ -1,6 +1,6 @@
-import Course from '../../../../src/Contexts/Mooc/Courses/domain/Course';
-import CourseCreator from '../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
-import CourseRepository from '../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
+import Course from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
+import CourseCreator from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
+import CourseRepository from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
 
 describe('Course Creator', () => {
   it('should create a valid course', async () => {

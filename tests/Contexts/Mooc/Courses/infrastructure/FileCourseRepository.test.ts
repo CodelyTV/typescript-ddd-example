@@ -1,5 +1,5 @@
-import Course from '../../../../src/Contexts/Mooc/Courses/domain/Course';
-import FileCourseRepository from '../../../../src/Contexts/Mooc/Courses/infrastructure/FileCourseRepository';
+import FileCourseRepository from '../../../../../src/Contexts/Mooc/Courses/infrastructure/FileCourseRepository';
+import Course from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 
 describe('Save Course', () => {
   it('should have a course', () => {

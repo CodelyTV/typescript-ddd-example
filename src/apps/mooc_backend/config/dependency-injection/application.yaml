@@ -8,9 +8,9 @@ services:
     arguments: ["@Mooc.courses.CourseRepository"]
 
   Mooc.shared.Logger:
-    class: ../../../../Mooc/Shared/infrastructure/WinstonLogger
+    class: ../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
-  
+
   Apps.mooc.controllers.CoursePutController:
     class: ../../controllers/CoursePutController
     arguments: ["@Mooc.courses.CourseCreator"]

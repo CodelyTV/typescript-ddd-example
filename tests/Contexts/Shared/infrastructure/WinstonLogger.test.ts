@@ -1,4 +1,4 @@
-import WinstonLogger from '../../../../src/Mooc/Shared/infrastructure/WinstonLogger';
+import WinstonLogger from '../../../../src/Contexts/Shared/infrastructure/WinstonLogger';
 
 describe('WinstonLogger', () => {
   const winstonLogger = new WinstonLogger();
