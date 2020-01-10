@@ -1,4 +1,4 @@
-export default class Course {
+export class Course {
   readonly id: string;
   readonly name: string;
   readonly duration: string;
