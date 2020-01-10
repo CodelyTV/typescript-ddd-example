@@ -1,17 +1,17 @@
-import CourseRepository from '../domain/CourseRepository';
-import Course from '../domain/Course';
+import { CourseRepository } from '../domain/CourseRepository';
+import { Course } from '../domain/Course';
 import fs from 'fs';
 import BSON from 'bson';
 import { Nullable } from '../../../Shared/domain/Nullable';
 
-export default class FileCourseRepository implements CourseRepository {
+export class FileCourseRepository implements CourseRepository {
   private FILE_PATH = `${__dirname}/courses`;
 
   async save(course: Course): Promise<void> {
     const filePath = this.filePath(course.id);
     const data = BSON.serialize(course);
 
-   return fs.writeFileSync(filePath, data);
+    return fs.writeFileSync(filePath, data);
   }
 
   async search(id: string): Promise<Nullable<Course>> {
