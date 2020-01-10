@@ -9,8 +9,8 @@ describe('InMemoryAsyncEventBus', () => {
 
   beforeAll(() => {});
 
-  it('', done => {
-    const event = new DummyEvent({ id: uuid() });
+  it('the subscriber should be called when the event it is subscribed to is published', done => {
+    const event = new DummyEvent(uuid());
     subscriber = new DomainEventSubscriberDummy();
     subscriber.on = () => {
       done();
@@ -25,21 +25,17 @@ describe('InMemoryAsyncEventBus', () => {
 class DummyEvent extends DomainEvent {
   static EVENT_NAME = 'dummy:event';
 
-  get eventName(): string {
-    return DummyEvent.EVENT_NAME;
+  constructor(id: string) {
+    super(DummyEvent.EVENT_NAME, id);
   }
 
   toPrimitive(): Object {
     throw new Error('Method not implemented.');
   }
-
-  fromPrimitive(): Object {
-    throw new Error('Method not implemented.');
-  }
 }
 
 class DomainEventSubscriberDummy implements DomainEventSubscriber<DummyEvent> {
-  subscribeTo(): string[] {
+  subscribedTo(): string[] {
     return [DummyEvent.EVENT_NAME];
   }
 

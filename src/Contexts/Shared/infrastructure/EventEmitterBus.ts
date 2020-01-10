@@ -9,14 +9,14 @@ export class EventEmitterBus extends EventEmitter {
     this.registerSubscribers(subscribers);
   }
 
-  private registerSubscribers(subscribers: DomainEventSubscriber<DomainEvent>[]) {
-    subscribers.map(subscriber => {
+  private registerSubscribers(subscribers?: DomainEventSubscriber<DomainEvent>[]) {
+    subscribers?.map(subscriber => {
       this.registerSubscriber(subscriber);
     });
   }
 
   private registerSubscriber(subscriber: DomainEventSubscriber<DomainEvent>) {
-    subscriber.subscribeTo().map(event => {
+    subscriber.subscribedTo().map(event => {
       this.on(event, subscriber.on);
     });
   }

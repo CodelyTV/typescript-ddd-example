@@ -1,17 +1,18 @@
+import { Nullable } from './Nullable';
+import uuid from 'uuid';
+
 export abstract class DomainEvent {
-  readonly id: string;
+  readonly aggregateId: string;
   readonly eventId: string;
   readonly occurredOn: Date;
+  readonly eventName: string;
 
-  constructor({ id }: { id: string }) {
-    this.id = id;
-    this.eventId = '';
-    this.occurredOn = new Date();
+  constructor(eventName: string, aggregateId: string, eventId?: string, occurredOn?: Date) {
+    this.aggregateId = aggregateId;
+    this.eventId = eventId || uuid();
+    this.occurredOn = occurredOn || new Date();
+    this.eventName = eventName;
   }
 
-  abstract get eventName(): string;
-
   abstract toPrimitive(): Object;
-
-  abstract fromPrimitive(): Object;
 }

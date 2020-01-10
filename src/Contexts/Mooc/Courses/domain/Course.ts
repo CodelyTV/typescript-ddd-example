@@ -1,11 +1,32 @@
-export default class Course {
-  readonly id: string;
-  readonly name: string;
-  readonly duration: string;
+import { AggregateRoot } from './AggregateRoot';
+import { CourseCreatedDomainEvent } from './CourseCreatedDomainEvent';
+import { CourseId } from './CourseId';
+import { CourseName } from './CourseName';
+import { CourseDuration } from './CourseDuration';
 
-  constructor(id: string, name: string, duration: string) {
+export default class Course extends AggregateRoot {
+  readonly id: CourseId;
+  readonly name: CourseName;
+  readonly duration: CourseDuration;
+
+  constructor(id: CourseId, name: CourseName, duration: CourseDuration) {
+    super();
     this.id = id;
     this.name = name;
     this.duration = duration;
+  }
+
+  static create(id: CourseId, name: CourseName, duration: CourseDuration): Course {
+    const course = new Course(id, name, duration);
+
+    course.record(
+      new CourseCreatedDomainEvent({
+        id: course.id.value(),
+        duration: course.duration.value(),
+        name: course.name.value()
+      })
+    );
+
+    return course;
   }
 }

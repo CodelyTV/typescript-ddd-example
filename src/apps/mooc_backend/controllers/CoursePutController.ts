@@ -3,6 +3,9 @@ import CourseCreator from '../../../Contexts/Mooc/Courses/application/CourseCrea
 import httpStatus from 'http-status';
 import Controller from './Controller';
 import CourseAlreadyExists from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
+import { CourseId } from '../../../Contexts/Mooc/Courses/domain/CourseId';
+import { CourseName } from '../../../Contexts/Mooc/Courses/domain/CourseName';
+import { CourseDuration } from '../../../Contexts/Mooc/Courses/domain/CourseDuration';
 
 export class CoursePutController implements Controller {
   constructor(private courseCreator: CourseCreator) {}
@@ -10,18 +13,16 @@ export class CoursePutController implements Controller {
   async run(req: Request, res: Response) {
     const id: string = req.params.id;
     const name: string = req.body.name;
-    const duration: string = req.body.duration;
+    const duration = Number.parseInt(req.body.duration);
 
     try {
-      await this.courseCreator.run(id, name, duration);
+      await this.courseCreator.run(new CourseId(id), new CourseName(name), new CourseDuration(duration));
     } catch (e) {
-
       if (e instanceof CourseAlreadyExists) {
         res.status(httpStatus.BAD_REQUEST).send(e.message);
       } else {
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).json(e);
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
       }
-
     }
 
     res.status(httpStatus.CREATED).send();
