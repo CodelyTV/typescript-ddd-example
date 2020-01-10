@@ -27,6 +27,7 @@
     "@types/helmet": "0.0.44",
     "@types/node": "~13.1.1",
     "@types/uuid": "^3.4.6",
+    "@types/uuid-validate": "0.0.1",
     "body-parser": "^1.19.0",
     "bson": "^4.0.2",
     "compression": "^1.7.4",
@@ -42,6 +43,7 @@
     "ts-node": "^8.3.0",
     "typescript": "^3.4.5",
     "uuid": "^3.3.3",
+    "uuid-validate": "0.0.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {
