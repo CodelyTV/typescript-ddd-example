@@ -1,5 +1,5 @@
-export default class CourseAlreadyExists extends Error {
-  constructor(courseId: string) {
-    super(`Course ${courseId} already exists`);
+export class CourseAlreadyExists extends Error {
+  constructor(id: string) {
+    super(`Course ${id} already exists`);
   }
 }

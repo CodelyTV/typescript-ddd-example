@@ -1,11 +1,8 @@
 import { Request, Response } from 'express';
-import CourseCreator from '../../../Contexts/Mooc/Courses/application/CourseCreator';
+import { CourseCreator } from '../../../Contexts/Mooc/Courses/application/CourseCreator';
 import httpStatus from 'http-status';
-import Controller from './Controller';
-import CourseAlreadyExists from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
-import { CourseId } from '../../../Contexts/Mooc/Courses/domain/CourseId';
-import { CourseName } from '../../../Contexts/Mooc/Courses/domain/CourseName';
-import { CourseDuration } from '../../../Contexts/Mooc/Courses/domain/CourseDuration';
+import { Controller } from './Controller';
+import { CourseAlreadyExists } from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
 
 export class CoursePutController implements Controller {
   constructor(private courseCreator: CourseCreator) {}
@@ -13,15 +10,15 @@ export class CoursePutController implements Controller {
   async run(req: Request, res: Response) {
     const id: string = req.params.id;
     const name: string = req.body.name;
-    const duration = Number.parseInt(req.body.duration);
+    const duration: string = req.body.duration;
 
     try {
-      await this.courseCreator.run(new CourseId(id), new CourseName(name), new CourseDuration(duration));
-    } catch (e) {
-      if (e instanceof CourseAlreadyExists) {
-        res.status(httpStatus.BAD_REQUEST).send(e.message);
+      await this.courseCreator.run({ id, name, duration });
+    } catch (error) {
+      if (error instanceof CourseAlreadyExists) {
+        res.status(httpStatus.BAD_REQUEST).send(error.message);
       } else {
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+        res.status(httpStatus.INTERNAL_SERVER_ERROR).json(error);
       }
     }
 

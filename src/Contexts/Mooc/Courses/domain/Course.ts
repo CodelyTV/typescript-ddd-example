@@ -1,10 +1,10 @@
 import { AggregateRoot } from './AggregateRoot';
 import { CourseCreatedDomainEvent } from './CourseCreatedDomainEvent';
-import { CourseId } from './CourseId';
 import { CourseName } from './CourseName';
 import { CourseDuration } from './CourseDuration';
+import { CourseId } from '../../Shared/domain/Courses/CourseId';
 
-export default class Course extends AggregateRoot {
+export class Course extends AggregateRoot {
   readonly id: CourseId;
   readonly name: CourseName;
   readonly duration: CourseDuration;
@@ -21,9 +21,9 @@ export default class Course extends AggregateRoot {
 
     course.record(
       new CourseCreatedDomainEvent({
-        id: course.id.value(),
-        duration: course.duration.value(),
-        name: course.name.value()
+        id: course.id.value,
+        duration: course.duration.value,
+        name: course.name.value
       })
     );
 

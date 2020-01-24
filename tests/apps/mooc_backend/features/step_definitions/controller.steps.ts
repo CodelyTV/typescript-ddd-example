@@ -13,7 +13,7 @@ Given('I send a GET request to {string}', (route: string) => {
 Given('I send a PUT request to {string} with body:', (route: string, body: string) => {
   _request = request(app)
     .put(route)
-    .send(body);
+    .send(JSON.parse(body));
 });
 
 Then('the response status code should be {int}', async (status: number) => {

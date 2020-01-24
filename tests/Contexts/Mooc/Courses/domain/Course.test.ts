@@ -1,23 +1,24 @@
-import Course from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
-import { CourseId } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseId';
-import { CourseName } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseName';
-import { CourseDuration } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
+import { CreateCourseRequestMother } from '../application/CreateCourseRequestMother';
+import { CourseMother } from './CourseMother';
+import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
+import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
+import { CourseNameMother } from './CourseNameMother';
+import { CourseDurationMother } from './CourseDurationMother';
 
 describe('Course', () => {
-  const courseId = new CourseId('any-id');
-  const courseName = new CourseName('any-name');
-  const courseDuration = new CourseDuration(20);
 
   it('should return a new course instance', () => {
-    const course = Course.create(new CourseId('any-id'), new CourseName('any-name'), new CourseDuration(20));
+    const request = CreateCourseRequestMother.random();
 
-    expect(course.id.equals(courseId)).toBe(true);
-    expect(course.name.equals(courseName)).toBe(true);
-    expect(course.duration.equals(courseDuration)).toBe(true);
+    const course = CourseMother.fromRequest(request);
+
+    expect(course.id.value).toBe(request.id);
+    expect(course.name.value).toBe(request.name);
+    expect(course.duration.value).toBe(request.duration);
   });
 
   it('should record a CourseCreatedDomainEvent after its creation', () => {
-    const course = Course.create(new CourseId('any-id'), new CourseName('any-name'), new CourseDuration(20));
+    const course = Course.create(CourseIdMother.random(), CourseNameMother.random(), CourseDurationMother.random());
 
     const events = course.pullDomainEvents();
 

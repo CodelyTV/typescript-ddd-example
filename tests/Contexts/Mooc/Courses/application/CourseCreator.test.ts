@@ -1,33 +1,28 @@
-import Course from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
-import CourseCreator from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
-import CourseRepository from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
+import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
+import { CourseMother } from '../domain/CourseMother';
+import { CreateCourseRequestMother } from './CreateCourseRequestMother';
+import { CourseRepository } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
+import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
-import { CourseId } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseId';
-import { CourseName } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseName';
-import { CourseDuration } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
 
-describe('Course Creator', () => {
-  it('should create a valid course', async () => {
-    const save = jest.fn();
-    const repository: CourseRepository = {
-      save,
-      search: jest.fn()
-    };
+let repository: CourseRepository;
+let creator: CourseCreator;
 
-    const eventBus: EventBus = {
-      publish: jest.fn()
-    };
+const createRepository = (): CourseRepository => ({ save: jest.fn(), search: jest.fn() });
+const eventBus = (): EventBus => ({ publish: jest.fn()});
+const shouldSave = (course: Course) => expect(repository.save).toHaveBeenCalledWith(course);
 
-    const createCourse = new CourseCreator(repository, eventBus);
+beforeEach(() => {
+  repository = createRepository();
+  creator = new CourseCreator(repository, eventBus());
+});
 
-    const id = new CourseId('some-id');
-    const name = new CourseName('some-name');
-    const duration = new CourseDuration(20);
+it('should create a valid course', async () => {
+  const request = CreateCourseRequestMother.random();
 
-    const course = new Course(id, name, duration);
+  const course = CourseMother.fromRequest(request);
 
-    await createCourse.run(id, name, duration);
+  await creator.run(request);
 
-    expect(save).toHaveBeenCalledWith(course);
-  });
+  shouldSave(course);
 });

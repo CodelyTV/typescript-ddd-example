@@ -1,14 +1,14 @@
 import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
 type CreateCourseDomainEventBody = {
-  readonly duration: number;
+  readonly duration: string;
   readonly name: string;
 };
 
 export class CourseCreatedDomainEvent extends DomainEvent {
   static readonly EVENT_NAME = 'course.created';
 
-  readonly duration: number;
+  readonly duration: string;
   readonly name: string;
 
   constructor({
@@ -20,7 +20,7 @@ export class CourseCreatedDomainEvent extends DomainEvent {
   }: {
     id: string;
     eventId?: string;
-    duration: number;
+    duration: string;
     name: string;
     occurredOn?: Date;
   }) {

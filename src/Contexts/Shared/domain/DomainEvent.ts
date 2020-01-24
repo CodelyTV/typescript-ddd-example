@@ -1,5 +1,4 @@
-import { Nullable } from './Nullable';
-import uuid from 'uuid';
+import uuid from 'uuid/v4';
 
 export abstract class DomainEvent {
   readonly aggregateId: string;

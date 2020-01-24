@@ -1,3 +1,3 @@
-import { ValueObject } from '../../../Shared/domain/ValueObject';
+import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject';
 
-export class CourseDuration extends ValueObject<number> {}
+export class CourseDuration extends StringValueObject {}
