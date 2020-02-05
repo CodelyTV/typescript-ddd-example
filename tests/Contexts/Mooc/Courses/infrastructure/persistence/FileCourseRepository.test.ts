@@ -1,5 +1,5 @@
-import { FileCourseRepository } from '../../../../../src/Contexts/Mooc/Courses/infrastructure/FileCourseRepository';
-import { CourseMother } from '../domain/CourseMother';
+import { FileCourseRepository } from '../../../../../../src/Contexts/Mooc/Courses/infrastructure/persistence/FileCourseRepository';
+import { CourseMother } from '../../domain/CourseMother';
 
 describe('Save Course', () => {
   it('should have a course', async () => {
