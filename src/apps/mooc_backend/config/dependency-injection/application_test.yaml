@@ -1,2 +1,9 @@
 imports:
   - { resource: ./application.yaml }
+
+services:
+  Mooc.EnvironmentArranger:
+    factory:
+      class: ../../../../../tests/Contexts/Shared/infrastructure/arranger/EnvironmentArrangerFactory
+      method: createEnvironmentArranger
+    arguments: ["@Mooc.ConnectionManager"]
