@@ -25,7 +25,6 @@ export class MongoClientFactory {
     const client = new MongoClient(config.get('mongo.url'), { useUnifiedTopology: true });
 
     await client.connect();
-    client.db(config.get('mongo.name'));
 
     return client;
   }

@@ -7,7 +7,19 @@ export class MongoEnvironmentArranger extends EnvironmentArranger {
   }
 
   protected async clean(name: string): Promise<void> {
-    await (await this.client()).db().dropCollection(name);
+    const hasCollection = await this.hasCollection(name);
+
+    if (hasCollection) {
+      await (await this.client()).db().dropCollection(name);
+    }
+  }
+
+  private async hasCollection(name: string): Promise<boolean> {
+    const client = await this.client();
+    return await client
+      .db()
+      .listCollections({ name }, { nameOnly: true })
+      .hasNext();
   }
 
   protected client(): Promise<MongoClient> {
