@@ -12,6 +12,11 @@ const convictConfig = convict({
       doc: 'The Mongo connection URL',
       format: String,
       env: 'MONGO_URL'
+    },
+    name: {
+      doc: 'The Mongo database name',
+      format: String,
+      env: 'MONGO_DB_NAME'
     }
   }
 });
