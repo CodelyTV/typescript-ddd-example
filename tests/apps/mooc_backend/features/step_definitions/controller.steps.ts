@@ -1,7 +1,8 @@
-import { Given, Then } from 'cucumber';
+import assert from 'assert';
+import { Given, Then, AfterAll } from 'cucumber';
 import request from 'supertest';
 import app from '../../../../../src/apps/mooc_backend/app';
-import assert from 'assert';
+import container from '../../../../../src/apps/mooc_backend/config/dependency-injection';
 
 let _request: request.Test;
 let _response: request.Response;
@@ -22,4 +23,9 @@ Then('the response status code should be {int}', async (status: number) => {
 
 Then('the response should be empty', () => {
   assert.deepEqual(_response.body, {});
+});
+
+AfterAll(async () => {
+  const connectionManager = container.get('Mooc.ConnectionManager');
+  await (await connectionManager).close();
 });
