@@ -4,10 +4,10 @@ test:
 	@docker exec codelytv-typescript_ddd_skeleton-nodejs make run-tests
 
 deps:
-	docker run --rm -it --volume $(pwd):/app sandrokeil/typescript npm install
+	docker run --rm -i --volume $(pwd):/app sandrokeil/typescript npm install
 
 compile:
-	docker run --rm -it --volume $(pwd):/app sandrokeil/typescript npm run build
+	docker run --rm -i --volume $(pwd):/app sandrokeil/typescript npm run build
 
 run-tests:
 	npm test
