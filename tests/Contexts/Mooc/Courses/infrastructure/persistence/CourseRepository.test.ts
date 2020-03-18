@@ -6,7 +6,7 @@ import { CourseMother } from '../../domain/CourseMother';
 const repository: CourseRepository = container.get('Mooc.courses.CourseRepository');
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
 
-beforeAll(async () => {
+beforeEach(async () => {
   await (await environmentArranger).arrange('courses');
 });
 
