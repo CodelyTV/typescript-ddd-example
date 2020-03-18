@@ -22,7 +22,7 @@ export class MongoClientFactory {
   }
 
   private static async createAndConnectClient(): Promise<MongoClient> {
-    const client = new MongoClient(config.get('mongo.url'), { useUnifiedTopology: true });
+    const client = new MongoClient(config.get('mongo.url'), { useUnifiedTopology: true, ignoreUndefined: true });
 
     await client.connect();
 
