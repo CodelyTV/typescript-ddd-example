@@ -3,7 +3,5 @@ imports:
 
 services:
   Mooc.EnvironmentArranger:
-    factory:
-      class: ../../../../../tests/Contexts/Shared/infrastructure/arranger/EnvironmentArrangerFactory
-      method: createEnvironmentArranger
-    arguments: ["@Mooc.ConnectionManager"]
+    class: ../../../../../tests/Contexts/Shared/infrastructure/arranger/MongoEnvironmentArranger
+    arguments: ['@Mooc.ConnectionManager']
