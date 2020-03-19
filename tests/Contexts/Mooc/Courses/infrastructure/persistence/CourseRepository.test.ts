@@ -7,7 +7,7 @@ const repository: CourseRepository = container.get('Mooc.courses.CourseRepositor
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
 
 beforeEach(async () => {
-  await (await environmentArranger).arrange('courses');
+  await (await environmentArranger).arrange();
 });
 
 afterAll(async () => {
