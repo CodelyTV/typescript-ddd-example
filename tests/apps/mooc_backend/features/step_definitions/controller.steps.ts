@@ -1,9 +1,9 @@
 import assert from 'assert';
-import { Given, Then, AfterAll } from 'cucumber';
+import { AfterAll, Before, Given, Then } from 'cucumber';
 import request from 'supertest';
 import app from '../../../../../src/apps/mooc_backend/app';
 import container from '../../../../../src/apps/mooc_backend/config/dependency-injection';
-import { ConnectionManager } from '../../../../../src/Contexts/Shared/infrastructure/persistence/ConnectionManager';
+import { EnvironmentArranger } from '../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
 
 let _request: request.Test;
 let _response: request.Response;
@@ -26,7 +26,12 @@ Then('the response should be empty', () => {
   assert.deepEqual(_response.body, {});
 });
 
+Before(async () => {
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).arrange();
+});
+
 AfterAll(async () => {
-  const connectionManager: Promise<ConnectionManager> = container.get('Mooc.ConnectionManager');
-  await (await connectionManager).close();
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).close();
 });
