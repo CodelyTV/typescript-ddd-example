@@ -1,19 +1,16 @@
 import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
-import { CourseMother } from '../domain/CourseMother';
-import { CreateCourseRequestMother } from './CreateCourseRequestMother';
-import { CourseRepository } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
-import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
+import { CourseMother } from '../domain/CourseMother';
+import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
+import { CreateCourseRequestMother } from './CreateCourseRequestMother';
 
-let repository: CourseRepository;
+let repository: CourseRepositoryMock;
 let creator: CourseCreator;
 
-const createRepository = (): CourseRepository => ({ save: jest.fn(), search: jest.fn() });
-const eventBus = (): EventBus => ({ publish: jest.fn()});
-const shouldSave = (course: Course) => expect(repository.save).toHaveBeenCalledWith(course);
+const eventBus = (): EventBus => ({ publish: jest.fn() });
 
 beforeEach(() => {
-  repository = createRepository();
+  repository = new CourseRepositoryMock();
   creator = new CourseCreator(repository, eventBus());
 });
 
@@ -24,5 +21,5 @@ it('should create a valid course', async () => {
 
   await creator.run(request);
 
-  shouldSave(course);
+  repository.assertLastSavedCourseIs(course);
 });

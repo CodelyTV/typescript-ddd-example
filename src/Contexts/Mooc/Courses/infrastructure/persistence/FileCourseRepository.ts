@@ -1,9 +1,9 @@
-import { CourseRepository } from '../domain/CourseRepository';
-import { Course } from '../domain/Course';
+import { CourseRepository } from '../../domain/CourseRepository';
+import { Course } from '../../domain/Course';
 import fs from 'fs';
 import BSON from 'bson';
-import { Nullable } from '../../../Shared/domain/Nullable';
-import { CourseId } from '../../Shared/domain/Courses/CourseId';
+import { Nullable } from '../../../../Shared/domain/Nullable';
+import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 
 export class FileCourseRepository implements CourseRepository {
   private FILE_PATH = `${__dirname}/courses`;

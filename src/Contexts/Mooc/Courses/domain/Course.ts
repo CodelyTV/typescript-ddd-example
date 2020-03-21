@@ -29,4 +29,20 @@ export class Course extends AggregateRoot {
 
     return course;
   }
+
+  static fromPrimitives(plainData: any): Course {
+    return new Course(
+      new CourseId(plainData.id),
+      new CourseName(plainData.name),
+      new CourseDuration(plainData.duration)
+    );
+  }
+
+  toPrimitives(): any {
+    return {
+      id: this.id.value,
+      name: this.name.value,
+      duration: this.duration.value
+    };
+  }
 }
