@@ -1,25 +1,25 @@
-import Course from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
-import CourseCreator from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
-import CourseRepository from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
+import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
+import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
+import { CourseMother } from '../domain/CourseMother';
+import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
+import { CreateCourseRequestMother } from './CreateCourseRequestMother';
 
-describe('Course Creator', () => {
-  it('should create a valid course', async () => {
-    const save = jest.fn();
-    const repository: CourseRepository = {
-      save,
-      search: jest.fn()
-    };
+let repository: CourseRepositoryMock;
+let creator: CourseCreator;
 
-    const createCourse = new CourseCreator(repository);
+const eventBus = (): EventBus => ({ publish: jest.fn() });
 
-    const id = 'some-id';
-    const name = 'some-name';
-    const duration = 'some-duration';
+beforeEach(() => {
+  repository = new CourseRepositoryMock();
+  creator = new CourseCreator(repository, eventBus());
+});
 
-    const course = new Course(id, name, duration);
+it('should create a valid course', async () => {
+  const request = CreateCourseRequestMother.random();
 
-    await createCourse.run(id, name, duration);
+  const course = CourseMother.fromRequest(request);
 
-    expect(save).toHaveBeenCalledWith(course);
-  });
+  await creator.run(request);
+
+  repository.assertLastSavedCourseIs(course);
 });

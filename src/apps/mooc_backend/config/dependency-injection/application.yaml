@@ -1,14 +1,24 @@
 services:
+  Mooc.ConnectionManager:
+    factory:
+      class: ../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: "createClient"
+    arguments: ["mooc"]
+
   Mooc.courses.CourseRepository:
-    class: ../../../../Contexts/Mooc/Courses/infrastructure/FileCourseRepository
-    arguments: []
+    class: ../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ["@Mooc.ConnectionManager"]
 
   Mooc.courses.CourseCreator:
     class: ../../../../Contexts/Mooc/Courses/application/CourseCreator
-    arguments: ["@Mooc.courses.CourseRepository"]
+    arguments: ["@Mooc.courses.CourseRepository", "@Mooc.shared.EventBus"]
 
   Mooc.shared.Logger:
     class: ../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []
+
+  Mooc.shared.EventBus:
+    class: ../../../../Contexts/Shared/infrastructure/InMemoryAsyncEventBus
     arguments: []
 
   Apps.mooc.controllers.CoursePutController:
