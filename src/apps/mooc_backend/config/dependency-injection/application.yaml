@@ -1,11 +1,25 @@
 services:
+  Mooc.ConnectionManager:
+    factory:
+      class: ../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: "createClient"
+    arguments: ["mooc"]
+
   Mooc.courses.CourseRepository:
-    class: ../../../../Contexts/Mooc/Courses/infrastructure/FileCourseRepository
-    arguments: []
+    class: ../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ["@Mooc.ConnectionManager"]
 
   Mooc.courses.CourseCreator:
     class: ../../../../Contexts/Mooc/Courses/application/CourseCreator
     arguments: ["@Mooc.courses.CourseRepository", "@Mooc.shared.EventBus"]
+
+  Mooc.coursesCounter.CoursesCounterFinder:
+    class: ../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
+    arguments: ["@Mooc.coursesCounter.CoursesCounterRepository"]
+
+  Mooc.coursesCounter.CoursesCounterRepository:
+    class: ../../../../Contexts/Mooc/CoursesCounter/infrastructure/InMemoryCoursesCounterRepository
+    arguments: []
 
   Mooc.shared.Logger:
     class: ../../../../Contexts/Shared/infrastructure/WinstonLogger
@@ -22,3 +36,7 @@ services:
   Apps.mooc.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
     arguments: []
+
+  Apps.mooc.controllers.CoursesCounterGetController:
+    class: ../../controllers/CoursesCounterGetController
+    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]

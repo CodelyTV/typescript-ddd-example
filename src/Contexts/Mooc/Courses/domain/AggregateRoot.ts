@@ -14,4 +14,6 @@ export abstract class AggregateRoot {
   record(event: DomainEvent): void {
     this.domainEvents.push(event);
   }
+
+  abstract toPrimitives(): any;
 }
