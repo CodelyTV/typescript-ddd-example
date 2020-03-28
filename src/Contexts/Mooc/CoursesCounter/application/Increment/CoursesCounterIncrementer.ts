@@ -1,4 +1,3 @@
-import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { EventBus } from '../../../../Shared/domain/EventBus';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { CoursesCounterRepository } from '../../domain/CoursesCounterRepository';

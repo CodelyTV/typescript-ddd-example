@@ -1,0 +1,9 @@
+services:
+
+  Mooc.courses.CourseRepository:
+    class: ../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ['@Mooc.shared.ConnectionManager']
+
+  Mooc.courses.CourseCreator:
+    class: ../../../../../Contexts/Mooc/Courses/application/CourseCreator
+    arguments: ['@Mooc.courses.CourseRepository', '@Mooc.shared.EventBus']

@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4';
+import { Uuid } from './value-object/Uuid';
 
 export abstract class DomainEvent {
   readonly aggregateId: string;
@@ -8,7 +8,7 @@ export abstract class DomainEvent {
 
   constructor(eventName: string, aggregateId: string, eventId?: string, occurredOn?: Date) {
     this.aggregateId = aggregateId;
-    this.eventId = eventId || uuid();
+    this.eventId = eventId || Uuid.random().value;
     this.occurredOn = occurredOn || new Date();
     this.eventName = eventName;
   }

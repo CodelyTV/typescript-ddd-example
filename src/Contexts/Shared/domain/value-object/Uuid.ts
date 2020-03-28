@@ -1,4 +1,4 @@
-import uuid from 'uuid/v4';
+import { v4 } from 'uuid';
 import validate from 'uuid-validate';
 import { InvalidArgumentError } from './InvalidArgumentError';
 
@@ -12,7 +12,7 @@ export class Uuid {
   }
 
   static random(): Uuid {
-    return new Uuid(uuid());
+    return new Uuid(v4());
   }
 
   private ensureIsValidUuid(id: string): void {

@@ -1,7 +1,7 @@
 import { InMemoryAsyncEventBus } from '../../../../src/Contexts/Shared/infrastructure/InMemoryAsyncEventBus';
 import { DomainEventSubscriber } from '../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
 import { DomainEvent } from '../../../../src/Contexts/Shared/domain/DomainEvent';
-import uuid = require('uuid');
+import { Uuid } from '../../../../src/Contexts/Shared/domain/value-object/Uuid';
 
 describe('InMemoryAsyncEventBus', () => {
   let subscriber: DomainEventSubscriberDummy;
@@ -10,7 +10,7 @@ describe('InMemoryAsyncEventBus', () => {
   beforeAll(() => {});
 
   it('the subscriber should be called when the event it is subscribed to is published', done => {
-    const event = new DummyEvent(uuid());
+    const event = new DummyEvent(Uuid.random().value);
     subscriber = new DomainEventSubscriberDummy();
     subscriber.on = () => {
       done();

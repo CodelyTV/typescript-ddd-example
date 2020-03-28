@@ -1,42 +1,5 @@
-services:
-  Mooc.ConnectionManager:
-    factory:
-      class: ../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
-      method: "createClient"
-    arguments: ["mooc"]
-
-  Mooc.courses.CourseRepository:
-    class: ../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
-    arguments: ["@Mooc.ConnectionManager"]
-
-  Mooc.courses.CourseCreator:
-    class: ../../../../Contexts/Mooc/Courses/application/CourseCreator
-    arguments: ["@Mooc.courses.CourseRepository", "@Mooc.shared.EventBus"]
-
-  Mooc.coursesCounter.CoursesCounterFinder:
-    class: ../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
-    arguments: ["@Mooc.coursesCounter.CoursesCounterRepository"]
-
-  Mooc.coursesCounter.CoursesCounterRepository:
-    class: ../../../../Contexts/Mooc/CoursesCounter/infrastructure/InMemoryCoursesCounterRepository
-    arguments: []
-
-  Mooc.shared.Logger:
-    class: ../../../../Contexts/Shared/infrastructure/WinstonLogger
-    arguments: []
-
-  Mooc.shared.EventBus:
-    class: ../../../../Contexts/Shared/infrastructure/InMemoryAsyncEventBus
-    arguments: []
-
-  Apps.mooc.controllers.CoursePutController:
-    class: ../../controllers/CoursePutController
-    arguments: ["@Mooc.courses.CourseCreator"]
-
-  Apps.mooc.controllers.StatusGetController:
-    class: ../../controllers/StatusGetController
-    arguments: []
-
-  Apps.mooc.controllers.CoursesCounterGetController:
-    class: ../../controllers/CoursesCounterGetController
-    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]
+imports:
+  - { resource: ./Shared/application.yaml }
+  - { resource: ./Courses/application.yaml }
+  - { resource: ./CoursesCounter/application.yaml }
+  - { resource: ./apps/application.yaml }
