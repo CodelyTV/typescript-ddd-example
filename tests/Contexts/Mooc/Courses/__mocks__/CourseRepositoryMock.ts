@@ -12,7 +12,10 @@ export class CourseRepositoryMock implements CourseRepository {
   }
 
   assertLastSavedCourseIs(expected: Course): void {
-    expect(this.mockSave).toHaveBeenCalledWith(expected);
+    const mock = this.mockSave.mock;
+    const lastSavedCourse = mock.calls[mock.calls.length - 1][0] as Course;
+    expect(lastSavedCourse).toBeInstanceOf(Course);
+    expect(lastSavedCourse.toPrimitives()).toEqual(expected.toPrimitives());
   }
 
   async search(id: CourseId): Promise<Nullable<Course>> {
