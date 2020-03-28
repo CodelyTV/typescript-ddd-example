@@ -1,8 +1,8 @@
-import { CoursesCounterFinder } from '../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
-import { CoursesCounterMother } from '../domain/CoursesCounterMother';
-import { CoursesCounterRepositoryMock } from '../__mocks__/CoursesCounterRepositoryMock';
-import { CoursesCounterResponseMother } from '../domain/CoursesCounterResponseMother';
-import { CoursesCounterNotExist } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import { CoursesCounterFinder } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
+import { CoursesCounterMother } from '../../domain/CoursesCounterMother';
+import { CoursesCounterRepositoryMock } from '../../__mocks__/CoursesCounterRepositoryMock';
+import { CoursesCounterResponseMother } from '../../domain/CoursesCounterResponseMother';
+import { CoursesCounterNotExist } from '../../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
 
 describe('CoursesCounter Finder', () => {
   let finder: CoursesCounterFinder;
