@@ -1,11 +1,16 @@
 import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
 import { DomainEvent } from '../../../../../src/Contexts/Shared/domain/DomainEvent';
+import { DomainEventSubscriber } from '../../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
 
 export default class EventBusMock implements EventBus {
   private publishSpy = jest.fn();
 
-  publish(events: DomainEvent[]): void {
+  async publish(events: DomainEvent[]) {
     this.publishSpy(events);
+  }
+
+  addSubscribers(subscribers: DomainEventSubscriber<DomainEvent>[]): void {
+    //
   }
 
   assertLastPublishedEventIs(expectedEvent: DomainEvent) {

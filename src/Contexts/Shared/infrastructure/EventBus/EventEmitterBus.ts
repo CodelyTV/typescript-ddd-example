@@ -1,5 +1,5 @@
-import { DomainEvent } from '../domain/DomainEvent';
-import { DomainEventSubscriber } from '../domain/DomainEventSubscriber';
+import { DomainEvent } from '../../domain/DomainEvent';
+import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
 import { EventEmitter } from 'events';
 
 export class EventEmitterBus extends EventEmitter {
@@ -9,7 +9,7 @@ export class EventEmitterBus extends EventEmitter {
     this.registerSubscribers(subscribers);
   }
 
-  private registerSubscribers(subscribers?: DomainEventSubscriber<DomainEvent>[]) {
+  registerSubscribers(subscribers?: DomainEventSubscriber<DomainEvent>[]) {
     subscribers?.map(subscriber => {
       this.registerSubscriber(subscriber);
     });

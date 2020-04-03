@@ -11,5 +11,5 @@ services:
     arguments: []
 
   Mooc.shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/InMemoryAsyncEventBus
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
     arguments: []

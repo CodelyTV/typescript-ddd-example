@@ -37,7 +37,7 @@ export class CourseCreatedDomainEvent extends DomainEvent {
     };
   }
 
-  static fromPrimitive(
+  static fromPrimitives(
     aggregateId: string,
     body: CreateCourseDomainEventBody,
     eventId: string,

@@ -27,7 +27,7 @@ Then('the response should be empty', () => {
 });
 
 Then('the response content should be:', response => {
-  assert.deepEqual(_response.body, response);
+  assert.deepEqual(_response.body, JSON.parse(response));
 });
 
 Before(async () => {

@@ -2,9 +2,9 @@ import { CoursesCounterMother } from '../../domain/CoursesCounterMother';
 import { CoursesCounterRepositoryMock } from '../../__mocks__/CoursesCounterRepositoryMock';
 import { CoursesCounterIncrementer } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer';
 import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
-import EventBusDouble from '../../../Courses/doubles/EventBusDouble';
 import { CourseIdMother } from '../../../Shared/domain/Courses/CourseIdMother';
 import { CoursesCounter } from '../../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
+import EventBusMock from '../../../Courses/__mocks__/EventBusMock';
 
 describe('CoursesCounter Incrementer', () => {
   let incrementer: CoursesCounterIncrementer;
@@ -12,7 +12,7 @@ describe('CoursesCounter Incrementer', () => {
   let repository: CoursesCounterRepositoryMock;
 
   beforeEach(() => {
-    eventBus = new EventBusDouble();
+    eventBus = new EventBusMock();
     repository = new CoursesCounterRepositoryMock();
     incrementer = new CoursesCounterIncrementer(repository, eventBus);
   });

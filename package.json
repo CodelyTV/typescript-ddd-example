@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc_backend/server.ts",
     "test": "npm run test:unit && npm run test:features",
-    "test:unit": "NODE_ENV=test jest --watch",
+    "test:unit": "NODE_ENV=test jest",
     "test:features": "NODE_ENV=test cucumber-js -p default",
     "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",

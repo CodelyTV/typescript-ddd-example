@@ -5,3 +5,7 @@ services:
   Mooc.EnvironmentArranger:
     class: ../../../../../tests/Contexts/Shared/infrastructure/mongo/MongoEnvironmentArranger
     arguments: ['@Mooc.shared.ConnectionManager']
+
+  Mooc.shared.EventBus:
+    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
+    arguments: []

@@ -10,7 +10,7 @@ export class IncrementCoursesCounterOnCourseCreated implements DomainEventSubscr
     return [CourseCreatedDomainEvent.EVENT_NAME];
   }
 
-  on(domainEvent: CourseCreatedDomainEvent): void {
-    this.incrementer.run(new CourseId(domainEvent.aggregateId));
+  async on(domainEvent: CourseCreatedDomainEvent) {
+    await this.incrementer.run(new CourseId(domainEvent.aggregateId));
   }
 }
