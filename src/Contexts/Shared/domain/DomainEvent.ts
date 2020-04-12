@@ -1,6 +1,8 @@
 import { Uuid } from './value-object/Uuid';
 
 export abstract class DomainEvent {
+  static EVENT_NAME: string;
+  static fromPrimitives: (...args: any[]) => any;
   readonly aggregateId: string;
   readonly eventId: string;
   readonly occurredOn: Date;
@@ -15,3 +17,5 @@ export abstract class DomainEvent {
 
   abstract toPrimitive(): Object;
 }
+
+export type DomainEventClass = Partial<typeof DomainEvent>;

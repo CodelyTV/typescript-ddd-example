@@ -17,7 +17,7 @@ export class DomainEventJsonDeserializer {
       throw new Error(`The event ${eventName} doesn't exist or has no subscribers`);
     }
 
-    return eventClass.fromPrimitives(
+    return eventClass.fromPrimitives!(
       eventData.attributes.id,
       eventData.attributes,
       eventData.id,
