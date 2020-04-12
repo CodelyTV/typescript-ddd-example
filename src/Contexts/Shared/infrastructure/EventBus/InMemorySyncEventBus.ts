@@ -1,6 +1,6 @@
-import { EventBus } from '../../domain/EventBus';
 import { DomainEvent } from '../../domain/DomainEvent';
 import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
+import { EventBus } from '../../domain/EventBus';
 
 type Subscription = {
   boundedCallback: Function;
@@ -27,7 +27,7 @@ export class InMemorySyncEventBus implements EventBus {
   }
 
   addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
-    subscribers.map(subscriber => subscriber.subscribedTo().map(event => this.subscribe(event, subscriber)));
+    subscribers.map(subscriber => subscriber.subscribedTo().map(event => this.subscribe(event.EVENT_NAME, subscriber)));
   }
 
   private subscribe(topic: string, subscriber: DomainEventSubscriber<DomainEvent>): void {
