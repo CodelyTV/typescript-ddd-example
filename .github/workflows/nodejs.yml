@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-        mongodb-version: [4.0, 4.2]
+        postgresql-version: [11, 12]
 
     steps:
       - uses: actions/checkout@v1
@@ -17,10 +17,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Launch MongoDB
-        uses: wbari/start-mongoDB@v0.2
+      - name: Launch PostgreSQL
+        uses: harmon758/postgresql-action@v1
         with:
-          mongoDBVersion: ${{ matrix.mongodb-version }}
+          postgresql version: ${{ matrix.postgresql-version }}
+          postgresql db: test
+          postgresql user: postgres
+          postgresql password: postgres
       - name: npm install, build, and test
         run: |
           npm install
