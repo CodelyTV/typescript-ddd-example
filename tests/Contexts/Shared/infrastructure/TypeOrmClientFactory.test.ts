@@ -1,9 +1,10 @@
-import { MongoClientFactory } from '../../../../src/Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory';
 import { MongoClient } from 'mongodb';
+import { Connection } from 'typeorm';
+import { TypeOrmClientFactory } from '../../../../src/Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmClientFactory';
 
 describe('Create a client', () => {
-  const factory = MongoClientFactory;
-  let client: MongoClient;
+  const factory = TypeOrmClientFactory;
+  let client: Connection;
 
   beforeEach(async () => {
     client = await factory.createClient('test');
@@ -15,7 +16,7 @@ describe('Create a client', () => {
 
   it('creates a new client with the connection already established', () => {
     expect(client).toBeInstanceOf(MongoClient);
-    expect(client.isConnected()).toBeTruthy();
+    expect(client.isConnected).toBeTruthy();
   });
 
   it('creates a new client if it does not exist a client with the given name', async () => {
