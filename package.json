@@ -44,7 +44,7 @@
     "node-dependency-injection": "^2.4.2",
     "pg": "^7.18.1",
     "ts-node": "^8.3.0",
-    "typeorm": "^0.2.22",
+    "typeorm": "^0.2.24",
     "typescript": "^3.7.2",
     "uuid": "^3.3.3",
     "uuid-validate": "0.0.3",

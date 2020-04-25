@@ -1,11 +1,11 @@
-import { Course } from '../../../domain/Course';
-import { EntitySchema, ValueTransformer } from 'typeorm';
-import { CourseName } from '../../../domain/CourseName';
-import { CourseDuration } from '../../../domain/CourseDuration';
+import { EntitySchema } from 'typeorm';
 import { CourseId } from '../../../../Shared/domain/Courses/CourseId';
+import { Course } from '../../../domain/Course';
+import { CourseDuration } from '../../../domain/CourseDuration';
+import { CourseName } from '../../../domain/CourseName';
 
 export const CourseEntity = new EntitySchema<Course>({
-  name: 'course',
+  name: 'Course',
   tableName: 'courses',
   target: Course,
   columns: {

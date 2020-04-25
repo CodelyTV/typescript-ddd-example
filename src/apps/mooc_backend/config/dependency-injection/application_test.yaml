@@ -3,5 +3,5 @@ imports:
 
 services:
   Mooc.EnvironmentArranger:
-    class: ../../../../../tests/Contexts/Shared/infrastructure/mongo/MongoEnvironmentArranger
+    class: ../../../../../tests/Contexts/Shared/infrastructure/typeorm/TypeOrmEnvironmentArranger
     arguments: ['@Mooc.ConnectionManager']
