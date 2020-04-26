@@ -18,4 +18,4 @@ export abstract class DomainEvent {
   abstract toPrimitive(): Object;
 }
 
-export type DomainEventClass = Partial<typeof DomainEvent>;
+export type DomainEventClass = { EVENT_NAME: string, fromPrimitives(...args: any[]): DomainEvent; };
