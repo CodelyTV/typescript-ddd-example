@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x, 14.x]
         mongodb-version: [4.0, 4.2]
 
     steps:
