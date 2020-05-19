@@ -1,5 +1,4 @@
 services:
-
   Mooc.shared.ConnectionManager:
     factory:
       class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
@@ -13,3 +12,11 @@ services:
   Mooc.shared.EventBus:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
     arguments: []
+
+  Mooc.shared.EventBus.DomainEventMapping:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
+    arguments: ['!tagged domainEventSubscriber']
+
+  Mooc.shared.EventBus.DomainEventJsonDeserializer:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
+    arguments: ['@Mooc.shared.EventBus.DomainEventMapping']
