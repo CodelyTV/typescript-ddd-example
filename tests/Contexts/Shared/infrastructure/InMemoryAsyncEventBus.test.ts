@@ -1,7 +1,7 @@
-import { InMemoryAsyncEventBus } from '../../../../src/Contexts/Shared/infrastructure/InMemoryAsyncEventBus';
-import { DomainEventSubscriber } from '../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
 import { DomainEvent } from '../../../../src/Contexts/Shared/domain/DomainEvent';
-import uuid = require('uuid');
+import { DomainEventSubscriber } from '../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
+import { Uuid } from '../../../../src/Contexts/Shared/domain/value-object/Uuid';
+import { InMemoryAsyncEventBus } from '../../../../src/Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus';
 
 describe('InMemoryAsyncEventBus', () => {
   let subscriber: DomainEventSubscriberDummy;
@@ -10,9 +10,9 @@ describe('InMemoryAsyncEventBus', () => {
   beforeAll(() => {});
 
   it('the subscriber should be called when the event it is subscribed to is published', done => {
-    const event = new DummyEvent(uuid());
+    const event = new DummyEvent(Uuid.random().value);
     subscriber = new DomainEventSubscriberDummy();
-    subscriber.on = () => {
+    subscriber.on = async () => {
       done();
     };
 
@@ -35,11 +35,11 @@ class DummyEvent extends DomainEvent {
 }
 
 class DomainEventSubscriberDummy implements DomainEventSubscriber<DummyEvent> {
-  subscribedTo(): string[] {
-    return [DummyEvent.EVENT_NAME];
+  subscribedTo(): any[] {
+    return [DummyEvent];
   }
 
-  on(domainEvent: DummyEvent): void {
+  async on(domainEvent: DummyEvent) {
     console.log(domainEvent);
   }
 }

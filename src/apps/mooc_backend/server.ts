@@ -12,9 +12,9 @@ app.use(errorHandler());
  */
 const server = app.listen(app.get('port'), () => {
   // tslint:disable: no-console
-  const winstonLogger = container.get('Mooc.shared.Logger');
+  const logger = container.get('Mooc.shared.Logger');
 
-  winstonLogger.info(`  App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
+  logger.info(`  App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
   console.log('  Press CTRL-C to stop\n');
 });
 
