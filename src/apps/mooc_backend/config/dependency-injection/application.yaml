@@ -3,7 +3,7 @@ services:
     factory:
       class: ../../../../Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmClientFactory
       method: 'createClient'
-    arguments: ['mooc']
+    arguments: ['Mooc']
 
   Mooc.courses.CourseRepository:
     class: ../../../../Contexts/Mooc/Courses/infrastructure/persistence/TypeOrmCourseRepository

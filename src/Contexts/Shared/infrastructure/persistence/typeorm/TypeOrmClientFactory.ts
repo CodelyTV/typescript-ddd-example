@@ -12,7 +12,7 @@ export class TypeOrmClientFactory {
         username: config.get('typeorm.username'),
         password: config.get('typeorm.password'),
         database: config.get('typeorm.database'),
-        entities: [__dirname + '/../../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}'],
+        entities: [__dirname + `/../../../../${contextName}/**/**/infrastructure/persistence/typeorm/*{.js,.ts}`],
         synchronize: true
       });
 
