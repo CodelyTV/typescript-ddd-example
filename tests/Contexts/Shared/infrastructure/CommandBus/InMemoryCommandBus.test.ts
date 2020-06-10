@@ -3,9 +3,19 @@ import { Command } from '../../../../../src/Contexts/Shared/domain/Command';
 import { NoHandlerForMessageError } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/NoHandlerForMessageError';
 
 class UnhandledCommand extends Command {
-  constructor() {
-    super('UnhandledCommandName');
-  }
+  static COMMAND_NAME = 'unhandled.command';
+}
+
+class HandledCommand extends Command {
+  static COMMAND_NAME = 'handled.command';
+}
+
+interface CommandHandler {
+  handle(command: Command): void;
+}
+
+class MyCommandHandler implements CommandHandler {
+  handle(command: HandledCommand): void {}
 }
 
 describe('InMemoryCommandBus', () => {
@@ -20,5 +30,16 @@ describe('InMemoryCommandBus', () => {
       expect(error.message).toBe('There is not handler for command of type UnhandledCommandName');
       done();
     }
+  });
+
+  it('accepts a command with handler', done => {
+    const handledCommand = new HandledCommand();
+    const myCommandHandler = new MyCommandHandler();
+    const commandBus = new InMemoryCommandBus([myCommandHandler]);
+
+    try {
+      commandBus.dispatch(handledCommand);
+      done();
+    } catch (error) { }
   });
 });
