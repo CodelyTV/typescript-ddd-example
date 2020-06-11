@@ -1,4 +1,4 @@
-.PHONY = default deps build test start clean
+.PHONY = default deps build test start clean start-database
 
 IMAGE_NAME := codelytv/typescript-ddd-skeleton
 SERVICE_NAME := app
@@ -33,3 +33,7 @@ start: build
 # Clean containers
 clean:
 	docker-compose down --rmi local --volumes --remove-orphans
+
+# Start mongodb container in background
+start_database:
+	docker-compose up -d mongo

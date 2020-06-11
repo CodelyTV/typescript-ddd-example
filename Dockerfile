@@ -1,4 +1,4 @@
-FROM node:12.16.3-slim as builder
+FROM node:12.16.3-slim
 
 WORKDIR /code
 
