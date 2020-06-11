@@ -1,0 +1,7 @@
+services:
+  Contexts.shared.Logger:
+    class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []
+
+  Apps.Backoffice.Frontend.controllers.HomeGetController:
+    class: ../../controllers/HomeGetController
