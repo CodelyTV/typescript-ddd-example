@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: bash -c "npm run build && npm run start"
+    ports:
+      - 3000:3000
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/dev
+    depends_on:
+      - mongo
+    volumes:
+      - .:/code
+      - node_modules:/code/node_modules
+
+  mongo:
+    image: mongo:3.4.6
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27017:27017
+
+volumes:
+  node_modules:
