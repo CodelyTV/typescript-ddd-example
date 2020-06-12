@@ -7,3 +7,9 @@ services:
   Mooc.courses.CourseCreator:
     class: ../../../../../Contexts/Mooc/Courses/application/CourseCreator
     arguments: ['@Mooc.courses.CourseRepository', '@Mooc.shared.EventBus']
+
+  Mooc.courses.CreateCourseCommandHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/CreateCourseCommandHandler
+    arguments: ['@Mooc.courses.CourseCreator']
+    tags:
+      - { name: 'commandHandler' }
