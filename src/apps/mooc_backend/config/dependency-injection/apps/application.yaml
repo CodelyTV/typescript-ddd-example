@@ -1,0 +1,13 @@
+services:
+
+  Apps.mooc.controllers.CoursePutController:
+    class: ../../../controllers/CoursePutController
+    arguments: ["@Mooc.courses.CourseCreator"]
+
+  Apps.mooc.controllers.StatusGetController:
+    class: ../../../controllers/StatusGetController
+    arguments: []
+
+  Apps.mooc.controllers.CoursesCounterGetController:
+    class: ../../../controllers/CoursesCounterGetController
+    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]

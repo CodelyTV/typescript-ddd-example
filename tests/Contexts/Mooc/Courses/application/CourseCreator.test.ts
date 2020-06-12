@@ -1,17 +1,17 @@
 import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
-import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
 import { CourseMother } from '../domain/CourseMother';
 import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
 import { CreateCourseRequestMother } from './CreateCourseRequestMother';
+import EventBusMock from '../__mocks__/EventBusMock';
 
 let repository: CourseRepositoryMock;
 let creator: CourseCreator;
 
-const eventBus = (): EventBus => ({ publish: jest.fn() });
+const eventBus = new EventBusMock();
 
 beforeEach(() => {
   repository = new CourseRepositoryMock();
-  creator = new CourseCreator(repository, eventBus());
+  creator = new CourseCreator(repository, eventBus);
 });
 
 it('should create a valid course', async () => {

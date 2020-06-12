@@ -13,9 +13,9 @@ export class CourseCreatedDomainEvent extends DomainEvent {
 
   constructor({
     id,
-    eventId,
-    duration,
     name,
+    duration,
+    eventId,
     occurredOn
   }: {
     id: string;
@@ -37,12 +37,12 @@ export class CourseCreatedDomainEvent extends DomainEvent {
     };
   }
 
-  static fromPrimitive(
+  static fromPrimitives(
     aggregateId: string,
     body: CreateCourseDomainEventBody,
     eventId: string,
     occurredOn: Date
-  ): CourseCreatedDomainEvent {
+  ): DomainEvent {
     return new CourseCreatedDomainEvent({
       id: aggregateId,
       duration: body.duration,
