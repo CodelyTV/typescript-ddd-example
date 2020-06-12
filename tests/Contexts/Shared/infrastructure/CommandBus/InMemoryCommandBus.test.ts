@@ -1,8 +1,8 @@
 import { Command } from '../../../../../src/Contexts/Shared/domain/Command';
 import { CommandHandler } from '../../../../../src/Contexts/Shared/domain/CommandHandler';
+import { CommandNotRegisteredError } from '../../../../../src/Contexts/Shared/domain/CommandNotRegisteredError';
 import { CommandHandlersInformation } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation';
 import { InMemoryCommandBus } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus';
-import { NoHandlerForMessageError } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/NoHandlerForMessageError';
 
 class UnhandledCommand extends Command {
   static COMMAND_NAME = 'unhandled.command';
@@ -29,8 +29,8 @@ describe('InMemoryCommandBus', () => {
     try {
       commandBus.dispatch(unhandledCommand);
     } catch (error) {
-      expect(error).toBeInstanceOf(NoHandlerForMessageError);
-      expect(error.message).toBe('There is not handler for command of type UnhandledCommand');
+      expect(error).toBeInstanceOf(CommandNotRegisteredError);
+      expect(error.message).toBe(`The command <UnhandledCommand> hasn't a command handler associated`);
       done();
     }
   });

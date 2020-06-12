@@ -1,5 +1,6 @@
 import { Command } from '../../domain/Command';
 import { CommandHandler } from '../../domain/CommandHandler';
+import { CommandNotRegisteredError } from '../../domain/CommandNotRegisteredError';
 
 export class CommandHandlersInformation {
   private commandHandlersMap: Map<Command, CommandHandler<Command>>;
@@ -18,7 +19,13 @@ export class CommandHandlersInformation {
     return handlersMap;
   }
 
-  public getCommandHandler(command: Command): CommandHandler<Command> | undefined {
-    return this.commandHandlersMap.get(command.constructor);
+  public search(command: Command): CommandHandler<Command> {
+    const commandHandler = this.commandHandlersMap.get(command.constructor);
+
+    if (!commandHandler) {
+      throw new CommandNotRegisteredError(command);
+    }
+
+    return commandHandler;
   }
 }
