@@ -20,7 +20,7 @@
     "start:backoffice:frontend": "NODE_ENV=production node dist/src/apps/backoffice/frontend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
-    "build:di": "copy 'src/**/*.{json,yaml}' dist/src",
+    "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {

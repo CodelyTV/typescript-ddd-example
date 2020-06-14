@@ -1,18 +1,31 @@
 version: '3.8'
 
+x-app-service: &default-app
+  build: .
+  command: ''
+  environment:
+    - MONGO_URL=mongodb://mongo:27017/dev
+  depends_on:
+    - mongo
+  volumes:
+    - .:/code
+    - node_modules:/code/node_modules
+
 services:
   app:
-    build: .
+    <<: *default-app
+
+  mooc-backend:
+    <<: *default-app
     command: bash -c "npm run build && npm run start"
     ports:
       - 3000:3000
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/dev
-    depends_on:
-      - mongo
-    volumes:
-      - .:/code
-      - node_modules:/code/node_modules
+
+  backoffice-frontend:
+    <<: *default-app
+    command: bash -c "npm run build && npm run start:backoffice:frontend"
+    ports:
+      - 8032:8032
 
   mongo:
     image: mongo:3.4.6
