@@ -5,3 +5,6 @@ services:
 
   Apps.Backoffice.Frontend.controllers.HomeGetController:
     class: ../../controllers/HomeGetController
+
+  Apps.Backoffice.Frontend.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
