@@ -8,6 +8,9 @@ export class CoursesCounterGetController implements Controller {
   constructor(private coursesCounterFinder: CoursesCounterFinder) {}
   async run(req: Request, res: Response): Promise<void> {
     try {
+      const query = new FindCourseCounterQuery();
+      const count = await this.queryBus.query(query);
+
       const counter = await this.coursesCounterFinder.run();
       res.status(httpStatus.OK).send(counter);
     } catch (e) {
