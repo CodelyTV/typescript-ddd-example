@@ -6,17 +6,18 @@ import { CreateCourseRequest } from '../../../../../src/Contexts/Mooc/Courses/ap
 import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
 import { CourseNameMother } from './CourseNameMother';
 import { CourseDurationMother } from './CourseDurationMother';
+import { CreateCourseCommand } from '../../../../../src/Contexts/Mooc/Courses/application/CreateCourseCommand';
 
 export class CourseMother {
   static create(id: CourseId, name: CourseName, duration: CourseDuration): Course {
     return new Course(id, name, duration);
   }
 
-  static fromRequest(request: CreateCourseRequest): Course {
+  static fromCommand(command: CreateCourseCommand): Course {
     return this.create(
-      CourseIdMother.create(request.id),
-      CourseNameMother.create(request.name),
-      CourseDurationMother.create(request.duration)
+      CourseIdMother.create(command.id),
+      CourseNameMother.create(command.name),
+      CourseDurationMother.create(command.duration)
     );
   }
 
