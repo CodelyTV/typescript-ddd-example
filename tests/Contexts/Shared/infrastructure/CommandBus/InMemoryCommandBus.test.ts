@@ -17,33 +17,33 @@ class MyCommandHandler implements CommandHandler<HandledCommand> {
     return HandledCommand;
   }
 
-  handle(command: HandledCommand): void {}
+  async handle(command: HandledCommand): Promise<void> {}
 }
 
 describe('InMemoryCommandBus', () => {
-  it('throws an error if dispatches a command without handler', done => {
+  it('throws an error if dispatches a command without handler', async () => {
     const unhandledCommand = new UnhandledCommand();
     const commandHandlersInformation = new CommandHandlersInformation([]);
     const commandBus = new InMemoryCommandBus(commandHandlersInformation);
 
+    let exception = null;
+
     try {
-      commandBus.dispatch(unhandledCommand);
+      await commandBus.dispatch(unhandledCommand);
     } catch (error) {
-      expect(error).toBeInstanceOf(CommandNotRegisteredError);
-      expect(error.message).toBe(`The command <UnhandledCommand> hasn't a command handler associated`);
-      done();
+      exception = error;
     }
+
+    expect(exception).toBeInstanceOf(CommandNotRegisteredError);
+    expect(exception.message).toBe(`The command <UnhandledCommand> hasn't a command handler associated`);
   });
 
-  it('accepts a command with handler', done => {
+  it('accepts a command with handler', async () => {
     const handledCommand = new HandledCommand();
     const myCommandHandler = new MyCommandHandler();
     const commandHandlersInformation = new CommandHandlersInformation([myCommandHandler]);
     const commandBus = new InMemoryCommandBus(commandHandlersInformation);
 
-    try {
-      commandBus.dispatch(handledCommand);
-      done();
-    } catch (error) {}
+    await commandBus.dispatch(handledCommand);
   });
 });
