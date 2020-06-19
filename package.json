@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc_backend/server.ts",
-    "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/backoffice/frontend/server.ts",
+    "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/server.ts",
     "test": "npm run test:unit && npm run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:features": "NODE_ENV=test cucumber-js -p default",
