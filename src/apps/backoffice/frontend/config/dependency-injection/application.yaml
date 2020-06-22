@@ -1,3 +1,6 @@
+// TODO:
+Instance CoursesCounterFinder application servicer
+
 services:
   Contexts.shared.Logger:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
@@ -5,3 +8,7 @@ services:
 
   Apps.Backoffice.Frontend.controllers.HomeGetController:
     class: ../../controllers/HomeGetController
+
+  Apps.Backoffice.Frontend.controllers.CoursesGetController:
+    class: ../../controllers/CoursesGetController
+    arguments: ['@Mooc.coursesCounter.CoursesCounterFinder']

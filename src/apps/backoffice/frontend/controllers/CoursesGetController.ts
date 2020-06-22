@@ -5,12 +5,18 @@ export class CoursesGetController {
   constructor(private coursesCounterFinder: CoursesCounterFinder) {}
 
   async run(req: Request, res: Response) {
-    // const courses = await this.coursesCounterFinder.run();
+    let coursesNumber;
+    try {
+      const courses = await this.coursesCounterFinder.run();
+      coursesNumber = courses.total;
+    } catch (error) {
+      coursesNumber = 0;
+    }
 
     res.render('pages/courses', {
       title: 'Welcome',
       description: 'CodelyTV - Backoffice',
-      courses_counter: 0,
+      courses_counter: coursesNumber,
       new_course_id: 'xxxx'
     });
   }
