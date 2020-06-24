@@ -1,5 +1,4 @@
 services:
-
   Mooc.coursesCounter.CoursesCounterRepository:
     class: ../../../../../Contexts/Mooc/CoursesCounter/infrastructure/persistence/mongo/MongoCoursesCounterRepository
     arguments: ["@Mooc.shared.ConnectionManager"]
@@ -21,4 +20,10 @@ services:
     class: ../../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
     arguments: ["@Mooc.coursesCounter.CoursesCounterRepository"]
 
+  
+  Mooc.coursesCounter.FindCoursesCounterQueryHandler:
+    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler
+    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]
+    tags:
+      - { name: 'queryHandler' }
 

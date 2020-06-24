@@ -28,3 +28,11 @@ services:
   Mooc.shared.EventBus.DomainEventJsonDeserializer:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
     arguments: ['@Mooc.shared.EventBus.DomainEventMapping']
+
+  Mooc.shared.QueryHandlersInformation:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Mooc.shared.QueryBus:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Mooc.shared.QueryHandlersInformation']

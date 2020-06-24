@@ -10,4 +10,4 @@ services:
 
   Apps.mooc.controllers.CoursesCounterGetController:
     class: ../../../controllers/CoursesCounterGetController
-    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]
+    arguments: ["@Mooc.shared.QueryBus"]

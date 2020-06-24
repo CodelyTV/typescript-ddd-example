@@ -1,7 +1,6 @@
 import { CoursesCounterRepository } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterRepository';
 import { CoursesCounter } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
 import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
-import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
 
 export class CoursesCounterRepositoryMock implements CoursesCounterRepository {
   private mockSave = jest.fn();

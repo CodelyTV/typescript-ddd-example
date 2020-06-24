@@ -3,28 +3,37 @@ import { CoursesCounterMother } from '../../domain/CoursesCounterMother';
 import { CoursesCounterRepositoryMock } from '../../__mocks__/CoursesCounterRepositoryMock';
 import { CoursesCounterResponseMother } from '../../domain/CoursesCounterResponseMother';
 import { CoursesCounterNotExist } from '../../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import { FindCoursesCounterQueryHandler } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler';
+import { FindCoursesCounterQuery } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
 
-describe('CoursesCounter Finder', () => {
-  let finder: CoursesCounterFinder;
+describe('FindCourseCounter QueryHandler', () => {
   let repository: CoursesCounterRepositoryMock;
 
   beforeEach(() => {
     repository = new CoursesCounterRepositoryMock();
-    finder = new CoursesCounterFinder(repository);
   });
+
 
   it('should find an existing courses counter', async () => {
     const counter = CoursesCounterMother.random();
-    const expected = CoursesCounterResponseMother.create(counter.total);
     repository.returnOnSearch(counter);
 
-    const actual = await finder.run();
-
+    const handler = new FindCoursesCounterQueryHandler(new CoursesCounterFinder(repository));
+    
+    const query = new FindCoursesCounterQuery();
+    const response = await handler.handle(query);
+    
     repository.assertSearch();
-    expect(expected).toEqual(actual);
+
+    const expected = CoursesCounterResponseMother.create(counter.total);
+    expect(expected).toEqual(response);
   });
 
   it('should throw an exception when courses counter does not exists', async () => {
-    await expect(finder.run()).rejects.toBeInstanceOf(CoursesCounterNotExist);
+    const handler = new FindCoursesCounterQueryHandler(new CoursesCounterFinder(repository));
+
+    const query = new FindCoursesCounterQuery();
+
+    await expect(handler.handle(query)).rejects.toBeInstanceOf(CoursesCounterNotExist);
   });
 });
