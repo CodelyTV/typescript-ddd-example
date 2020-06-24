@@ -3,6 +3,7 @@ import { QueryHandlersInformation } from '../../../../../src/Contexts/Shared/inf
 import { QueryNotRegisteredError } from '../../../../../src/Contexts/Shared/domain/QueryNotRegisteredError';
 import { QueryHandler } from '../../../../../src/Contexts/Shared/domain/QueryHandler';
 import { Response } from '../../../../../src/Contexts/Shared/domain/Response';
+import { InMemoryQueryBus } from '../../../../../src/Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus';
 
 class UnhandledQuery extends Query {
   static QUERY_NAME = 'unhandled.query';
@@ -35,7 +36,7 @@ describe('InMemoryQueryBus', () => {
     }
 
     expect(exception).toBeInstanceOf(QueryNotRegisteredError);
-    expect(exception.message).toBe(`The query <UnhandledCommand> hasn't a query handler associated`);
+    expect(exception.message).toBe(`The query <UnhandledQuery> hasn't a query handler associated`);
   });
 
   it('accepts a query with handler', async () => {
