@@ -1,6 +1,3 @@
-// TODO:
-Instance CoursesCounterFinder application servicer
-
 services:
   Contexts.shared.Logger:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
@@ -8,6 +5,20 @@ services:
 
   Apps.Backoffice.Frontend.controllers.HomeGetController:
     class: ../../controllers/HomeGetController
+
+  Mooc.coursesCounter.CoursesCounterFinder:
+    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
+    arguments: ["@Mooc.coursesCounter.CoursesCounterRepository"]
+
+  Mooc.coursesCounter.CoursesCounterRepository:
+    class: ../../../../../Contexts/Mooc/CoursesCounter/infrastructure/persistence/mongo/MongoCoursesCounterRepository
+    arguments: ["@Mooc.shared.ConnectionManager"]
+
+  Mooc.shared.ConnectionManager:
+    factory:
+      class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['mooc']
 
   Apps.Backoffice.Frontend.controllers.CoursesGetController:
     class: ../../controllers/CoursesGetController
