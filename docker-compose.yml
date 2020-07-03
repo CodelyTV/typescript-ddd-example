@@ -8,8 +8,8 @@ x-app-service: &default-app
   depends_on:
     - mongo
   volumes:
-    - .:/code
-    - node_modules:/code/node_modules
+    - .:/code:delegated
+    - node_modules:/code/node_modules:delegated
 
 services:
   app:

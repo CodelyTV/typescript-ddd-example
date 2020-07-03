@@ -22,7 +22,7 @@ default: build
 
 # Build image
 build:
-	docker build  -t $(IMAGE_NAME):dev .
+	docker build -t $(IMAGE_NAME):dev .
 
 # Run tests
 test: build
