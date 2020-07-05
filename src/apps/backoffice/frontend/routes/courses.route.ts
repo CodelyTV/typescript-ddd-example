@@ -1,8 +1,16 @@
 import { Express } from 'express';
 import container from '../config/dependency-injection';
 import { CoursesGetController } from '../controllers/CoursesGetController';
+import { CoursesPostController } from '../controllers/CoursesPostController';
 
 export const register = (app: Express) => {
-  const controller: CoursesGetController = container.get('Apps.Backoffice.Frontend.controllers.CoursesGetController');
-  app.get('/courses', controller.run.bind(controller));
+  const coursesGetController: CoursesGetController = container.get(
+    'Apps.Backoffice.Frontend.controllers.CoursesGetController'
+  );
+  const coursesPostController: CoursesPostController = container.get(
+    'Apps.Backoffice.Frontend.controllers.CoursesPostController'
+  );
+
+  app.get('/courses', coursesGetController.run.bind(coursesGetController));
+  app.post('/courses', coursesPostController.run.bind(coursesPostController));
 };

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { CoursesCounterFinder } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
+import { Uuid } from '../../../../Contexts/Shared/domain/value-object/Uuid';
 
 export class CoursesGetController {
   constructor(private coursesCounterFinder: CoursesCounterFinder) {}
@@ -11,7 +12,8 @@ export class CoursesGetController {
       title: 'Welcome',
       description: 'CodelyTV - Backoffice',
       courses_counter: courses.total,
-      new_course_id: 'xxxx'
+      new_course_id: Uuid.random(),
+      flash: req.flash()
     });
   }
 }

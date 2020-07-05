@@ -20,6 +20,22 @@ services:
       method: 'createClient'
     arguments: ['mooc']
 
+  Mooc.courses.CourseRepository:
+    class: ../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ['@Mooc.shared.ConnectionManager']
+
+  Mooc.shared.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
+    arguments: []
+
+  Mooc.courses.CourseCreator:
+    class: ../../../../../Contexts/Mooc/Courses/application/CourseCreator
+    arguments: ['@Mooc.courses.CourseRepository', '@Mooc.shared.EventBus']
+
   Apps.Backoffice.Frontend.controllers.CoursesGetController:
     class: ../../controllers/CoursesGetController
     arguments: ['@Mooc.coursesCounter.CoursesCounterFinder']
+
+  Apps.Backoffice.Frontend.controllers.CoursesPostController:
+    class: ../../controllers/CoursesPostController
+    arguments: ['@Mooc.courses.CourseCreator']
