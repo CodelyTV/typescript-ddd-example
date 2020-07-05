@@ -7,7 +7,7 @@ export class CoursesGetController {
   async run(req: Request, res: Response) {
     const courses = await this.coursesCounterFinder.run();
 
-    res.render('pages/courses', {
+    res.render('pages/courses/courses', {
       title: 'Welcome',
       description: 'CodelyTV - Backoffice',
       courses_counter: courses.total,
