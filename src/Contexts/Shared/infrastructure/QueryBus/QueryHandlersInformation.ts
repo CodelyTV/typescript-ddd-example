@@ -10,7 +10,9 @@ export class QueryHandlersInformation {
     this.queryHandlersMap = this.formatHandlers(queryHandlers);
   }
 
-  private formatHandlers(queryHandlers: Array<QueryHandler<Query, Response>>): Map<Query, QueryHandler<Query, Response>> {
+  private formatHandlers(
+    queryHandlers: Array<QueryHandler<Query, Response>>
+  ): Map<Query, QueryHandler<Query, Response>> {
     const handlersMap = new Map();
 
     queryHandlers.forEach(queryHandler => {
