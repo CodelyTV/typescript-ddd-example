@@ -1,6 +1,7 @@
 .PHONY = default deps build test start clean start-database
 
-SHELL := /bin/bash
+# Shell to use for running scripts
+SHELL := $(shell which bash)
 IMAGE_NAME := codelytv/typescript-ddd-skeleton
 SERVICE_NAME := app
 
