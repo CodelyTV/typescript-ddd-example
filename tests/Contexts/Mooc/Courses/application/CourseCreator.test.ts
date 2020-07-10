@@ -1,25 +1,25 @@
 import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/application/CourseCreator';
 import { CourseMother } from '../domain/CourseMother';
 import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
-import { CreateCourseRequestMother } from './CreateCourseRequestMother';
+import { CreateCourseCommandMother } from './CreateCourseCommandMother';
 import EventBusMock from '../__mocks__/EventBusMock';
+import { CreateCourseCommandHandler } from '../../../../../src/Contexts/Mooc/Courses/application/CreateCourseCommandHandler';
 
 let repository: CourseRepositoryMock;
-let creator: CourseCreator;
+let handler: CreateCourseCommandHandler;
 
 const eventBus = new EventBusMock();
 
 beforeEach(() => {
   repository = new CourseRepositoryMock();
-  creator = new CourseCreator(repository, eventBus);
+  const creator = new CourseCreator(repository, eventBus);
+  handler = new CreateCourseCommandHandler(creator);
 });
 
 it('should create a valid course', async () => {
-  const request = CreateCourseRequestMother.random();
+  const command = CreateCourseCommandMother.random();
+  await handler.handle(command);
 
-  const course = CourseMother.fromRequest(request);
-
-  await creator.run(request);
-
+  const course = CourseMother.fromCommand(command);
   repository.assertLastSavedCourseIs(course);
 });

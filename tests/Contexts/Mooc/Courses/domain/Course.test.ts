@@ -1,4 +1,4 @@
-import { CreateCourseRequestMother } from '../application/CreateCourseRequestMother';
+import { CreateCourseCommandMother } from '../application/CreateCourseCommandMother';
 import { CourseMother } from './CourseMother';
 import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
@@ -8,13 +8,13 @@ import { CourseDurationMother } from './CourseDurationMother';
 describe('Course', () => {
 
   it('should return a new course instance', () => {
-    const request = CreateCourseRequestMother.random();
+    const command = CreateCourseCommandMother.random();
 
-    const course = CourseMother.fromRequest(request);
+    const course = CourseMother.fromCommand(command);
 
-    expect(course.id.value).toBe(request.id);
-    expect(course.name.value).toBe(request.name);
-    expect(course.duration.value).toBe(request.duration);
+    expect(course.id.value).toBe(command.id);
+    expect(course.name.value).toBe(command.name);
+    expect(course.duration.value).toBe(command.duration);
   });
 
   it('should record a CourseCreatedDomainEvent after its creation', () => {

@@ -13,6 +13,14 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
     arguments: []
 
+  Mooc.shared.CommandHandlersInformation:
+    class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation
+    arguments: ['!tagged commandHandler']
+
+  Mooc.shared.CommandBus:
+    class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
+    arguments: ['@Mooc.shared.CommandHandlersInformation']
+
   Mooc.shared.EventBus.DomainEventMapping:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
     arguments: ['!tagged domainEventSubscriber']
@@ -20,3 +28,11 @@ services:
   Mooc.shared.EventBus.DomainEventJsonDeserializer:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
     arguments: ['@Mooc.shared.EventBus.DomainEventMapping']
+
+  Mooc.shared.QueryHandlersInformation:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Mooc.shared.QueryBus:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Mooc.shared.QueryHandlersInformation']
