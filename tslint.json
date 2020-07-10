@@ -4,7 +4,7 @@
   "rules": {
     "adjacent-overload-signatures": true,
     "curly": true,
-    "eofline": false,
+    "eofline": true,
     "align": [true, "parameters"],
     "class-name": true,
     "indent": [true, "spaces"],
