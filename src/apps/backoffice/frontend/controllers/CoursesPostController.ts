@@ -13,7 +13,11 @@ export class CoursesPostController {
   }
 
   private async createCourse(req: Request, res: Response) {
-    await this.courseCreator.run({ id: req.body.id, name: req.body.name, duration: req.body.duration });
+    await this.courseCreator.run({
+      courseId: req.body.id,
+      courseName: req.body.name,
+      courseDuration: req.body.duration
+    });
     req.flash('message', `Felicidades, el curso ${req.body.name} ha sido creado!`);
     res.redirect('/courses');
   }
