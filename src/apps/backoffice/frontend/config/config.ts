@@ -12,7 +12,7 @@ const convictConfig = convict({
       doc: 'The Mongo connection URL',
       format: String,
       env: 'MONGO_URL',
-      default: 'mongodb://localhost:27017/dev'
+      default: 'mongodb://localhost:27017/backoffice-frontend-dev'
     }
   }
 });
