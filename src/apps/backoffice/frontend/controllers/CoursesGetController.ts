@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
-import { CoursesCounterFinder } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
 import { Uuid } from '../../../../Contexts/Shared/domain/value-object/Uuid';
+import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
+import { FindCoursesCounterResponse } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterResponse';
+import { FindCoursesCounterQuery } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
 
 export class CoursesGetController {
-  constructor(private coursesCounterFinder: CoursesCounterFinder) {}
+  constructor(private queryBus: QueryBus) {}
 
   async run(req: Request, res: Response) {
-    const courses = await this.coursesCounterFinder.run();
+    const courses = await this.queryBus.ask<FindCoursesCounterResponse>(new FindCoursesCounterQuery());
 
     res.render('pages/courses/courses', {
       title: 'Welcome',
