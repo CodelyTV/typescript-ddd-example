@@ -36,6 +36,7 @@
     "@types/node": "^14.0.3",
     "@types/uuid": "^8.0.0",
     "@types/uuid-validate": "0.0.1",
+    "amqp-ts": "^1.8.0",
     "body-parser": "^1.19.0",
     "bson": "^4.0.4",
     "compression": "^1.7.4",
