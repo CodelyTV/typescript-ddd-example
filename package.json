@@ -46,6 +46,7 @@
     "copy": "^0.3.2",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
     "glob": "^7.1.6",
     "helmet": "^3.22.0",
     "http-status": "^1.4.2",

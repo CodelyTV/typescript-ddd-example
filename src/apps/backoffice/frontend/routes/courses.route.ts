@@ -12,5 +12,5 @@ export const register = (app: Express) => {
   );
 
   app.get('/courses', coursesGetController.run.bind(coursesGetController));
-  app.post('/courses', coursesPostController.run.bind(coursesPostController));
+  app.post('/courses', CoursesPostController.validator(), coursesPostController.run.bind(coursesPostController));
 };
