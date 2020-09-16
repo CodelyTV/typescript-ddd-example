@@ -5,7 +5,7 @@ import container from './config/dependency-injection';
 
 export async function seed() {
   const repository: CoursesCounterRepository = container.get('Mooc.coursesCounter.CoursesCounterRepository');
-  const logger = container.get('Contexts.shared.Logger');
+  const logger = container.get('Shared.Logger');
 
   const alreadyExists = await repository.search();
   const isTestEnvironment = process.env.NODE_ENV === 'test';

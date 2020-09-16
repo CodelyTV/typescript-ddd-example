@@ -5,7 +5,7 @@ import { DomainEventSubscriber } from '../../Contexts/Shared/domain/DomainEventS
 import { DomainEvent } from '../../Contexts/Shared/domain/DomainEvent';
 
 export function registerSubscribers() {
-  const eventBus = container.get('Mooc.shared.EventBus') as InMemoryAsyncEventBus;
+  const eventBus = container.get('Shared.EventBus') as InMemoryAsyncEventBus;
   const subscriberDefinitions = container.findTaggedServiceIds('domainEventSubscriber') as Map<String, Definition>;
   const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
 

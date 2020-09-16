@@ -1,13 +1,13 @@
 services:
   Mooc.coursesCounter.CoursesCounterRepository:
     class: ../../../../../Contexts/Mooc/CoursesCounter/infrastructure/persistence/mongo/MongoCoursesCounterRepository
-    arguments: ["@Mooc.shared.ConnectionManager"]
+    arguments: ["@Shared.ConnectionManager"]
 
   Mooc.coursesCounter.CoursesCounterIncrementer:
     class: ../../../../../Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer
     arguments: [
       "@Mooc.coursesCounter.CoursesCounterRepository",
-      "@Mooc.shared.EventBus"
+      "@Shared.EventBus"
       ]
 
   Mooc.coursesCounter.IncrementCoursesCounterOnCourseCreated:

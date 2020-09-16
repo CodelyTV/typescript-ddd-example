@@ -12,7 +12,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 const server = app.listen(app.get('port'), async () => {
-  const winstonLogger = container.get('Contexts.shared.Logger');
+  const winstonLogger = container.get('Shared.Logger');
 
   await seed();
 

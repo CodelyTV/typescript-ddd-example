@@ -1,38 +1,38 @@
 services:
-  Mooc.shared.ConnectionManager:
+  Shared.ConnectionManager:
     factory:
       class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
       method: 'createClient'
     arguments: ['mooc']
 
-  Mooc.shared.Logger:
+  Shared.Logger:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
 
-  Mooc.shared.EventBus:
+  Shared.EventBus:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
     arguments: []
 
-  Mooc.shared.CommandHandlersInformation:
+  Shared.CommandHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation
     arguments: ['!tagged commandHandler']
 
-  Mooc.shared.CommandBus:
+  Shared.CommandBus:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
-    arguments: ['@Mooc.shared.CommandHandlersInformation']
+    arguments: ['@Shared.CommandHandlersInformation']
 
-  Mooc.shared.EventBus.DomainEventMapping:
+  Shared.EventBus.DomainEventMapping:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
     arguments: ['!tagged domainEventSubscriber']
 
-  Mooc.shared.EventBus.DomainEventJsonDeserializer:
+  Shared.EventBus.DomainEventJsonDeserializer:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
-    arguments: ['@Mooc.shared.EventBus.DomainEventMapping']
+    arguments: ['@Shared.EventBus.DomainEventMapping']
 
-  Mooc.shared.QueryHandlersInformation:
+  Shared.QueryHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
     arguments: ['!tagged queryHandler']
 
-  Mooc.shared.QueryBus:
+  Shared.QueryBus:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
-    arguments: ['@Mooc.shared.QueryHandlersInformation']
+    arguments: ['@Shared.QueryHandlersInformation']

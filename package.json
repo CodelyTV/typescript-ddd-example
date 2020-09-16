@@ -52,7 +52,7 @@
     "http-status": "^1.4.2",
     "mandrill-api": "^1.0.45",
     "mongodb": "^3.5.7",
-    "node-dependency-injection": "^2.6.3",
+    "node-dependency-injection": "^2.6.8",
     "nunjucks": "^3.2.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.9.2",
