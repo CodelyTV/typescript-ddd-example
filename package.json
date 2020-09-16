@@ -14,7 +14,7 @@
     "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc_backend/server.ts",
     "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/server.ts",
     "test": "npm run test:unit && npm run test:features",
-    "test:unit": "NODE_ENV=test jest",
+    "test:unit": "NODE_ENV=test jest --watch",
     "test:features": "NODE_ENV=test cucumber-js -p default",
     "lint": "tslint src/**/*.ts{,x}",
     "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
@@ -25,6 +25,8 @@
     "build:clean": "rm -r dist; exit 0"
   },
   "dependencies": {
+    "@types/amqplib": "^0.5.16",
+    "@types/bluebird": "^3.5.33",
     "@types/bson": "^4.0.2",
     "@types/compression": "^1.7.0",
     "@types/convict": "^5.2.1",

@@ -10,8 +10,8 @@ services:
     arguments: []
 
   Mooc.shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
-    arguments: []
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Mooc.shared.EventBus.DomainEventJsonDeserializer']
 
   Mooc.shared.CommandHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation

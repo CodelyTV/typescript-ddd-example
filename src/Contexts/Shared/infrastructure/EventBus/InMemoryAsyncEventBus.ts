@@ -10,6 +10,8 @@ export class InMemoryAsyncEventBus implements EventBus {
     this.bus = new EventEmitterBus(subscribers);
   }
 
+  async start(): Promise<void> {}
+
   async publish(events: DomainEvent[]): Promise<void> {
     this.bus.publish(events);
   }

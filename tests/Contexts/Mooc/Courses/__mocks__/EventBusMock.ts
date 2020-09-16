@@ -9,6 +9,8 @@ export default class EventBusMock implements EventBus {
     this.publishSpy(events);
   }
 
+  async start(): Promise<void> {}
+
   addSubscribers(subscribers: DomainEventSubscriber<DomainEvent>[]): void {
     //
   }

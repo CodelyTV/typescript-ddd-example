@@ -3,6 +3,7 @@ import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 type CreateCourseDomainEventBody = {
   readonly duration: string;
   readonly name: string;
+  readonly eventName: string;
 };
 
 export class CourseCreatedDomainEvent extends DomainEvent {
@@ -33,7 +34,8 @@ export class CourseCreatedDomainEvent extends DomainEvent {
     const { name, duration } = this;
     return {
       name,
-      duration
+      duration,
+      eventName: CourseCreatedDomainEvent.EVENT_NAME
     };
   }
 
