@@ -1,0 +1,14 @@
+services:
+  Retention.campaign.EmailSender:
+    class: ../../../../../Contexts/Retention/Campaign/infrastructure/FakeEmailSender
+    arguments: []
+
+  Retention.campaign.SendWelcomeUserEmail:
+    class: ../../../../../Contexts/Retention/Campaign/application/SendWelcomeUserEmail/SendWelcomeUserEmail
+    arguments: ["@Retention.campaign.EmailSender"]
+
+  Retention.campaign.SendWelcomeUserEmailOnUserRegistered:
+    class: ../../../../../Contexts/Retention/Campaign/application/SendWelcomeUserEmail/SendWelcomeUserEmailOnUserRegistered
+    arguments: ["@Retention.campaign.SendWelcomeUserEmail"]
+    tags:
+      - { name: 'domainEventSubscriber' }
