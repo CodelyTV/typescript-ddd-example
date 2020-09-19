@@ -12,7 +12,7 @@ export class CoursesPostController extends WebController {
   static validator(): ValidationChain[] {
     return [
       body('id').isUUID(),
-      body('name').isLength({ min: 1, max: 255 }),
+      body('name').isLength({ min: 1, max: 30 }),
       body('duration').isLength({ min: 4, max: 100 })
     ];
   }
