@@ -24,7 +24,7 @@
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
     "cypress:open": "NODE_ENV=test cypress open",
-    "cypress:run": "NODE_ENV=test cypress run"
+    "cypress:run": "NODE_ENV=test ts-node cypress/start"
   },
   "dependencies": {
     "@types/bson": "^4.0.2",

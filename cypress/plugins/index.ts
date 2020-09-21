@@ -1,6 +1,6 @@
 import container from '../../src/apps/mooc_backend/config/dependency-injection';
 import { EnvironmentArranger } from '../../tests/Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
-import {seed} from '../../src/apps/backoffice/frontend/seed';
+import { seed } from '../../src/apps/backoffice/frontend/seed';
 
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
 
