@@ -20,7 +20,7 @@ describe('Courses', () => {
       cy.get('form').submit();
 
       cy.get('div[role="alert"]').contains(`Felicidades, el curso ${courseName} ha sido creado!`);
-      // cy.contains(`Actualmente CodelyTV Pro cuenta con ${i} cursos.`);
+      cy.contains(`Actualmente CodelyTV Pro cuenta con ${i} cursos.`);
     }
   });
 });

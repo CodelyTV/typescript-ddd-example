@@ -29,6 +29,6 @@ export class CourseCreator {
     );
 
     await this.repository.save(course);
-    this.eventBus.publish(course.pullDomainEvents());
+    await this.eventBus.publish(course.pullDomainEvents());
   }
 }

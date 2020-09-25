@@ -1,6 +1,7 @@
 import app from '../src/apps/backoffice/frontend/app';
 import cypress from 'cypress';
 import { Server } from 'http';
+import cypressConfig from '../cypress.json';
 
 async function run() {
   const server = await startServer();
@@ -28,8 +29,8 @@ async function runCypress() {
     browser: 'chrome',
     headless: true,
     config: {
+      ...cypressConfig,
       baseUrl: `http://localhost:${app.get('port')}`,
-      video: false
     }
   });
 }

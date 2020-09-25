@@ -10,7 +10,7 @@ services:
     arguments: ['mooc']
 
   Shared.EventBus:
-    class:  ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
+    class:  ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
     arguments: []
 
   Shared.QueryBus:
