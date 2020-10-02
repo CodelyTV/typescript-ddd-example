@@ -6,7 +6,7 @@ describe('Courses', () => {
   });
 
   it('can create courses', () => {
-    cy.visit('http://localhost:8032/courses');
+    cy.visit('courses');
 
     cy.contains('Actualmente CodelyTV Pro cuenta con 0 cursos.');
 

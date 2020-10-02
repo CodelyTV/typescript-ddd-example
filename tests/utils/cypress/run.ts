@@ -18,6 +18,7 @@ async function runCypress() {
     headless: true,
     config: {
       ...cypressConfig,
+      supportFile: false,
       baseUrl: `http://localhost:${app.get('port')}`
     }
   });

@@ -1,5 +1,6 @@
 import cypress from 'cypress';
 import { startBackofficeFrontend } from './startBackofficeFrontend';
+import app from '../../../src/apps/backoffice/frontend/app';
 
 async function open() {
   const server = await startBackofficeFrontend();
@@ -10,7 +11,12 @@ async function open() {
 }
 
 async function openCypress() {
-  return cypress.open();
+  return cypress.open({
+    config: {
+      supportFile: false,
+      baseUrl: `http://localhost:${app.get('port')}`
+    }
+  });
 }
 
 open();
