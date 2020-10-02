@@ -1,7 +1,6 @@
 import faker from 'faker';
 
 describe('Courses', () => {
-
   beforeEach(() => {
     cy.task('reset:db');
   });
