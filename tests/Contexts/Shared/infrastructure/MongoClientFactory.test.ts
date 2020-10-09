@@ -6,7 +6,7 @@ describe('Create a client', () => {
   let client: MongoClient;
 
   beforeEach(async () => {
-    client = await factory.createClient('test');
+    client = await factory.createClient('test', { url: 'mongodb://localhost:27017/mooc-backend-test' });
   });
 
   afterEach(async () => {
@@ -19,7 +19,7 @@ describe('Create a client', () => {
   });
 
   it('creates a new client if it does not exist a client with the given name', async () => {
-    const newClient = await factory.createClient('test2');
+    const newClient = await factory.createClient('test2', { url: 'mongodb://localhost:27017/mooc-backend-test' });
 
     expect(newClient).not.toBe(client);
 
@@ -27,7 +27,7 @@ describe('Create a client', () => {
   });
 
   it('returns a client if it already exists', async () => {
-    const newClient = await factory.createClient('test');
+    const newClient = await factory.createClient('test', { url: 'mongodb://localhost:27017/mooc-backend-test' });
 
     expect(newClient).toBe(client);
 
