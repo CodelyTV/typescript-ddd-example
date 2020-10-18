@@ -11,9 +11,9 @@ export class CoursesPostController extends WebController {
 
   static validator(): ValidationChain[] {
     return [
-      body('id').isUUID(),
-      body('name').isLength({ min: 1, max: 30 }),
-      body('duration').isLength({ min: 4, max: 100 })
+      body('id').isUUID().withMessage('Invalid course id'),
+      body('name').isLength({ min: 1, max: 30 }).withMessage('Invalid name'),
+      body('duration').isLength({ min: 4, max: 100 }).withMessage('Invalid duration')
     ];
   }
 
