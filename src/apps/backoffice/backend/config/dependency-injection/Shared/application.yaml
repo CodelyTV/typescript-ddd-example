@@ -8,3 +8,11 @@ services:
       class:  ../../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
       method: 'createClient'
       arguments: ['mooc']
+
+  Shared.QueryHandlersInformation:
+    class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Shared.QueryBus:
+    class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Shared.QueryHandlersInformation']
