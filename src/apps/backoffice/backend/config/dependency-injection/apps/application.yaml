@@ -5,4 +5,4 @@ services:
 
     Apps.Backoffice.Backend.controllers.CoursesGetController:
         class: ../../../controllers/CoursesGetController
-        arguments: []
+        arguments: ['@Shared.QueryBus']
