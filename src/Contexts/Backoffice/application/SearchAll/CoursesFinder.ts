@@ -2,11 +2,11 @@ import { BackofficeCourseRepository } from '../../domain/BackofficeCourseReposit
 import { SearchAllCoursesResponse } from './SearchAllCoursesResponse';
 
 export class CoursesFinder {
-    constructor(private coursesRepository: BackofficeCourseRepository) {}
+  constructor(private coursesRepository: BackofficeCourseRepository) {}
 
-    async run() {
-        const courses = await this.coursesRepository.searchAll();
+  async run() {
+    const courses = await this.coursesRepository.searchAll();
 
-        return new SearchAllCoursesResponse(courses);
-    }
+    return new SearchAllCoursesResponse(courses);
+  }
 }
