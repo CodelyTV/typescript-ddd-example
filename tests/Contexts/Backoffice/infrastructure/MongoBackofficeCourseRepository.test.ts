@@ -16,10 +16,11 @@ afterAll(async () => {
 
 describe('Search all courses', () => {
   it('should return the existing courses', async () => {
-    const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random(), BackofficeCourseMother.random()];
+    const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random()];
 
     await Promise.all(courses.map(course => repository.save(course)));
     
-    expect(courses).toEqual(await repository.searchAll());
+    const expectedCourses = await repository.searchAll();
+    expect(courses.sort()).toEqual(expectedCourses.sort());
   });
 });
