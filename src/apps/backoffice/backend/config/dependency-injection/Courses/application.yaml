@@ -2,3 +2,5 @@ services:
     Backoffice.Backend.courses.CourseRepository:
         class: ../../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
         arguments: ['@Shared.ConnectionManager']
+
+        
