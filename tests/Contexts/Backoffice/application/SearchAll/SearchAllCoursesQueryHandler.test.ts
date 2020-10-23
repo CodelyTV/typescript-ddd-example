@@ -1,6 +1,6 @@
 import { SearchAllCoursesQueryHandler } from '../../../../../src/Contexts/Backoffice/application/SearchAll/SearchAllCoursesQueryHandler';
 import { CoursesFinder } from '../../../../../src/Contexts/Backoffice/application/SearchAll/CoursesFinder';
-import { SearchAllCoursesQuery } from '../../../../../src/Contexts/Backoffice/application/SearchAll/SearchAllCoursesQUery';
+import { SearchAllCoursesQuery } from '../../../../../src/Contexts/Backoffice/application/SearchAll/SearchAllCoursesQuery';
 import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';
 import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 import { SearchAllCoursesResponseMother } from '../domain/SearchAllCoursesResponseMother';
