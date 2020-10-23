@@ -19,7 +19,7 @@ Then('the response status code should be {int}', async (status: number) => {
 Then('the response should be:', async response => {
   const expectedResponse = JSON.parse(response);
   _response = await _request;
-  assert(response.body, expectedResponse);
+  assert(_response.body, expectedResponse);
 });
 
 Before(async () => {
