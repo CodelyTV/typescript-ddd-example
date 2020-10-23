@@ -3,7 +3,6 @@ import express from 'express';
 import helmet from 'helmet';
 import compress from 'compression';
 import { registerRoutes } from './routes';
-// import { registerSubscribers } from './subscribers';
 
 const app: express.Express = express();
 
@@ -18,6 +17,5 @@ app.use(helmet.frameguard({ action: 'deny' }));
 app.use(compress());
 
 registerRoutes(app);
-// registerSubscribers();
 
 export default app;

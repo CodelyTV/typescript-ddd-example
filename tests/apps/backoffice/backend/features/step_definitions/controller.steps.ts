@@ -16,6 +16,12 @@ Then('the response status code should be {int}', async (status: number) => {
   _response = await _request.expect(status);
 });
 
+Then('the response should be:', async response => {
+  const expectedResponse = JSON.parse(response);
+  _response = await _request;
+  assert(response.body, expectedResponse);
+});
+
 Before(async () => {
   const environmentArranger: Promise<EnvironmentArranger> = container.get('Backoffice.Backend.EnvironmentArranger');
   await (await environmentArranger).arrange();
