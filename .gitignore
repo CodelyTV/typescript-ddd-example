@@ -4,3 +4,4 @@ dist/
 logs/
 src/Contexts/Mooc/Courses/infrastructure/persistence/courses.*
 data
+test-results.xml
