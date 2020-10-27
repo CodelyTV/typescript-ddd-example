@@ -1,9 +1,19 @@
-let common = [
-  'tests/**/features/**/*.feature', // Specify our feature files
-  '--require-module ts-node/register', // Load TypeScript module
-  '--require tests/**/features/step_definitions/*.steps.ts' // Load step definitions
+const common = [
+  '--require-module ts-node/register' // Load TypeScript module
+];
+
+const backoffice_backend = [
+  ...common,
+  'tests/apps/backoffice/backend/features/**/*.feature',
+  '--require tests/apps/backoffice/backend/features/step_definitions/*.steps.ts'
+].join(' ');
+const mooc_backend = [
+  ...common,
+  'tests/apps/mooc_backend/features/**/*.feature',
+  '--require tests/apps/mooc_backend/features/step_definitions/*.steps.ts'
 ].join(' ');
 
 module.exports = {
-  default: common
+  backoffice_backend,
+  mooc_backend
 };
