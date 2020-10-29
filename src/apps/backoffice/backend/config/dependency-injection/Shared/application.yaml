@@ -1,11 +1,17 @@
 services:
   Shared.Logger:
-    class:  ../../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    class: ../../../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
 
   Shared.ConnectionManager:
     factory:
-      class:  ../../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      class: ../../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+      arguments: ['mooc']
+
+  Shared.ConnectionManagerElastic:
+    factory:
+      class: ../../../../../../Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory
       method: 'createClient'
       arguments: ['mooc']
 
