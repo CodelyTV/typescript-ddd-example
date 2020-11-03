@@ -21,7 +21,7 @@ describe('Mongo BackofficeCourse Repository', () => {
     await Promise.all(courses.map(course => repository.save(course)));
     
     const expectedCourses = await repository.searchAll();
-    expect(courses.sort()).toEqual(expectedCourses.sort());
+    expect(courses.sort()).toStrictEqual(expectedCourses.sort());
   });
 
   it('should save a course', async () => {
