@@ -16,3 +16,16 @@ services:
   Shared.QueryBus:
     class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
     arguments: ['@Shared.QueryHandlersInformation']
+
+  Shared.EventBus:
+    class:  ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
+    arguments: []
+
+  Shared.EventBus.DomainEventMapping:
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
+    arguments: ['!tagged domainEventSubscriber']
+
+  Shared.EventBus.DomainEventJsonDeserializer:
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
+    arguments: ['@Shared.EventBus.DomainEventMapping']
+  
