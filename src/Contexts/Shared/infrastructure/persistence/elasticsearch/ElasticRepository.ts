@@ -12,8 +12,8 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
 
   protected async persist(index: string, aggregateRoot: T): Promise<void> {
     const document = { ...aggregateRoot.toPrimitives() };
+    const client = await this.client();
 
-    console.log('persist', document);
-    (await this.client()).index({ index: index, body: document });
+    await client.index({ index: index, body: document, refresh: 'wait_for' }); // wait_for wait for a refresh to make this operation visible to search
   }
 }
