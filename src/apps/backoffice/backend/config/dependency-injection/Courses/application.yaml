@@ -13,3 +13,13 @@ services:
         tags:
             - { name: 'queryHandler' }
 
+    Backoffice.Backend.courses.BackofficeCourseCreator:
+        class: ../../../../../../Contexts/Backoffice/application/Courses/BackofficeCourseCreator
+        arguments: ["@Backoffice.Backend.courses.BackofficeCourseRepository"]
+        
+    Backoffice.Backend.courses.CreateBackofficeCourseOnCourseCreated:
+        class: ../../../../../../Contexts/Backoffice/application/Courses/CreateBackofficeCourseOnCourseCreated
+        arguments: ['@Backoffice.Backend.courses.BackofficeCourseCreator']
+        tags:
+            - { name: 'domainEventSubscriber' }
+
