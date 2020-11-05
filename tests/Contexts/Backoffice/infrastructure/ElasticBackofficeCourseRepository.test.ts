@@ -8,6 +8,10 @@ const client = ElasticClientFactory.createClient('test');
 const repository: ElasticBackofficeCourseRepository = new ElasticBackofficeCourseRepository(client);
 const environmentArranger = new ElasticEnvironmentArranger(client);
 
+function sort(backofficeCourse1: BackofficeCourse, backofficeCourse2: BackofficeCourse): number {
+  return backofficeCourse1?.id?.value.localeCompare(backofficeCourse2?.id?.value);
+}
+
 afterEach(async () => {
   await environmentArranger.arrange();
 });
@@ -21,6 +25,6 @@ describe('Search all courses', () => {
     const expectedCourses = await repository.searchAll();
 
     expect(courses.length).toEqual(expectedCourses.length);
-    expect(courses.sort(BackofficeCourse.sort)).toEqual(expectedCourses.sort(BackofficeCourse.sort));
+    expect(courses.sort(sort)).toEqual(expectedCourses.sort(sort));
   });
 });

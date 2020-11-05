@@ -40,8 +40,4 @@ export class BackofficeCourse extends AggregateRoot {
       duration: this.duration.value
     };
   }
-
-  static sort(backofficeCourse1: BackofficeCourse, backofficeCourse2: BackofficeCourse): number {
-    return backofficeCourse1?.id?.value.localeCompare(backofficeCourse2?.id?.value);
-  }
 }

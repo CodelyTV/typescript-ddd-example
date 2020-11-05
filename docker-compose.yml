@@ -46,7 +46,6 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
     container_name: codely-elasticsearch
     environment:
-      #   - cluster.name=codely-elasticsearch
       - node.name=codely-elasticsearch
       - discovery.type=single-node #Elasticsearch forms a single-node cluster
       - bootstrap.memory_lock=true # might cause the JVM or shell session to exit if it tries to allocate more memory than is available!
