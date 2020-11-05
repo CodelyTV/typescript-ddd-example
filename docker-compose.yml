@@ -23,12 +23,6 @@ services:
     ports:
       - 3000:3000
 
-  backoffice-backend:
-    <<: *default-app
-    command: bash -c "npm run build && npm run start:backoffice:backend"
-    ports:
-      - 3002:3000
-
   backoffice-frontend:
     <<: *default-app
     command: bash -c "npm run build && npm run start:backoffice:frontend"
