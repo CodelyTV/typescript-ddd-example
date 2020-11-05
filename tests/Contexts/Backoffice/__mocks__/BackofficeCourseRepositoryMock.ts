@@ -3,6 +3,7 @@ import { BackofficeCourseRepository } from '../../../../src/Contexts/Backoffice/
 
 export class BackofficeCourseRepositoryMock implements BackofficeCourseRepository {
   private mockSearchAll = jest.fn();
+  private mockSave = jest.fn();
   private courses: Array<BackofficeCourse> = [];
 
   returnOnSearchAll(courses: Array<BackofficeCourse>) {
@@ -16,5 +17,13 @@ export class BackofficeCourseRepositoryMock implements BackofficeCourseRepositor
 
   assertSearchAll() {
     expect(this.mockSearchAll).toHaveBeenCalled();
+  }
+
+  async save(course: BackofficeCourse): Promise<void> {
+    this.mockSave(course);
+  }
+
+  assertSaveHasBeenCalledWith(course: BackofficeCourse) {
+    expect(this.mockSave).toHaveBeenCalledWith(course);
   }
 }
