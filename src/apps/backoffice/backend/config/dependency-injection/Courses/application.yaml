@@ -2,6 +2,9 @@ services:
   Backoffice.Backend.courses.BackofficeCourseRepository:
     class: ../../../../../../Contexts/Backoffice/infrastructure/MongoBackofficeCourseRepository
     arguments: ['@Shared.ConnectionManager']
+  Backoffice.Backend.courses.BackofficeCourseRepositoryElastic:
+    class: ../../../../../../Contexts/Backoffice/infrastructure/ElasticBackofficeCourseRepository
+    arguments: ['@Shared.ConnectionManagerElastic']
 
   Backoffice.Backend.courses.CoursesFinder:
     class: ../../../../../../Contexts/Backoffice/application/SearchAll/CoursesFinder

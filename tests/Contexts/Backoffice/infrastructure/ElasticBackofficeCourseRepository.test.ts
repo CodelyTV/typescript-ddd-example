@@ -1,19 +1,22 @@
-import { ElasticBackofficeCourseRepository } from '../../../../src/Contexts/Backoffice/infrastructure/ElasticBackofficeCourseRepository';
-import { ElasticClientFactory } from '../../../../src/Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory';
-import { ElasticEnvironmentArranger } from '../../Shared/infrastructure/elastic/ElasticEnvironmentArranger';
-import { BackofficeCourseMother } from '../application/domain/BackofficeCourseMother';
+import container from '../../../../src/apps/backoffice/backend/config/dependency-injection';
 import { BackofficeCourse } from '../../../../src/Contexts/Backoffice/domain/BackofficeCourse';
+import { ElasticBackofficeCourseRepository } from '../../../../src/Contexts/Backoffice/infrastructure/ElasticBackofficeCourseRepository';
+import { EnvironmentArranger } from '../../Shared/infrastructure/arranger/EnvironmentArranger';
+import { BackofficeCourseMother } from '../application/domain/BackofficeCourseMother';
 
-const client = ElasticClientFactory.createClient('test');
-const repository: ElasticBackofficeCourseRepository = new ElasticBackofficeCourseRepository(client);
-const environmentArranger = new ElasticEnvironmentArranger(client);
+const repository: ElasticBackofficeCourseRepository = container.get(
+  'Backoffice.Backend.courses.BackofficeCourseRepositoryElastic'
+);
+const environmentArranger: Promise<EnvironmentArranger> = container.get(
+  'Backoffice.Backend.ElasticEnvironmentArranger'
+);
 
 function sort(backofficeCourse1: BackofficeCourse, backofficeCourse2: BackofficeCourse): number {
   return backofficeCourse1?.id?.value.localeCompare(backofficeCourse2?.id?.value);
 }
 
 afterEach(async () => {
-  await environmentArranger.arrange();
+  await (await environmentArranger).arrange();
 });
 
 describe('Search all courses', () => {
