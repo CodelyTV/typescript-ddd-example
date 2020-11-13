@@ -12,6 +12,8 @@ export class CoursesGetController implements Controller {
   async run(_req: Request, res: Response) {
     const query = new SearchAllCoursesQuery();
     const queryResponse: SearchAllCoursesResponse = await this.queryBus.ask(query);
+
+    res.header('Access-Control-Allow-Origin', '*');
     res.status(httpStatus.OK).send(this.toResponse(queryResponse.courses));
   }
 
