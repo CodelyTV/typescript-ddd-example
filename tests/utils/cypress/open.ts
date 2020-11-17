@@ -1,11 +1,16 @@
 import cypress from 'cypress';
 import { startBackofficeFrontend } from './startBackofficeFrontend';
-import app from '../../../src/apps/backoffice/frontend/app';
+import frontendApp from '../../../src/apps/backoffice/frontend/app';
+import { startBackofficeBackend } from './startBackofficeBackend';
 
 async function open() {
-  const server = await startBackofficeFrontend();
+  const backofficeFrontendServer = await startBackofficeFrontend();
+  const backofficeBackendServer = await startBackofficeBackend();
   await openCypress();
-  server.close(() => {
+  backofficeFrontendServer.close(() => {
+    process.exit(0);
+  });
+  backofficeBackendServer.close(() => {
     process.exit(0);
   });
 }
@@ -14,7 +19,7 @@ async function openCypress() {
   return cypress.open({
     config: {
       supportFile: false,
-      baseUrl: `http://localhost:${app.get('port')}`
+      baseUrl: `http://localhost:${frontendApp.get('port')}`
     }
   });
 }
