@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from 'mongodb';
-import { AggregateRoot } from '../../../../Mooc/Courses/domain/AggregateRoot';
+import { AggregateRoot } from '../../../../Shared/domain/AggregateRoot';
 
 export abstract class MongoRepository<T extends AggregateRoot> {
   constructor(private _client: Promise<MongoClient>) {}

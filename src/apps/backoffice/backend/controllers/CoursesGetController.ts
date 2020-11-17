@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { SearchAllCoursesQuery } from '../../../../Contexts/Backoffice/application/SearchAll/SearchAllCoursesQuery';
-import { SearchAllCoursesResponse } from '../../../../Contexts/Backoffice/application/SearchAll/SearchAllCoursesResponse';
-import { BackofficeCourse } from '../../../../Contexts/Backoffice/domain/BackofficeCourse';
+import { SearchAllCoursesQuery } from '../../../../Contexts/Backoffice/SearchAll/application/SearchAllCoursesQuery';
+import { SearchAllCoursesResponse } from '../../../../Contexts/Backoffice/SearchAll/application/SearchAllCoursesResponse';
+import { BackofficeCourse } from '../../../../Contexts/Backoffice/Courses/domain/BackofficeCourse';
 import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
 
