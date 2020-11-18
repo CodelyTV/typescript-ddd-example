@@ -1,4 +1,4 @@
-import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/domain/BackofficeCourse';
+import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
 import { SearchAllCoursesResponse } from '../../../../../src/Contexts/Backoffice/SearchAll/application/SearchAllCoursesResponse';
 
 export class SearchAllCoursesResponseMother {
