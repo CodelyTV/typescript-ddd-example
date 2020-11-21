@@ -17,7 +17,7 @@ export class EventEmitterBus extends EventEmitter {
 
   private registerSubscriber(subscriber: DomainEventSubscriber<DomainEvent>) {
     subscriber.subscribedTo().map(event => {
-      this.on(event.EVENT_NAME, subscriber.on);
+      this.on(event.EVENT_NAME, subscriber.on.bind(subscriber));
     });
   }
 

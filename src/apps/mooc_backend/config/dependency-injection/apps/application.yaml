@@ -2,7 +2,7 @@ services:
 
   Apps.mooc.controllers.CoursePutController:
     class: ../../../controllers/CoursePutController
-    arguments: ["@Mooc.courses.CourseCreator"]
+    arguments: ["@Shared.CommandBus"]
 
   Apps.mooc.controllers.StatusGetController:
     class: ../../../controllers/StatusGetController
@@ -10,4 +10,4 @@ services:
 
   Apps.mooc.controllers.CoursesCounterGetController:
     class: ../../../controllers/CoursesCounterGetController
-    arguments: ["@Mooc.coursesCounter.CoursesCounterFinder"]
+    arguments: ["@Shared.QueryBus"]

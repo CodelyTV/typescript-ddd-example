@@ -1,0 +1,30 @@
+services:
+  Shared.Logger:
+    class:  ../../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []
+
+  Shared.ConnectionManager:
+    factory:
+      class:  ../../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['mooc']
+
+  Shared.EventBus:
+    class:  ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
+    arguments: []
+
+  Shared.QueryBus:
+    class:  ../../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Shared.QueryHandlersInformation']
+
+  Shared.CommandBus:
+    class:  ../../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
+    arguments: ['@Shared.CommandHandlersInformation']
+
+  Shared.QueryHandlersInformation:
+    class:  ../../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Shared.CommandHandlersInformation:
+    class:  ../../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation
+    arguments: ['!tagged commandHandler']

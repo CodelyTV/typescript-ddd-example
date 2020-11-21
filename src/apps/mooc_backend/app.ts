@@ -18,7 +18,6 @@ app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: 'deny' }));
 app.use(compress());
 
-
 const router = Router();
 app.use(router);
 registerRoutes(router);

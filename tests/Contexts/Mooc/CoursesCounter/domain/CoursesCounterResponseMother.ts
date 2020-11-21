@@ -1,8 +1,8 @@
 import { CoursesCounterTotal } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterTotal';
-import { CoursesCounterResponse } from '../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterResponse';
+import { FindCoursesCounterResponse } from '../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterResponse';
 
 export class CoursesCounterResponseMother {
   static create(total: CoursesCounterTotal) {
-    return new CoursesCounterResponse(total.value);
+    return new FindCoursesCounterResponse(total.value);
   }
 }

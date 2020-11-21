@@ -6,6 +6,12 @@ import { CourseName } from '../domain/CourseName';
 import { CourseDuration } from '../domain/CourseDuration';
 import { EventBus } from '../../../Shared/domain/EventBus';
 
+type Params = {
+  courseId: CourseId;
+  courseName: CourseName;
+  courseDuration: CourseDuration;
+};
+
 export class CourseCreator {
   private repository: CourseRepository;
   private eventBus: EventBus;
@@ -15,14 +21,14 @@ export class CourseCreator {
     this.eventBus = eventBus;
   }
 
-  async run(request: CreateCourseRequest): Promise<void> {
+  async run({ courseId, courseName, courseDuration }: Params): Promise<void> {
     const course = Course.create(
-      new CourseId(request.id),
-      new CourseName(request.name),
-      new CourseDuration(request.duration)
+      courseId,
+      courseName,
+      courseDuration
     );
 
     await this.repository.save(course);
-    this.eventBus.publish(course.pullDomainEvents());
+    await this.eventBus.publish(course.pullDomainEvents());
   }
 }

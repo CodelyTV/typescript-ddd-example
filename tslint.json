@@ -4,7 +4,7 @@
   "rules": {
     "adjacent-overload-signatures": true,
     "curly": true,
-    "eofline": false,
+    "eofline": true,
     "align": [true, "parameters"],
     "class-name": true,
     "indent": [true, "spaces"],
@@ -26,7 +26,7 @@
     "no-bitwise": true,
     "no-debugger": true,
     "prefer-const": true,
-    "no-empty-interface": true,
+    "no-empty-interface": false,
     "no-string-throw": true,
     "unified-signatures": true,
     "space-before-function-paren": [

@@ -14,7 +14,7 @@ export class CoursesCounterIncrementer {
       counter.increment(courseId);
 
       await this.repository.save(counter);
-      this.bus.publish(counter.pullDomainEvents());
+      await this.bus.publish(counter.pullDomainEvents());
     }
   }
 

@@ -1,6 +1,6 @@
 import { CoursesCounterRepository } from '../../domain/CoursesCounterRepository';
 import { CoursesCounterNotExist } from '../../domain/CoursesCounterNotExist';
-import { CoursesCounterResponse } from './CoursesCounterResponse';
+import { FindCoursesCounterResponse } from './FindCoursesCounterResponse';
 
 export class CoursesCounterFinder {
   constructor(private repository: CoursesCounterRepository) {}
@@ -11,6 +11,6 @@ export class CoursesCounterFinder {
       throw new CoursesCounterNotExist();
     }
 
-    return new CoursesCounterResponse(counter.total.value);
+    return new FindCoursesCounterResponse(counter.total.value);
   }
 }
