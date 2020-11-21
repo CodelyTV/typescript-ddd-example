@@ -1,5 +1,7 @@
 .PHONY = default deps build test start-mooc-backend clean start-database start-backoffice-frontend
 
+# Shell to use for running scripts
+SHELL := $(shell which bash)
 IMAGE_NAME := codelytv/typescript-ddd-skeleton
 SERVICE_NAME := app
 MOOC_APP_NAME := mooc
