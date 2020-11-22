@@ -40,7 +40,7 @@ export abstract class WebController {
 
   protected render(req: Request, res: Response, template: string, data: { [key: string]: any }) {
     const flash = this.feedFlash(req, data);
-    res.render('pages/courses/courses', {
+    res.render(template, {
       ...data,
       ...flash
     });

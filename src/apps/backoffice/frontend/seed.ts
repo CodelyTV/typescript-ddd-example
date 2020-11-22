@@ -10,7 +10,7 @@ export async function seed() {
   const alreadyExists = await repository.search();
   const isTestEnvironment = process.env.NODE_ENV === 'test';
 
-  if (!alreadyExists && !isTestEnvironment) {
+  if (!alreadyExists) {
     logger.info('[Seed] Initializing CourseCounter');
     const courseCounter = CoursesCounter.initialize(CoursesCounterId.random());
     await repository.save(courseCounter);

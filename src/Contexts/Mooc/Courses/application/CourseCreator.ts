@@ -22,13 +22,9 @@ export class CourseCreator {
   }
 
   async run({ courseId, courseName, courseDuration }: Params): Promise<void> {
-    const course = Course.create(
-      courseId,
-      courseName,
-      courseDuration
-    );
+    const course = Course.create(courseId, courseName, courseDuration);
 
     await this.repository.save(course);
-    this.eventBus.publish(course.pullDomainEvents());
+    await this.eventBus.publish(course.pullDomainEvents());
   }
 }
