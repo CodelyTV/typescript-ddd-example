@@ -8,7 +8,6 @@ export async function seed() {
   const logger = container.get('Shared.Logger');
 
   const alreadyExists = await repository.search();
-  const isTestEnvironment = process.env.NODE_ENV === 'test';
 
   if (!alreadyExists) {
     logger.info('[Seed] Initializing CourseCounter');

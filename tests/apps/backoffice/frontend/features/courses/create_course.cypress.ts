@@ -1,8 +1,8 @@
 import faker from 'faker';
 
-describe('Courses', () => {
+describe('Create courses', () => {
   before(() => {
-    cy.task('reset:db');
+    cy.task('reset:mooc:db');
   });
 
   beforeEach(() => {

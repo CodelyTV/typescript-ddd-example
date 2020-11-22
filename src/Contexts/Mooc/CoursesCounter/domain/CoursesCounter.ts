@@ -1,4 +1,4 @@
-import { AggregateRoot } from '../../Courses/domain/AggregateRoot';
+import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
 import { CoursesCounterTotal } from './CoursesCounterTotal';
 import { CoursesCounterId } from './CoursesCounterId';
