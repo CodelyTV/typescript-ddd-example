@@ -11,7 +11,7 @@
     "npm": ">=6.7.0"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc_backend/server.ts",
+    "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc/backend/server.ts",
     "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/server.ts",
     "dev:backoffice:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/backend/server.ts",
     "test": "npm run test:unit && npm run test:features && npm run cypress:run",
@@ -20,7 +20,7 @@
     "test:mooc:backend:features": "NODE_ENV=test cucumber-js -p mooc_backend",
     "test:backoffice:backend:features": "NODE_ENV=test cucumber-js -p backoffice_backend",
     "lint": "tslint src/**/*.ts{,x}",
-    "start": "NODE_ENV=production node dist/src/apps/mooc_backend/server",
+    "start": "NODE_ENV=production node dist/src/apps/mooc/backend/server",
     "start:backoffice:frontend": "NODE_ENV=production node dist/src/apps/backoffice/frontend/server",
     "start:backoffice:backend": "NODE_ENV=production node dist/src/apps/backoffice/backend/server",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",

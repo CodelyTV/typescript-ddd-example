@@ -1,9 +1,9 @@
 import assert from 'assert';
 import { AfterAll, Before, Given, Then } from 'cucumber';
 import request from 'supertest';
-import app from '../../../../../src/apps/mooc_backend/app';
-import container from '../../../../../src/apps/mooc_backend/config/dependency-injection';
-import { EnvironmentArranger } from '../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
+import app from '../../../../../../src/apps/mooc/backend/app';
+import container from '../../../../../../src/apps/mooc/backend/config/dependency-injection';
+import { EnvironmentArranger } from '../../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
 
 let _request: request.Test;
 let _response: request.Response;

@@ -1,10 +1,10 @@
 import { Controller } from './Controller';
 import { Request, Response } from 'express';
 import httpStatus = require('http-status');
-import { CoursesCounterNotExist } from '../../../Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
-import { FindCoursesCounterQuery } from '../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
-import { QueryBus } from '../../../Contexts/Shared/domain/QueryBus';
-import { FindCoursesCounterResponse } from '../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterResponse';
+import { CoursesCounterNotExist } from '../../../../Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import { FindCoursesCounterQuery } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
+import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
+import { FindCoursesCounterResponse } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterResponse';
 
 export class CoursesCounterGetController implements Controller {
   constructor(private queryBus: QueryBus) {}

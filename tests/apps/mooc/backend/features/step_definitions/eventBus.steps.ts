@@ -1,7 +1,7 @@
 import { Given } from 'cucumber';
-import container from '../../../../../src/apps/mooc_backend/config/dependency-injection';
-import { EventBus } from '../../../../../src/Contexts/Shared/domain/EventBus';
-import { DomainEventJsonDeserializer } from '../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
+import container from '../../../../../../src/apps/mooc/backend/config/dependency-injection';
+import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
+import { DomainEventJsonDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
 
 const eventBus = container.get('Shared.EventBus') as EventBus;
 const deserializer = container.get('Shared.EventBus.DomainEventJsonDeserializer') as DomainEventJsonDeserializer;
