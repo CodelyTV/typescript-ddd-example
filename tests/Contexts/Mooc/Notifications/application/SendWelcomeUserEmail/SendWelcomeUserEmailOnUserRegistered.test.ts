@@ -32,17 +32,7 @@ describe('SendWelcomeUserEmailOnUserRegistered event handler', () => {
     const sendWelcomeUserEmailOnUserRegistered = new SendWelcomeUserEmailOnUserRegistered(sendWelcomeUserEmail);
 
     const domainEvent = aDomainEventWithEmailAddress(anEmailAddress());
-    let error;
-
-    try {
-      await sendWelcomeUserEmailOnUserRegistered.on(domainEvent);
-    } catch (e) {
-      error = e;
-    }
-
-    expect(error).toBeDefined();
-    expect(error).toBeInstanceOf(WelcomeUserEmailError);
-    expect(error.message).toBe(`Error sending WelcomeUser email to ${domainEvent.userEmailAddress}`);
+    await expect(sendWelcomeUserEmailOnUserRegistered.on(domainEvent)).rejects.toBeInstanceOf(WelcomeUserEmailError);
   });
 });
 

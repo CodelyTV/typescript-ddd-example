@@ -16,10 +16,12 @@ beforeEach(() => {
   handler = new CreateCourseCommandHandler(creator);
 });
 
-it('should create a valid course', async () => {
-  const command = CreateCourseCommandMother.random();
-  await handler.handle(command);
+describe('CourseCreator', () => {
+  it('should create a valid course', async () => {
+    const command = CreateCourseCommandMother.random();
+    await handler.handle(command);
 
-  const course = CourseMother.fromCommand(command);
-  repository.assertLastSavedCourseIs(course);
+    const course = CourseMother.fromCommand(command);
+    repository.assertLastSavedCourseIs(course);
+  });
 });

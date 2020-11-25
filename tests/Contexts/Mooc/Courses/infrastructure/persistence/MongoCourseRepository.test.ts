@@ -14,24 +14,26 @@ afterAll(async () => {
   await (await environmentArranger).close();
 });
 
-describe('Save Course', () => {
-  it('should save a course', async () => {
-    const course = CourseMother.random();
+describe('MongoCourseRepository', () => {
+  describe('#save', () => {
+    it('should save a course', async () => {
+      const course = CourseMother.random();
 
-    await repository.save(course);
-  });
-});
-
-describe('Search Course', () => {
-  it('should return an existing course', async () => {
-    const course = CourseMother.random();
-
-    await repository.save(course);
-
-    expect(course).toEqual(await repository.search(course.id));
+      await repository.save(course);
+    });
   });
 
-  it('should not return a non existing course', async () => {
-    expect(await repository.search(CourseMother.random().id)).toBeFalsy();
+  describe('#search', () => {
+    it('should return an existing course', async () => {
+      const course = CourseMother.random();
+
+      await repository.save(course);
+
+      expect(course).toEqual(await repository.search(course.id));
+    });
+
+    it('should not return a non existing course', async () => {
+      expect(await repository.search(CourseMother.random().id)).toBeFalsy();
+    });
   });
 });

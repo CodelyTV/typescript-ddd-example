@@ -3,7 +3,6 @@ import MongoConfig from '../../../../Shared/infrastructure/persistence/mongo/Mon
 
 export class BackofficeMongoConfigFactory {
   static createConfig(): MongoConfig {
-    console.log(config.get('mongo.url'));
     return {
       url: config.get('mongo.url')
     };

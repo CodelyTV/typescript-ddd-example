@@ -15,21 +15,23 @@ afterAll(async () => {
   await (await environmentArranger).close();
 });
 
-describe('Mongo BackofficeCourse Repository', () => {
-  it('should return the existing courses', async () => {
-    const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random()];
+describe('MongoBackofficeCourseRepository', () => {
+  describe('#searchAll', () => {
+    it('should return the existing courses', async () => {
+      const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random()];
 
-    await Promise.all(courses.map(course => repository.save(course)));
+      await Promise.all(courses.map(course => repository.save(course)));
 
-    const expectedCourses = await repository.searchAll();
-    expect(courses.sort(sort)).toStrictEqual(expectedCourses.sort(sort));
-  });
+      const expectedCourses = await repository.searchAll();
+      expect(courses.sort(sort)).toStrictEqual(expectedCourses.sort(sort));
+    });
 
-  it('should save a course', async () => {
-    const course = BackofficeCourseMother.random();
+    it('should save a course', async () => {
+      const course = BackofficeCourseMother.random();
 
-    await repository.save(course);
-    expect(await repository.searchAll()).toContainEqual(course);
+      await repository.save(course);
+      expect(await repository.searchAll()).toContainEqual(course);
+    });
   });
 });
 
