@@ -10,6 +10,7 @@ jobs:
       matrix:
         node-version: [12.x, 14.x]
         mongodb-version: [4.0, 4.2]
+        elasticsearch-version: ['7.9.3']
 
     steps:
       - uses: actions/checkout@v1
@@ -21,6 +22,21 @@ jobs:
         uses: wbari/start-mongoDB@v0.2
         with:
           mongoDBVersion: ${{ matrix.mongodb-version }}
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
+      - name: Launch elasticsearch
+        uses: getong/elasticsearch-action@v1.2
+        with:
+          elasticsearch version: ${{ matrix.elasticsearch-version }}
+          host port: 9200
+          container port: 9200
+          host node port: 9300
+          node port: 9300
+          discovery type: 'single-node'
       - name: npm install, build, and test
         run: |
           npm install

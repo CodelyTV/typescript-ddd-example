@@ -1,25 +1,28 @@
 services:
-    Backoffice.Backend.courses.BackofficeCourseRepository:
-        class: ../../../../../../Contexts/Backoffice/Shared/infrastructure/MongoBackofficeCourseRepository
-        arguments: ['@Shared.ConnectionManager']
+  Backoffice.Backend.courses.BackofficeCourseRepository:
+    class: ../../../../../../Contexts/Backoffice/Shared/infrastructure/MongoBackofficeCourseRepository
+    arguments: ['@Shared.ConnectionManager']
 
-    Backoffice.Backend.courses.CoursesFinder:
-        class: ../../../../../../Contexts/Backoffice/SearchAll/application//CoursesFinder
-        arguments: ["@Backoffice.Backend.courses.BackofficeCourseRepository"]
+  Backoffice.Backend.courses.BackofficeCourseRepositoryElastic:
+    class: ../../../../../../Contexts/Backoffice/infrastructure/ElasticBackofficeCourseRepository
+    arguments: ['@Shared.ConnectionManagerElastic']
 
-    Backoffice.Backend.courses.SearchAllCoursesQueryHandler:
-        class: ../../../../../../Contexts/Backoffice/SearchAll/application//SearchAllCoursesQueryHandler
-        arguments: ["@Backoffice.Backend.courses.CoursesFinder"]
-        tags:
-            - { name: 'queryHandler' }
+  Backoffice.Backend.courses.CoursesFinder:
+    class: ../../../../../../Contexts/Backoffice/SearchAll/application//CoursesFinder
+    arguments: ['@Backoffice.Backend.courses.BackofficeCourseRepository']
 
-    Backoffice.Backend.courses.BackofficeCourseCreator:
-        class: ../../../../../../Contexts/Backoffice/Courses/application/BackofficeCourseCreator
-        arguments: ["@Backoffice.Backend.courses.BackofficeCourseRepository"]
+  Backoffice.Backend.courses.SearchAllCoursesQueryHandler:
+    class: ../../../../../../Contexts/Backoffice/SearchAll/application//SearchAllCoursesQueryHandler
+    arguments: ['@Backoffice.Backend.courses.CoursesFinder']
+    tags:
+      - { name: 'queryHandler' }
 
-    Backoffice.Backend.courses.CreateBackofficeCourseOnCourseCreated:
-        class: ../../../../../../Contexts/Backoffice/Courses/application/CreateBackofficeCourseOnCourseCreated
-        arguments: ['@Backoffice.Backend.courses.BackofficeCourseCreator']
-        tags:
-            - { name: 'domainEventSubscriber' }
+  Backoffice.Backend.courses.BackofficeCourseCreator:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/BackofficeCourseCreator
+    arguments: ['@Backoffice.Backend.courses.BackofficeCourseRepository']
 
+  Backoffice.Backend.courses.CreateBackofficeCourseOnCourseCreated:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/CreateBackofficeCourseOnCourseCreated
+    arguments: ['@Backoffice.Backend.courses.BackofficeCourseCreator']
+    tags:
+      - { name: 'domainEventSubscriber' }

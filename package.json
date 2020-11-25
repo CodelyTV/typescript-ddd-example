@@ -31,6 +31,7 @@
     "cypress:run": "NODE_ENV=test ts-node tests/utils/cypress/run"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.9.1",
     "@types/bson": "^4.0.2",
     "@types/compression": "^1.7.0",
     "@types/convict": "^5.2.1",

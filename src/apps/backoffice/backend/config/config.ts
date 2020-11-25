@@ -14,6 +14,14 @@ const convictConfig = convict({
       env: 'MONGO_URL',
       default: 'mongodb://localhost:27017/backoffice-backend-dev'
     }
+  },
+  elastic: {
+    url: {
+      doc: 'The Elastic connection URL',
+      format: String,
+      env: 'ELASTIC_URL',
+      default: 'http://localhost:9200'
+    }
   }
 });
 
