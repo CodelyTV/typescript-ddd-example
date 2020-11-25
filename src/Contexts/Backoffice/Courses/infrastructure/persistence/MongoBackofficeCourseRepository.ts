@@ -1,6 +1,6 @@
-import { MongoRepository } from '../../../Shared/infrastructure/persistence/mongo/MongoRepository';
-import { BackofficeCourse } from '../../Courses/domain/BackofficeCourse';
-import { BackofficeCourseRepository } from '../../Courses/domain/BackofficeCourseRepository';
+import { MongoRepository } from '../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
+import { BackofficeCourse } from '../../domain/BackofficeCourse';
+import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 
 export class MongoBackofficeCourseRepository
   extends MongoRepository<BackofficeCourse>

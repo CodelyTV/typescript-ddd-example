@@ -6,7 +6,7 @@ import { CourseName } from '../../../../../../src/Contexts/Mooc/Courses/domain/C
 import { CourseRepository } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
 import { CourseId } from '../../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
 
-const courseRepository: CourseRepository = container.get('Backoffice.Backend.courses.BackofficeCourseRepository');
+const courseRepository: CourseRepository = container.get('Backoffice.courses.BackofficeCourseRepository');
 
 Given('there is the course:', async (course: any) => {
   const { id, name, duration } = JSON.parse(course);

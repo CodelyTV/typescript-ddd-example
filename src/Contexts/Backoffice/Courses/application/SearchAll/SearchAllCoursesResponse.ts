@@ -1,4 +1,4 @@
-import { BackofficeCourse } from '../../Courses/domain/BackofficeCourse';
+import { BackofficeCourse } from '../../domain/BackofficeCourse';
 
 export class SearchAllCoursesResponse {
   readonly courses: Array<BackofficeCourse>;

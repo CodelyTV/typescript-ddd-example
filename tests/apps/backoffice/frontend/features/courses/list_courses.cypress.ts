@@ -1,5 +1,3 @@
-import faker from 'faker';
-
 describe('List courses', () => {
   before(() => {
     cy.task('reset:backoffice:db');

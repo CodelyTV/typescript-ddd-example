@@ -1,5 +1,5 @@
 import { Client as ElasticClient } from '@elastic/elasticsearch';
-import { AggregateRoot } from '../../../../Mooc/Courses/domain/AggregateRoot';
+import { AggregateRoot } from '../../../domain/AggregateRoot';
 
 export abstract class ElasticRepository<T extends AggregateRoot> {
   constructor(private _client: Promise<ElasticClient>) {}

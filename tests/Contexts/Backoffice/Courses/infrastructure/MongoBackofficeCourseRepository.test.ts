@@ -1,17 +1,11 @@
 import container from '../../../../../src/apps/backoffice/backend/config/dependency-injection';
 import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
-import { MongoBackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Shared/infrastructure/MongoBackofficeCourseRepository';
+import { MongoBackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/infrastructure/persistence/MongoBackofficeCourseRepository';
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
-import { BackofficeCourseMother } from '../../Courses/domain/BackofficeCourseMother';
+import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 
-const repository: MongoBackofficeCourseRepository = container.get(
-  'Backoffice.Backend.courses.BackofficeCourseRepository'
-);
+const repository: MongoBackofficeCourseRepository = container.get('Backoffice.courses.BackofficeCourseRepository');
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Backoffice.Backend.EnvironmentArranger');
-
-function sort(backofficeCourse1: BackofficeCourse, backofficeCourse2: BackofficeCourse): number {
-  return backofficeCourse1?.id?.value.localeCompare(backofficeCourse2?.id?.value);
-}
 
 beforeEach(async () => {
   await (await environmentArranger).arrange();
@@ -38,3 +32,7 @@ describe('Mongo BackofficeCourse Repository', () => {
     expect(await repository.searchAll()).toContainEqual(course);
   });
 });
+
+function sort(backofficeCourse1: BackofficeCourse, backofficeCourse2: BackofficeCourse): number {
+  return backofficeCourse1?.id?.value.localeCompare(backofficeCourse2?.id?.value);
+}

@@ -1,9 +1,9 @@
-import { SearchAllCoursesQueryHandler } from '../../../../../src/Contexts/Backoffice/SearchAll/application/SearchAllCoursesQueryHandler';
-import { CoursesFinder } from '../../../../../src/Contexts/Backoffice/SearchAll/application/CoursesFinder';
-import { SearchAllCoursesQuery } from '../../../../../src/Contexts/Backoffice/SearchAll/application/SearchAllCoursesQuery';
-import { BackofficeCourseRepositoryMock } from '../../Shared/__mocks__/BackofficeCourseRepositoryMock';
-import { BackofficeCourseMother } from '../../Courses/domain/BackofficeCourseMother';
-import { SearchAllCoursesResponseMother } from '../domain/SearchAllCoursesResponseMother';
+import { CoursesFinder } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchAll/CoursesFinder';
+import { SearchAllCoursesQuery } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQuery';
+import { SearchAllCoursesQueryHandler } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQueryHandler';
+import { BackofficeCourseMother } from '../../domain/BackofficeCourseMother';
+import { SearchAllCoursesResponseMother } from '../../domain/SearchAllCoursesResponseMother';
+import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';
 
 describe('SearchAllCourses QueryHandler', () => {
   let repository: BackofficeCourseRepositoryMock;

@@ -1,8 +1,8 @@
-import { BackofficeCourse } from '../domain/BackofficeCourse';
-import { BackofficeCourseDuration } from '../domain/BackofficeCourseDuration';
-import { BackofficeCourseId } from '../domain/BackofficeCourseId';
-import { BackofficeCourseName } from '../domain/BackofficeCourseName';
-import { BackofficeCourseRepository } from '../domain/BackofficeCourseRepository';
+import { BackofficeCourse } from '../../domain/BackofficeCourse';
+import { BackofficeCourseDuration } from '../../domain/BackofficeCourseDuration';
+import { BackofficeCourseId } from '../../domain/BackofficeCourseId';
+import { BackofficeCourseName } from '../../domain/BackofficeCourseName';
+import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 
 export class BackofficeCourseCreator {
   constructor(private backofficeCourseRepository: BackofficeCourseRepository) {}

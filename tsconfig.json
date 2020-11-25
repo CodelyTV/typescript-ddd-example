@@ -10,6 +10,7 @@
     "strict": true,
     "noEmit": false,
     "resolveJsonModule": true,
+    "noUnusedLocals": true,
     "outDir": "./dist"
   },
   "include": [

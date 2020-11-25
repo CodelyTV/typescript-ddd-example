@@ -1,6 +1,6 @@
-import { ElasticRepository } from '../../Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
-import { BackofficeCourse } from '../domain/BackofficeCourse';
-import { BackofficeCourseRepository } from '../domain/BackofficeCourseRepository';
+import { ElasticRepository } from '../../../../Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
+import { BackofficeCourse } from '../../domain/BackofficeCourse';
+import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 
 type ElasticBackofficeCourseDocument = { _source: { id: string; duration: string; name: string } };
 

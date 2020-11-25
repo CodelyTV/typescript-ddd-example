@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { SearchAllCoursesQuery } from '../../../../Contexts/Backoffice/SearchAll/application/SearchAllCoursesQuery';
-import { SearchAllCoursesResponse } from '../../../../Contexts/Backoffice/SearchAll/application/SearchAllCoursesResponse';
+import { SearchAllCoursesQuery } from '../../../../Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQuery';
+import { SearchAllCoursesResponse } from '../../../../Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesResponse';
 import { BackofficeCourse } from '../../../../Contexts/Backoffice/Courses/domain/BackofficeCourse';
 import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';

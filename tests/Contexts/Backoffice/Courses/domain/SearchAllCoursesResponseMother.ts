@@ -1,5 +1,5 @@
+import { SearchAllCoursesResponse } from '../../../../../src/Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesResponse';
 import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
-import { SearchAllCoursesResponse } from '../../../../../src/Contexts/Backoffice/SearchAll/application/SearchAllCoursesResponse';
 
 export class SearchAllCoursesResponseMother {
   static create(courses: Array<BackofficeCourse>) {

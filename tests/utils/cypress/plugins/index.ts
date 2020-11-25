@@ -1,11 +1,10 @@
-import moocContainer from '../../../../src/apps/mooc_backend/config/dependency-injection';
 import backendBackofficecontainer from '../../../../src/apps/backoffice/backend/config/dependency-injection';
-import { EnvironmentArranger } from '../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
+import { registerSubscribers } from '../../../../src/apps/backoffice/backend/subscribers';
 import { seed } from '../../../../src/apps/backoffice/frontend/seed';
+import moocContainer from '../../../../src/apps/mooc_backend/config/dependency-injection';
 import { EventBus } from '../../../../src/Contexts/Shared/domain/EventBus';
 import { DomainEventJsonDeserializer } from '../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
-import { registerSubscribers } from '../../../../src/apps/backoffice/backend/subscribers';
-import Cypress from 'cypress';
+import { EnvironmentArranger } from '../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
 
 const moocEnvironmentArranger: Promise<EnvironmentArranger> = moocContainer.get('Mooc.EnvironmentArranger');
 const BackofficeBackendEnvironmentArranger: Promise<EnvironmentArranger> = backendBackofficecontainer.get(

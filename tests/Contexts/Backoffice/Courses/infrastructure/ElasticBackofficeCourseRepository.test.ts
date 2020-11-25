@@ -1,11 +1,11 @@
-import container from '../../../../src/apps/backoffice/backend/config/dependency-injection';
-import { BackofficeCourse } from '../../../../src/Contexts/Backoffice/domain/BackofficeCourse';
-import { ElasticBackofficeCourseRepository } from '../../../../src/Contexts/Backoffice/infrastructure/ElasticBackofficeCourseRepository';
-import { EnvironmentArranger } from '../../Shared/infrastructure/arranger/EnvironmentArranger';
-import { BackofficeCourseMother } from '../application/domain/BackofficeCourseMother';
+import container from '../../../../../src/apps/backoffice/backend/config/dependency-injection';
+import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
+import { ElasticBackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository';
+import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
+import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 
 const repository: ElasticBackofficeCourseRepository = container.get(
-  'Backoffice.Backend.courses.BackofficeCourseRepositoryElastic'
+  'Backoffice.courses.BackofficeCourseRepositoryElastic'
 );
 const environmentArranger: Promise<EnvironmentArranger> = container.get(
   'Backoffice.Backend.ElasticEnvironmentArranger'

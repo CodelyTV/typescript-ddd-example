@@ -1,4 +1,4 @@
-import { BackofficeCourseRepository } from '../../Courses/domain/BackofficeCourseRepository';
+import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 import { SearchAllCoursesResponse } from './SearchAllCoursesResponse';
 
 export class CoursesFinder {

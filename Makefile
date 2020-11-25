@@ -42,6 +42,6 @@ start-backoffice-frontend: build
 clean:
 	docker-compose down --rmi local --volumes --remove-orphans
 
-# Start mongodb container in background
+# Start databases containers in background
 start_database:
-	docker-compose up -d mongo
+	docker-compose up -d mongo elasticsearch

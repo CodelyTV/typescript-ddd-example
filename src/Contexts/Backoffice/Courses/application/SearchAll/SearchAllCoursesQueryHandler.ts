@@ -1,5 +1,5 @@
-import { Query } from '../../../Shared/domain/Query';
-import { QueryHandler } from '../../../Shared/domain/QueryHandler';
+import { Query } from '../../../../Shared/domain/Query';
+import { QueryHandler } from '../../../../Shared/domain/QueryHandler';
 import { CoursesFinder } from './CoursesFinder';
 import { SearchAllCoursesQuery } from './SearchAllCoursesQuery';
 import { SearchAllCoursesResponse } from './SearchAllCoursesResponse';
