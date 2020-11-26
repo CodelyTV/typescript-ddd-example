@@ -1,10 +1,10 @@
-import { Express } from 'express';
+import { Router, Request, Response } from 'express';
 import container from '../config/dependency-injection';
 
-export const register = (app: Express) => {
+export const register = (router: Router) => {
   const coursePutController = container.get('Apps.mooc.controllers.CoursePutController');
-  app.put('/courses/:id', coursePutController.run.bind(coursePutController));
+  router.put('/courses/:id', (req: Request, res: Response) => coursePutController.run(req, res));
 
   const coursesCounterGetController = container.get('Apps.mooc.controllers.CoursesCounterGetController');
-  app.get('/courses-counter', coursesCounterGetController.run.bind(coursesCounterGetController));
+  router.get('/courses-counter', (req: Request, res: Response) => coursesCounterGetController.run(req, res));
 };
