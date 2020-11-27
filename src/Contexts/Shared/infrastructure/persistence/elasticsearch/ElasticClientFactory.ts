@@ -1,15 +1,15 @@
 import { Client as ElasticClient } from '@elastic/elasticsearch';
-import config from '../../../../../apps/backoffice/backend/config/config';
 import { Nullable } from '../../../domain/Nullable';
+import ElasticConfig from './ElasticConfig';
 
 export class ElasticClientFactory {
   private static clients: { [key: string]: ElasticClient } = {};
 
-  static async createClient(contextName: string): Promise<ElasticClient> {
+  static async createClient(contextName: string, config: ElasticConfig): Promise<ElasticClient> {
     let client = ElasticClientFactory.getClient(contextName);
 
     if (!client) {
-      client = await ElasticClientFactory.createAndConnectClient();
+      client = await ElasticClientFactory.createAndConnectClient(config);
 
       ElasticClientFactory.registerClient(client, contextName);
     }
@@ -21,8 +21,8 @@ export class ElasticClientFactory {
     return ElasticClientFactory.clients[contextName];
   }
 
-  private static async createAndConnectClient(): Promise<ElasticClient> {
-    const client = new ElasticClient({ node: config.get('elastic.url') });
+  private static async createAndConnectClient(config: ElasticConfig): Promise<ElasticClient> {
+    const client = new ElasticClient({ node: config.url });
 
     return client;
   }
