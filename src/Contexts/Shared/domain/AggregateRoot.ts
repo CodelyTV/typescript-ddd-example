@@ -8,7 +8,10 @@ export abstract class AggregateRoot {
   }
 
   pullDomainEvents(): Array<DomainEvent> {
-    return this.domainEvents;
+    const domainEvents = this.domainEvents.slice();
+    this.domainEvents = [];
+
+    return domainEvents;
   }
 
   record(event: DomainEvent): void {
