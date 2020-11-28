@@ -13,7 +13,7 @@ services:
     factory:
       class: ../../../../../../Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory
       method: 'createClient'
-    arguments: ['mooc']
+    arguments: ['mooc', '@Apps.Backoffice.Backend.ElasticConfig']
 
   Shared.QueryHandlersInformation:
     class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
