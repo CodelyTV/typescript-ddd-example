@@ -3,8 +3,8 @@ import { CommandHandler } from '../../../Shared/domain/CommandHandler';
 import { CourseCreator } from './CourseCreator';
 import { Command } from '../../../Shared/domain/Command';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
-import { CourseName } from '../domain/CourseName';
 import { CourseDuration } from '../domain/CourseDuration';
+import { CourseName } from '../../Shared/domain/Courses/CourseName';
 
 export class CreateCourseCommandHandler implements CommandHandler<CreateCourseCommand> {
     constructor(private courseCreator: CourseCreator) {}

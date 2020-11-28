@@ -1,5 +1,5 @@
-import { StringValueObject } from '../../../Shared/domain/value-object/StringValueObject';
-import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
+import { InvalidArgumentError } from "../../../../Shared/domain/value-object/InvalidArgumentError";
+import { StringValueObject } from "../../../../Shared/domain/value-object/StringValueObject";
 
 export class CourseName extends StringValueObject {
   constructor(value: string) {

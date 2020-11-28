@@ -2,9 +2,9 @@ import { CourseRepository } from '../domain/CourseRepository';
 import { Course } from '../domain/Course';
 import { CreateCourseRequest } from './CreateCourseRequest';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
-import { CourseName } from '../domain/CourseName';
 import { CourseDuration } from '../domain/CourseDuration';
 import { EventBus } from '../../../Shared/domain/EventBus';
+import { CourseName } from '../../Shared/domain/Courses/CourseName';
 
 type Params = {
   courseId: CourseId;
