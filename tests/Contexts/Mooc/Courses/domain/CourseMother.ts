@@ -1,5 +1,5 @@
 import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
-import { CourseName } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseName';
+import { CourseName } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseName';
 import { CourseDuration } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
 import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CreateCourseRequest } from '../../../../../src/Contexts/Mooc/Courses/application/CreateCourseRequest';
