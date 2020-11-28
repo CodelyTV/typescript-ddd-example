@@ -1,4 +1,4 @@
-import container from '../../../../../src/apps/backoffice/backend/config/dependency-injection';
+import container from '../../../../../src/apps/backoffice/backend/dependency-injection';
 import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
 import { MongoBackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/infrastructure/persistence/MongoBackofficeCourseRepository';
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
