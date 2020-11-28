@@ -25,11 +25,12 @@ describe('MongoCoursesCounterRepository', () => {
 
   describe('#search', () => {
     it('should return an existing course', async () => {
-      const counter = CoursesCounterMother.random();
+      const expectedCounter = CoursesCounterMother.random();
+      await repository.save(expectedCounter);
 
-      await repository.save(counter);
+      const counter = await repository.search();
 
-      expect(counter).toEqual(await repository.search());
+      expect(expectedCounter).toEqual(counter);
     });
 
     it('should not return null if there is no courses counter', async () => {

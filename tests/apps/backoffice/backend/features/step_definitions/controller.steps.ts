@@ -2,7 +2,7 @@ import assert from 'assert';
 import { AfterAll, Before, Given, Then } from 'cucumber';
 import request from 'supertest';
 import app from '../../../../../../src/apps/backoffice/backend/app';
-import container from '../../../../../../src/apps/backoffice/backend/config/dependency-injection';
+import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
 import { EnvironmentArranger } from '../../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
 
 let _request: request.Test;

@@ -14,7 +14,7 @@ afterAll(async () => {
   await (await environmentArranger).close();
 });
 
-describe('MongoCourseRepository', () => {
+describe('CourseRepository', () => {
   describe('#save', () => {
     it('should save a course', async () => {
       const course = CourseMother.random();
@@ -25,11 +25,12 @@ describe('MongoCourseRepository', () => {
 
   describe('#search', () => {
     it('should return an existing course', async () => {
-      const course = CourseMother.random();
+      const expectedCourse = CourseMother.random();
+      await repository.save(expectedCourse);
 
-      await repository.save(course);
+      const course = await repository.search(expectedCourse.id);
 
-      expect(course).toEqual(await repository.search(course.id));
+      expect(expectedCourse).toEqual(course);
     });
 
     it('should not return a non existing course', async () => {

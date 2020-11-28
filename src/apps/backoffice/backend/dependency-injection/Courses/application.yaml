@@ -1,10 +1,11 @@
 services:
 
-  Backoffice.courses.BackofficeCourseRepository:
-    class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/MongoBackofficeCourseRepository
-    arguments: ['@Shared.MongoConnectionManager']
+  Backoffice.courses.ElasticConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeElasticConfigFactory
+      method: 'createConfig'
 
-  Backoffice.courses.BackofficeCourseRepositoryElastic:
+  Backoffice.courses.BackofficeCourseRepository:
     class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
     arguments: ['@Shared.ElasticConnectionManager']
 

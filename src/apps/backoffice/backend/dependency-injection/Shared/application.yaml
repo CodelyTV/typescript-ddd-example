@@ -3,17 +3,11 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
 
-  Shared.MongoConnectionManager:
-    factory:
-      class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
-      method: 'createClient'
-    arguments: ['mooc', '@Apps.Backoffice.Backend.MongoConfig']
-
   Shared.ElasticConnectionManager:
     factory:
       class: ../../../../../Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory
       method: 'createClient'
-    arguments: ['mooc', '@Apps.Backoffice.Backend.ElasticConfig']
+    arguments: ['mooc', '@Backoffice.courses.ElasticConfig']
 
   Shared.QueryHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation

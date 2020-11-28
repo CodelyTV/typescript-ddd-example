@@ -4,18 +4,14 @@ import { ElasticBackofficeCourseRepository } from '../../../../../src/Contexts/B
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
 import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 
-const repository: ElasticBackofficeCourseRepository = container.get(
-  'Backoffice.courses.BackofficeCourseRepositoryElastic'
-);
-const environmentArranger: Promise<EnvironmentArranger> = container.get(
-  'Backoffice.Backend.ElasticEnvironmentArranger'
-);
+const repository: ElasticBackofficeCourseRepository = container.get('Backoffice.courses.BackofficeCourseRepository');
+const environmentArranger: Promise<EnvironmentArranger> = container.get('Backoffice.Backend.EnvironmentArranger');
 
 afterEach(async () => {
   await (await environmentArranger).arrange();
 });
 
-describe('ElasticBackofficeCourseRepository', () => {
+describe('BackofficeCourseRepository', () => {
   describe('#searchAll', () => {
     it('should return the existing courses', async () => {
       const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random()];
