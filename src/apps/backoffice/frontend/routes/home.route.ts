@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import container from '../config/dependency-injection';
+import container from '../dependency-injection';
 import { HomeGetController } from '../controllers/HomeGetController';
 
 export const register = (app: Express) => {
