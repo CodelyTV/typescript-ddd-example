@@ -1,6 +1,6 @@
 import convict from 'convict';
 
-const convictConfig = convict({
+const moocConfig = convict({
   env: {
     doc: 'The application environment.',
     format: ['production', 'development', 'staging', 'test'],
@@ -17,6 +17,6 @@ const convictConfig = convict({
   }
 });
 
-convictConfig.loadFile([__dirname + '/default.json', __dirname + '/' + convictConfig.get('env') + '.json']);
+moocConfig.loadFile([__dirname + '/default.json', __dirname + '/' + moocConfig.get('env') + '.json']);
 
-export default convictConfig;
+export default moocConfig;

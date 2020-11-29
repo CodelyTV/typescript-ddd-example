@@ -1,4 +1,4 @@
-import config from '../config/config';
+import config from '../config';
 import ElasticConfig from '../../../../Shared/infrastructure/persistence/elasticsearch/ElasticConfig';
 
 export class BackofficeElasticConfigFactory {
