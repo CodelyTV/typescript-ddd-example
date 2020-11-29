@@ -12,3 +12,17 @@ services:
     arguments: ["@Mooc.notifications.SendWelcomeUserEmail"]
     tags:
       - { name: 'domainEventSubscriber' }
+
+  Mooc.notifications.TwitSender:
+    class: ../../../../../Contexts/Mooc/Notifications/infrastructure/FakeTwitSender
+    arguments: []
+
+  Mooc.notifications.SendNewCourseTwit:
+    class: ../../../../../Contexts/Mooc/Notifications/application/SendNewCourseTwit/SendNewCourseTwit
+    arguments: ["@Mooc.notifications.TwitSender"]
+
+  Mooc.notifications.SendNewCourseTwitOnCourseCreated:
+    class: ../../../../../Contexts/Mooc/Notifications/application/SendNewCourseTwit/SendNewCourseTwitOnCourseCreated
+    arguments: ["@Mooc.notifications.SendNewCourseTwit"]
+    tags:
+      - { name: 'domainEventSubscriber' }
