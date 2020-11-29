@@ -7,6 +7,10 @@ import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 const repository: ElasticBackofficeCourseRepository = container.get('Backoffice.courses.BackofficeCourseRepository');
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Backoffice.Backend.EnvironmentArranger');
 
+beforeEach(async () => {
+  await (await environmentArranger).arrange();
+});
+
 afterEach(async () => {
   await (await environmentArranger).arrange();
 });
@@ -20,7 +24,7 @@ describe('BackofficeCourseRepository', () => {
 
       const expectedCourses = await repository.searchAll();
 
-      expect(courses.length).toEqual(expectedCourses.length);
+      expect(courses).toHaveLength(expectedCourses.length);
       expect(courses.sort(sort)).toEqual(expectedCourses.sort(sort));
     });
   });

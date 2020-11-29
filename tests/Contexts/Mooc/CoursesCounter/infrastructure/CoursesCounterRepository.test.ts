@@ -11,10 +11,11 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+  await (await environmentArranger).arrange();
   await (await environmentArranger).close();
 });
 
-describe('MongoCoursesCounterRepository', () => {
+describe('CoursesCounterRepository', () => {
   describe('#save', () => {
     it('should save a courses counter', async () => {
       const course = CoursesCounterMother.random();
