@@ -11,7 +11,6 @@ export class MongoCourseRepository extends MongoRepository<Course> implements Co
 
   public async search(id: CourseId): Promise<Nullable<Course>> {
     const collection = await this.collection();
-
     const document = await collection.findOne({ _id: id.value });
 
     return document ? Course.fromPrimitives({ ...document, id: id.value }) : null;

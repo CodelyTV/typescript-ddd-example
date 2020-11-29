@@ -12,18 +12,16 @@ export class MongoEnvironmentArranger extends EnvironmentArranger {
 
   protected async cleanDatabase(): Promise<void> {
     const collections = await this.collections();
+    const client = await this.client();
 
     for (const collection of collections) {
-      await (await this.client()).db().dropCollection(collection);
+      await client.db().collection(collection).deleteMany({});
     }
   }
 
   private async collections(): Promise<string[]> {
     const client = await this.client();
-    const collections = await client
-      .db()
-      .listCollections(undefined, { nameOnly: true })
-      .toArray();
+    const collections = await client.db().listCollections(undefined, { nameOnly: true }).toArray();
 
     return collections.map(collection => collection.name);
   }
