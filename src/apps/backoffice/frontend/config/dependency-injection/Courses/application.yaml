@@ -4,11 +4,11 @@ services:
     arguments: ['@Shared.ConnectionManager']
 
   Mooc.courses.CourseCreator:
-    class: ../../../../../../Contexts/Mooc/Courses/application/CourseCreator
+    class: ../../../../../../Contexts/Mooc/Courses/application/CreateCourse/CourseCreator
     arguments: ['@Mooc.courses.CourseRepository', '@Shared.EventBus']
 
   Mooc.courses.CreateCourseCommandHandler:
-    class: ../../../../../../Contexts/Mooc/Courses/application/CreateCourseCommandHandler
+    class: ../../../../../../Contexts/Mooc/Courses/application/CreateCourse/CreateCourseCommandHandler
     arguments: ['@Mooc.courses.CourseCreator']
     tags:
       - { name: 'commandHandler' }

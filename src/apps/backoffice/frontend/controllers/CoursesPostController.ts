@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
-import { CreateCourseCommand } from '../../../../Contexts/Mooc/Courses/application/CreateCourseCommand';
+import { CreateCourseCommand } from '../../../../Contexts/Mooc/Courses/application/CreateCourse/CreateCourseCommand';
 import { body, ValidationChain } from 'express-validator';
 import { WebController } from './WebController';
 

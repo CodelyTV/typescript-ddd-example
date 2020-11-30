@@ -5,7 +5,7 @@ import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
 import { CourseNameMother } from './CourseNameMother';
 import { CourseDurationMother } from './CourseDurationMother';
-import { CreateCourseCommand } from '../../../../../src/Contexts/Mooc/Courses/application/CreateCourseCommand';
+import { CreateCourseCommand } from '../../../../../src/Contexts/Mooc/Courses/application/CreateCourse/CreateCourseCommand';
 
 export class CourseMother {
   static create(id: CourseId, name: CourseName, duration: CourseDuration): Course {

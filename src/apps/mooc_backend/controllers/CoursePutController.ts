@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import { Controller } from './Controller';
 import { CourseAlreadyExists } from '../../../Contexts/Mooc/Courses/domain/CourseAlreadyExists';
 import { CommandBus } from '../../../Contexts/Shared/domain/CommandBus';
-import { CreateCourseCommand } from '../../../Contexts/Mooc/Courses/application/CreateCourseCommand';
+import { CreateCourseCommand } from '../../../Contexts/Mooc/Courses/application/CreateCourse/CreateCourseCommand';
 
 export class CoursePutController implements Controller {
   constructor(private commandBus: CommandBus) {}
