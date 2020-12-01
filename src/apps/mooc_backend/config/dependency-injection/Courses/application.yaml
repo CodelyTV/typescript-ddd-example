@@ -13,3 +13,13 @@ services:
     arguments: ['@Mooc.courses.CourseCreator']
     tags:
       - { name: 'commandHandler' }
+
+  Mooc.courses.CourseFinder:
+    class: ../../../../../Contexts/Mooc/Courses/application/GetCourse/CourseFinder
+    arguments: ["@Mooc.courses.CourseRepository"]
+
+  Mooc.courses.GetCourseQueryHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/GetCourse/GetCourseQueryHandler
+    arguments: ["@Mooc.courses.CourseFinder"]
+    tags:
+      - { name: 'queryHandler' }
