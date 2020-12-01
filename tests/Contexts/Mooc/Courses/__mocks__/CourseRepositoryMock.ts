@@ -6,6 +6,7 @@ import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
 export class CourseRepositoryMock implements CourseRepository {
   private mockSave = jest.fn();
   private mockSearch = jest.fn();
+  private course: Nullable<Course> = null;
 
   async save(course: Course): Promise<void> {
     this.mockSave(course);
@@ -19,7 +20,8 @@ export class CourseRepositoryMock implements CourseRepository {
   }
 
   async search(id: CourseId): Promise<Nullable<Course>> {
-    return this.mockSearch(id);
+    this.mockSearch(id);
+    return this.course;
   }
 
   whenSearchThenReturn(value: Nullable<Course>): void {
@@ -28,5 +30,14 @@ export class CourseRepositoryMock implements CourseRepository {
 
   assertLastSearchedCourseIs(expected: CourseId): void {
     expect(this.mockSearch).toHaveBeenCalledWith(expected);
+  }
+
+  assertSearch(expected: CourseId) {
+    expect(this.mockSearch).toHaveBeenCalled();
+    expect(this.mockSearch).toHaveBeenCalledWith(expected);
+  }
+
+  returnOnSearch(course: Course) {
+    this.course = course;
   }
 }
