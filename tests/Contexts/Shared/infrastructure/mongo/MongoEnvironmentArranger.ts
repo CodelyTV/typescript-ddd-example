@@ -8,6 +8,7 @@ export class MongoEnvironmentArranger extends EnvironmentArranger {
 
   public async arrange(): Promise<void> {
     await this.cleanDatabase();
+    await this.addCourse();
   }
 
   protected async cleanDatabase(): Promise<void> {
@@ -26,6 +27,11 @@ export class MongoEnvironmentArranger extends EnvironmentArranger {
       .toArray();
 
     return collections.map(collection => collection.name);
+  }
+
+  private async addCourse(): Promise<void> {
+    const client = await this.client();
+    await client.db().collection("courses").insertOne({ id: "ef8ac118-8d7f-49cc-abec-78e0d05af80b", name: 'Test Course!', duration: '1'})
   }
 
   protected client(): Promise<MongoClient> {
