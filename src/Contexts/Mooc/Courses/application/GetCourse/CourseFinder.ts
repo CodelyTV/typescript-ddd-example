@@ -5,7 +5,7 @@ import { CourseNotFound } from '../../domain/CourseNotFound';
 import { GetCourseResponse } from './GetCourseResponse';
 import { Nullable } from '../../../../Shared/domain/Nullable';
 
-type Params = {
+export type Params = {
   courseId: CourseId;
 };
 
