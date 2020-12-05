@@ -14,12 +14,27 @@ services:
     tags:
       - { name: 'commandHandler' }
 
+  Mooc.courses.DomainCourseFinder:
+    class: ../../../../../Contexts/Mooc/Courses/domain/CourseFinder
+    arguments: ["@Mooc.courses.CourseRepository"]
+
   Mooc.courses.CourseFinder:
     class: ../../../../../Contexts/Mooc/Courses/application/GetCourse/CourseFinder
-    arguments: ["@Mooc.courses.CourseRepository"]
+    arguments: ["@Mooc.courses.DomainCourseFinder"]
 
   Mooc.courses.GetCourseQueryHandler:
     class: ../../../../../Contexts/Mooc/Courses/application/GetCourse/GetCourseQueryHandler
     arguments: ["@Mooc.courses.CourseFinder"]
     tags:
       - { name: 'queryHandler' }
+
+  Mooc.courses.CourseRenamer:
+    class: ../../../../../Contexts/Mooc/Courses/application/RenameCourse/CourseRenamer
+    arguments: ["@Mooc.courses.DomainCourseFinder", "@Mooc.courses.CourseRepository", "@Shared.EventBus"]
+
+  Mooc.courses.RenameCourseCommandHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/RenameCourse/RenameCourseCommandHandler
+    arguments: ['@Mooc.courses.CourseRenamer']
+    tags:
+      - { name: 'commandHandler' }
+

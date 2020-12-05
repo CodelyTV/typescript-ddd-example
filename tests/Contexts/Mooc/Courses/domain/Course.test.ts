@@ -10,7 +10,7 @@ describe('Course', () => {
   it('should return a new course instance', () => {
     const command = CreateCourseCommandMother.random();
 
-    const course = CourseMother.fromCommand(command);
+    const course = CourseMother.fromCreateCommand(command);
 
     expect(course.id.value).toBe(command.id);
     expect(course.name.value).toBe(command.name);
@@ -24,5 +24,18 @@ describe('Course', () => {
 
     expect(events).toHaveLength(1);
     expect(events[0].eventName).toBe('course.created');
+  });
+
+  it('should record a CourseRenamedDomainEvent after rename', () => {
+    const command = CreateCourseCommandMother.random();
+    const course = CourseMother.fromCreateCommand(command);
+    const oldName = course.name;
+    const newName = CourseNameMother.random();
+    course.rename(newName);
+
+    const events = course.pullDomainEvents();
+
+    expect(events).toHaveLength(1);
+    expect(events[0].eventName).toBe('course.renamed');
   });
 });

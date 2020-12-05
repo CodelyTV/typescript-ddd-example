@@ -1,4 +1,5 @@
 import { CourseFinder } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/CourseFinder';
+import { CourseFinder as DomainCourseFinder } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseFinder';
 import { CourseRepositoryMock } from '../../__mocks__/CourseRepositoryMock';
 import { CourseMother } from '../../domain/CourseMother';
 import { GetCourseResponse } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/GetCourseResponse';
@@ -8,11 +9,12 @@ import { CourseNotFound } from '../../../../../../src/Contexts/Mooc/Courses/doma
 
 let repository: CourseRepositoryMock;
 let finder: CourseFinder;
-
+let domainFinder: DomainCourseFinder;
 
 beforeEach(() => {
   repository = new CourseRepositoryMock();
-  finder = new CourseFinder(repository);
+  domainFinder = new DomainCourseFinder(repository);
+  finder = new CourseFinder(domainFinder);
 });
 
 it('should get a course', async () => {

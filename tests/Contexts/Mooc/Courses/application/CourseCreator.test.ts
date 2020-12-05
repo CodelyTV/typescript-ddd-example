@@ -20,6 +20,6 @@ it('should create a valid course', async () => {
   const command = CreateCourseCommandMother.random();
   await handler.handle(command);
 
-  const course = CourseMother.fromCommand(command);
+  const course = CourseMother.fromCreateCommand(command);
   repository.assertLastSavedCourseIs(course);
 });

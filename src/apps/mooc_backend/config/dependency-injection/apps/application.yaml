@@ -4,6 +4,10 @@ services:
     class: ../../../controllers/CoursePutController
     arguments: ["@Shared.CommandBus"]
 
+  Apps.mooc.controllers.CourseRenameController:
+    class: ../../../controllers/CourseRenameController
+    arguments: ["@Shared.CommandBus"]
+
   Apps.mooc.controllers.StatusGetController:
     class: ../../../controllers/StatusGetController
     arguments: []

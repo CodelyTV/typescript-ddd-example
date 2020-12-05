@@ -1,4 +1,5 @@
 import { CourseFinder } from './../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/CourseFinder';
+import { CourseFinder as DomainCourseFinder } from './../../../../../../src/Contexts/Mooc/Courses/domain/CourseFinder';
 import { CourseRepositoryMock } from '../../__mocks__/CourseRepositoryMock';
 import { CourseMother } from '../../domain/CourseMother';
 import { GetCourseQuery } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/GetCourseQuery';
@@ -9,9 +10,11 @@ import { GetCourseResponse } from '../../../../../../src/Contexts/Mooc/Courses/a
 
 describe('GetCourse QueryHandler', () => {
   let repository: CourseRepositoryMock;
+  let domainCourseFinder: DomainCourseFinder;
 
   beforeEach(() => {
     repository = new CourseRepositoryMock();
+    domainCourseFinder = new DomainCourseFinder(repository);
   });
 
 
@@ -20,7 +23,7 @@ describe('GetCourse QueryHandler', () => {
     const id = course.id;
     repository.returnOnSearch(course);
 
-    const handler = new GetCourseQueryHandler(new CourseFinder(repository));
+    const handler = new GetCourseQueryHandler(new CourseFinder(domainCourseFinder));
     
     const query = new GetCourseQuery({ id: id.value });
     const response = await handler.handle(query);
@@ -32,7 +35,7 @@ describe('GetCourse QueryHandler', () => {
   });
 
   it('should throw an exception when courses counter does not exists', async () => {
-    const handler = new GetCourseQueryHandler(new CourseFinder(repository));
+    const handler = new GetCourseQueryHandler(new CourseFinder(domainCourseFinder));
 
     const id = CourseIdMother.random();
     const query = new GetCourseQuery({id : id.value});

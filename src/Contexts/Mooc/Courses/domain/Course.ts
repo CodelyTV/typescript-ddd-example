@@ -3,11 +3,12 @@ import { CourseCreatedDomainEvent } from './CourseCreatedDomainEvent';
 import { CourseDuration } from './CourseDuration';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
 import { CourseName } from '../../Shared/domain/Courses/CourseName';
+import { CourseRenamedDomainEvent } from './CourseRenamedDomainEvent';
 
 export class Course extends AggregateRoot {
   readonly id: CourseId;
-  readonly name: CourseName;
-  readonly duration: CourseDuration;
+  name: CourseName;
+  duration: CourseDuration;
 
   constructor(id: CourseId, name: CourseName, duration: CourseDuration) {
     super();
@@ -28,6 +29,19 @@ export class Course extends AggregateRoot {
     );
 
     return course;
+  }
+
+  rename(name: CourseName) {
+    const oldName = this.name;
+    this.name = name;
+
+    this.record(
+      new CourseRenamedDomainEvent({
+        id: this.id.value,
+        oldName: oldName.value,
+        newName: name.value
+      })
+    )
   }
 
   static fromPrimitives(plainData: { id: string; name: string; duration: string }): Course {
