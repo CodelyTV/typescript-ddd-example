@@ -12,11 +12,13 @@ export class CoursePutController implements Controller {
     const id: string = req.params.id;
     const name: string = req.body.name;
     const duration: string = req.body.duration;
-    const createCourseCommand = new CreateCourseCommand({ id, name, duration });
+    const description: string = req.body.description;
+    const createCourseCommand = new CreateCourseCommand({ id, name, duration, description });
 
     try {
       await this.commandBus.dispatch(createCourseCommand);
     } catch (error) {
+      console.log(error);
       if (error instanceof CourseAlreadyExists) {
         res.status(httpStatus.BAD_REQUEST).send(error.message);
       } else {

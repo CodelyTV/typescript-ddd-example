@@ -11,7 +11,8 @@ Feature: Obtain a course
     {
       "id": "ef8ac118-8d7f-49cc-abec-78e0d05af80b",
       "duration": "1",
-      "name": "Test Course!"
+      "name": "Test Course!",
+      "description": "Trust me, this is a test course"
     }
     """
   

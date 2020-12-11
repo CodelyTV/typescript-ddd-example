@@ -24,7 +24,7 @@ Then('the response should be empty', () => {
   assert.deepEqual(_response.body, {});
 });
 
-Then('the response content should be:', response => {
+Then('the response content should be:', (response: any) => {
   assert.deepEqual(_response.body, JSON.parse(response));
 });
 

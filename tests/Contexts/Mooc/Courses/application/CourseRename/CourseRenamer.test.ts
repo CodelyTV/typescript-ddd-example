@@ -22,9 +22,9 @@ beforeEach(() => {
 
 it('should rename a valid course', async () => {
   const courseBefore = CourseMother.random();
-  const { id, duration } = courseBefore;
+  const { id, duration, description } = courseBefore;
   const newName = CourseNameMother.random();
-  const renamedCourse = CourseMother.create(id, newName, duration);
+  const renamedCourse = CourseMother.create(id, newName, duration, description);
 
   repository.returnOnSearch(courseBefore);
 

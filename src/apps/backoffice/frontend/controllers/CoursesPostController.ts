@@ -30,7 +30,8 @@ export class CoursesPostController extends WebController {
     const createCourseCommand = new CreateCourseCommand({
       id: req.body.id,
       name: req.body.name,
-      duration: req.body.duration
+      duration: req.body.duration,
+      description: req.body.description
     });
 
     await this.commandBus.dispatch(createCourseCommand);

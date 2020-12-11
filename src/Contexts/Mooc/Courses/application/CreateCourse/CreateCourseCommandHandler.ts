@@ -5,6 +5,7 @@ import { Command } from '../../../../Shared/domain/Command';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { CourseDuration } from '../../domain/CourseDuration';
 import { CourseName } from '../../../Shared/domain/Courses/CourseName';
+import { CourseDescription } from '../../domain/CourseDescription';
 
 export class CreateCourseCommandHandler implements CommandHandler<CreateCourseCommand> {
     constructor(private courseCreator: CourseCreator) {}
@@ -17,6 +18,7 @@ export class CreateCourseCommandHandler implements CommandHandler<CreateCourseCo
         const courseId = new CourseId(command.id);
         const courseName = new CourseName(command.name);
         const courseDuration = new CourseDuration(command.duration);
-        await this.courseCreator.run({ courseId, courseName, courseDuration });
+        const courseDescription = new CourseDescription(command.description);
+        await this.courseCreator.run({ courseId, courseName, courseDuration, courseDescription });
     }
 }

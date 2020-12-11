@@ -4,6 +4,7 @@ import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseIdMother } from '../../Shared/domain/Courses/CourseIdMother';
 import { CourseNameMother } from './CourseNameMother';
 import { CourseDurationMother } from './CourseDurationMother';
+import { CourseDescriptionMother } from './CourseDescriptionMother';
 
 describe('Course', () => {
 
@@ -15,10 +16,11 @@ describe('Course', () => {
     expect(course.id.value).toBe(command.id);
     expect(course.name.value).toBe(command.name);
     expect(course.duration.value).toBe(command.duration);
+    expect(course.description.value).toBe(command.description);
   });
 
   it('should record a CourseCreatedDomainEvent after its creation', () => {
-    const course = Course.create(CourseIdMother.random(), CourseNameMother.random(), CourseDurationMother.random());
+    const course = Course.create(CourseIdMother.random(), CourseNameMother.random(), CourseDurationMother.random(), CourseDescriptionMother.random());
 
     const events = course.pullDomainEvents();
 
@@ -29,7 +31,6 @@ describe('Course', () => {
   it('should record a CourseRenamedDomainEvent after rename', () => {
     const command = CreateCourseCommandMother.random();
     const course = CourseMother.fromCreateCommand(command);
-    const oldName = course.name;
     const newName = CourseNameMother.random();
     course.rename(newName);
 

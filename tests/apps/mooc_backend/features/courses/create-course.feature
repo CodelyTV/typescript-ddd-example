@@ -8,7 +8,8 @@ Feature: Create a new course
     """
     {
       "name": "The best course",
-      "duration": "5 hours"
+      "duration": "5 hours",
+      "description": "Trust me, this is the best course."
     }
     """
     Then the response status code should be 201
