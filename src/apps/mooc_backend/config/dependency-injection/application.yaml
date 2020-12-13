@@ -1,5 +1,0 @@
-imports:
-  - { resource: ./Shared/application.yaml }
-  - { resource: ./Courses/application.yaml }
-  - { resource: ./CoursesCounter/application.yaml }
-  - { resource: ./apps/application.yaml }

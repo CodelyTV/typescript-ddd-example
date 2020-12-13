@@ -1,5 +1,5 @@
 import { Connection, Message, Exchange, Queue } from 'amqp-ts';
-import config from '../../../../../apps/mooc_backend/config/config';
+import config from '../../../../../apps/mooc/backend/config/config';
 import { EventBus } from '../../../domain/EventBus';
 import { DomainEvent } from '../../../domain/DomainEvent';
 import { DomainEventSubscriber } from '../../../domain/DomainEventSubscriber';

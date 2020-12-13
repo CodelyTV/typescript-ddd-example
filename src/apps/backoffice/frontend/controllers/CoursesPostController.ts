@@ -1,15 +1,29 @@
 import { Request, Response } from 'express';
 import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
 import { CreateCourseCommand } from '../../../../Contexts/Mooc/Courses/application/CreateCourseCommand';
+import { body, ValidationChain } from 'express-validator';
+import { WebController } from './WebController';
 
-export class CoursesPostController {
-  constructor(private commandBus: CommandBus) {}
+export class CoursesPostController extends WebController {
+  constructor(private commandBus: CommandBus) {
+    super();
+  }
+
+  static validator(): ValidationChain[] {
+    return [
+      body('id').isUUID().withMessage('Invalid course id'),
+      body('name').isLength({ min: 1, max: 30 }).withMessage('Invalid name'),
+      body('duration').isLength({ min: 4, max: 100 }).withMessage('Invalid duration')
+    ];
+  }
 
   async run(req: Request, res: Response) {
-    // TODO: validation
-    // req.flash('errors.id', 'Flash Message Added');
-
-    await this.createCourse(req, res);
+    const errors = this.validateRequest(req);
+    if (errors.length === 0) {
+      await this.createCourse(req, res);
+    } else {
+      this.redirectWithErrors(req, res, errors);
+    }
   }
 
   private async createCourse(req: Request, res: Response) {
@@ -18,9 +32,9 @@ export class CoursesPostController {
       name: req.body.name,
       duration: req.body.duration
     });
+
     await this.commandBus.dispatch(createCourseCommand);
 
-    req.flash('message', `Felicidades, el curso ${req.body.name} ha sido creado!`);
-    res.redirect('/courses');
+    this.redirectWithMessage(req, res, '/courses', `Felicidades, el curso ${req.body.name} ha sido creado!`);
   }
 }

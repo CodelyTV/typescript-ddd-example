@@ -7,7 +7,7 @@
           </label>
           <input class="{% if flash['errors.id'] %}border border-red-500{% endif %} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                  id="grid-first-name" type="text" name="id" placeholder="En formado UUID"
-                 value="{{new_course_id}}">
+                 value="{{flash['inputs.id']}}">
 
           {% if flash['errors.id'] %}
               <p class="text-red-500 text-xs italic">{{ flash['errors.id'] }}</p>
@@ -21,7 +21,7 @@
           </label>
           <input class="{% if flash['errors.name'] %}border border-red-500{% endif %} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                  id="grid-first-name" type="text" name="name" placeholder="DDD en PHP"
-                 value="">
+                 value="{{flash['inputs.name']}}">
 
           {% if flash['errors.name'] %}
               <p class="text-red-500 text-xs italic">{{ flash['errors.name'] }}</p>
@@ -33,7 +33,7 @@
           </label>
           <input class="{% if flash['errors.duration'] %}border border-red-500{% endif %} appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                  id="grid-last-name" type="text" name="duration" placeholder="8 days"
-                 value="xxx">
+                 value="{{flash['inputs.duration']}}">
           {% if flash['errors.duration'] %}
               <p class="text-red-500 text-xs italic">{{ flash['errors.duration'] }}</p>
           {% endif %}

@@ -1,0 +1,29 @@
+services:
+
+  Backoffice.courses.BackofficeCourseRepository:
+    class: ../../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/MongoBackofficeCourseRepository
+    arguments: ['@Shared.MongoConnectionManager']
+
+  Backoffice.courses.BackofficeCourseRepositoryElastic:
+    class: ../../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
+    arguments: ['@Shared.ElasticConnectionManager']
+
+  Backoffice.courses.CoursesFinder:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/SearchAll/CoursesFinder
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.SearchAllCoursesQueryHandler:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQueryHandler
+    arguments: ['@Backoffice.courses.CoursesFinder']
+    tags:
+      - { name: 'queryHandler' }
+
+  Backoffice.courses.BackofficeCourseCreator:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.CreateBackofficeCourseOnCourseCreated:
+    class: ../../../../../../Contexts/Backoffice/Courses/application/Create/CreateBackofficeCourseOnCourseCreated
+    arguments: ['@Backoffice.courses.BackofficeCourseCreator']
+    tags:
+      - { name: 'domainEventSubscriber' }

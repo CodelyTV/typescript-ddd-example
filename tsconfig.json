@@ -10,13 +10,11 @@
     "strict": true,
     "noEmit": false,
     "resolveJsonModule": true,
+    "noUnusedLocals": true,
     "outDir": "./dist"
   },
   "include": [
-    "src/**/**.ts",
-    "tests/**/**.ts",
-    "package*.json",
-    "project*.json"
+    "src/**/**.ts"
   ],
   "exclude": ["node_modules"]
 }

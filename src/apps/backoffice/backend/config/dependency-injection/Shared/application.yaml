@@ -1,0 +1,36 @@
+services:
+  Shared.Logger:
+    class: ../../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []
+
+  Shared.MongoConnectionManager:
+    factory:
+      class: ../../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['mooc', '@Apps.Backoffice.Backend.MongoConfig']
+
+  Shared.ElasticConnectionManager:
+    factory:
+      class: ../../../../../../Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory
+      method: 'createClient'
+    arguments: ['mooc']
+
+  Shared.QueryHandlersInformation:
+    class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Shared.QueryBus:
+    class: ../../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Shared.QueryHandlersInformation']
+
+  Shared.EventBus:
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
+    arguments: []
+
+  Shared.EventBus.DomainEventMapping:
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
+    arguments: ['!tagged domainEventSubscriber']
+
+  Shared.EventBus.DomainEventJsonDeserializer:
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
+    arguments: ['@Shared.EventBus.DomainEventMapping']

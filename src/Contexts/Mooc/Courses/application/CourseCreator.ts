@@ -1,10 +1,9 @@
-import { CourseRepository } from '../domain/CourseRepository';
-import { Course } from '../domain/Course';
-import { CreateCourseRequest } from './CreateCourseRequest';
-import { CourseId } from '../../Shared/domain/Courses/CourseId';
-import { CourseName } from '../domain/CourseName';
-import { CourseDuration } from '../domain/CourseDuration';
 import { EventBus } from '../../../Shared/domain/EventBus';
+import { CourseId } from '../../Shared/domain/Courses/CourseId';
+import { Course } from '../domain/Course';
+import { CourseDuration } from '../domain/CourseDuration';
+import { CourseName } from '../domain/CourseName';
+import { CourseRepository } from '../domain/CourseRepository';
 
 type Params = {
   courseId: CourseId;
@@ -22,13 +21,9 @@ export class CourseCreator {
   }
 
   async run({ courseId, courseName, courseDuration }: Params): Promise<void> {
-    const course = Course.create(
-      courseId,
-      courseName,
-      courseDuration
-    );
+    const course = Course.create(courseId, courseName, courseDuration);
 
     await this.repository.save(course);
-    this.eventBus.publish(course.pullDomainEvents());
+    await this.eventBus.publish(course.pullDomainEvents());
   }
 }

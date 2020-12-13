@@ -1,0 +1,13 @@
+services:
+    Apps.Backoffice.Backend.MongoConfig:
+      factory:
+        class: ../../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeMongoConfigFactory
+        method: 'createConfig'
+
+    Apps.Backoffice.Backend.controllers.StatusGetController:
+      class: ../../../controllers/StatusGetController
+      arguments: []
+
+    Apps.Backoffice.Backend.controllers.CoursesGetController:
+      class: ../../../controllers/CoursesGetController
+      arguments: ['@Shared.QueryBus']

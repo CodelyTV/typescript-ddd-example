@@ -8,6 +8,7 @@ import cookieSession from 'cookie-session';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash';
 import nunjucks from 'nunjucks';
+import { registerSubscribers } from './subscribers';
 
 const app: express.Express = express();
 
@@ -43,5 +44,6 @@ app.use(helmet.frameguard({ action: 'deny' }));
 app.use(compress());
 
 registerRoutes(app);
+registerSubscribers();
 
 export default app;

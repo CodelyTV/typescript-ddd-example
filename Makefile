@@ -1,5 +1,7 @@
 .PHONY = default deps build test start-mooc-backend clean start-database start-backoffice-frontend
 
+# Shell to use for running scripts
+SHELL := $(shell which bash)
 IMAGE_NAME := codelytv/typescript-ddd-skeleton
 SERVICE_NAME := app
 MOOC_APP_NAME := mooc
@@ -40,6 +42,6 @@ start-backoffice-frontend: build
 clean:
 	docker-compose down --rmi local --volumes --remove-orphans
 
-# Start mongodb container in background
+# Start databases containers in background
 start_database:
-	docker-compose up -d mongo
+	docker-compose up -d mongo elasticsearch
