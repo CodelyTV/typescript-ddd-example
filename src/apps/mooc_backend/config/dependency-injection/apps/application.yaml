@@ -19,3 +19,7 @@ services:
   Apps.mooc.controllers.CourseGetController:
     class: ../../../controllers/CourseGetController
     arguments: ["@Shared.QueryBus"]
+
+  Apps.mooc.controllers.CoursesGetController:
+    class: ../../../controllers/CoursesGetController
+    arguments: ["@Shared.QueryBus"]

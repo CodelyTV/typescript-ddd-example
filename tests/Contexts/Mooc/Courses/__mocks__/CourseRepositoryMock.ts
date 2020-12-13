@@ -4,9 +4,12 @@ import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses
 import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
 
 export class CourseRepositoryMock implements CourseRepository {
+
   private mockSave = jest.fn();
   private mockSearch = jest.fn();
+  private mockGetAll = jest.fn();
   private course: Nullable<Course> = null;
+  private courses: Course[] = [];
 
   async save(course: Course): Promise<void> {
     this.mockSave(course);
@@ -39,5 +42,18 @@ export class CourseRepositoryMock implements CourseRepository {
 
   returnOnSearch(course: Course) {
     this.course = course;
+  }
+
+  async getAll(): Promise<Course[]> {
+    this.mockGetAll();
+    return this.courses;
+  }
+
+  returnOnGetAll(courses: Course[]) {
+    this.courses = courses;
+  }
+
+  assertGetAll() {
+    expect(this.mockGetAll).toHaveBeenCalled();
   }
 }

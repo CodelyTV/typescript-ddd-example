@@ -1,6 +1,6 @@
 import { CourseFinder as DomainCourseFinder } from '../../domain/CourseFinder';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
-import { GetCourseResponse } from './GetCourseResponse';
+import { CourseResponse } from '../../../Shared/domain/Courses/application/CourseResponse';
 
 export type Params = {
   courseId: CourseId;
@@ -13,8 +13,8 @@ export class CourseFinder {
     this.courseFinder = courseFinder;
   }
 
-  async run({ courseId }: Params): Promise<GetCourseResponse> {
+  async run({ courseId }: Params): Promise<CourseResponse> {
     const course = await this.courseFinder.run(courseId);
-    return new GetCourseResponse(course);
+    return new CourseResponse(course);
   }
 }

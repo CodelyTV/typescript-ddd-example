@@ -4,6 +4,7 @@ Feature: Obtain a course
   I want to see the courses
 
   Scenario: Retrieve a course
+    Given a previous course has been already created 
     When I send a GET request to "/courses/ef8ac118-8d7f-49cc-abec-78e0d05af80b"
     Then the response status code should be 200
     And the response content should be:

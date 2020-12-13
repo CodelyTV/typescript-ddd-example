@@ -1,5 +1,5 @@
-import { Course } from '../../domain/Course';
-export class GetCourseResponse {
+import { Course } from '../../../../Courses/domain/Course';
+export class CourseResponse {
     readonly id: string;
     readonly name: string;
     readonly duration: string;

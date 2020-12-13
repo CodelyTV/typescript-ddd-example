@@ -28,6 +28,17 @@ Then('the response content should be:', (response: any) => {
   assert.deepEqual(_response.body, JSON.parse(response));
 });
 
+Given('a previous course has been already created', async ()=> {
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).addCourseWithId('ef8ac118-8d7f-49cc-abec-78e0d05af80b');
+})
+
+Given('Previous courses has been already created', async ()=> {
+  const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
+  await (await environmentArranger).addCourseWithId('ef8ac118-8d7f-49cc-abec-78e0d05af80b');
+  await (await environmentArranger).addCourseWithId('ef8ac118-8d7f-49cc-abec-78e0d05af80c');
+})
+
 Before(async () => {
   const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
   await (await environmentArranger).arrange();

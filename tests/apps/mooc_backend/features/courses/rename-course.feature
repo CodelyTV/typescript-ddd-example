@@ -4,6 +4,7 @@ Feature: Rename a new course
   I want to rename an existing course
 
   Scenario: A valid existing course
+    Given a previous course has been already created
     Given I send a PUT request to "/courses/ef8ac118-8d7f-49cc-abec-78e0d05af80b/rename" with body:
     """
     {

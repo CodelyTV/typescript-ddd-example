@@ -2,10 +2,10 @@ import { CourseFinder } from '../../../../../../src/Contexts/Mooc/Courses/applic
 import { CourseFinder as DomainCourseFinder } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseFinder';
 import { CourseRepositoryMock } from '../../__mocks__/CourseRepositoryMock';
 import { CourseMother } from '../../domain/CourseMother';
-import { GetCourseResponse } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/GetCourseResponse';
 import { ParamsMother } from './ParamsMother';
 import { CourseIdMother } from '../../../Shared/domain/Courses/CourseIdMother';
 import { CourseNotFound } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseNotFound';
+import { CourseResponse } from '../../../../../../src/Contexts/Mooc/Shared/domain/Courses/application/CourseResponse';
 
 let repository: CourseRepositoryMock;
 let finder: CourseFinder;
@@ -25,7 +25,7 @@ it('should get a course', async () => {
   const response = await finder.run(params);
 
   repository.assertSearch(id);
-  const expected = new GetCourseResponse(course);
+  const expected = new CourseResponse(course);
   expect(expected).toEqual(response);
 });
 

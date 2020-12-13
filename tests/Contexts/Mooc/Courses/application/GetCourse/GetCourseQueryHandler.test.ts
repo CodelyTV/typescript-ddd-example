@@ -6,7 +6,7 @@ import { GetCourseQuery } from '../../../../../../src/Contexts/Mooc/Courses/appl
 import { CourseIdMother } from '../../../Shared/domain/Courses/CourseIdMother';
 import { GetCourseQueryHandler } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/GetCourseQueryHandler';
 import { CourseNotFound } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseNotFound';
-import { GetCourseResponse } from '../../../../../../src/Contexts/Mooc/Courses/application/GetCourse/GetCourseResponse';
+import { CourseResponse } from '../../../../../../src/Contexts/Mooc/Shared/domain/Courses/application/CourseResponse';
 
 describe('GetCourse QueryHandler', () => {
   let repository: CourseRepositoryMock;
@@ -30,7 +30,7 @@ describe('GetCourse QueryHandler', () => {
     
     repository.assertSearch(id);
 
-    const expected = new GetCourseResponse(course);
+    const expected = new CourseResponse(course);
     expect(expected).toEqual(response);
   });
 

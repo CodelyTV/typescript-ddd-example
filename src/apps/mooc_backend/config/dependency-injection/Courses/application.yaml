@@ -38,3 +38,13 @@ services:
     tags:
       - { name: 'commandHandler' }
 
+  Mooc.courses.CoursesSearcher:
+    class: ../../../../../Contexts/Mooc/Courses/application/GetCourses/CoursesSearcher
+    arguments: ["@Mooc.courses.CourseRepository"]
+
+  Mooc.courses.GetCoursesQueryHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/GetCourses/GetCoursesQueryHandler
+    arguments: ["@Mooc.courses.CoursesSearcher"]
+    tags:
+      - { name: 'queryHandler' }
+

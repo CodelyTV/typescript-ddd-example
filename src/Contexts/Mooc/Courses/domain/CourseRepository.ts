@@ -6,4 +6,6 @@ export interface CourseRepository {
   save(course: Course): Promise<void>;
 
   search(id: CourseId): Promise<Nullable<Course>>;
+
+  getAll(): Promise<Course[]>;
 }
