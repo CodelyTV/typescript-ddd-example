@@ -23,3 +23,7 @@ services:
   Apps.mooc.controllers.CoursesGetController:
     class: ../../../controllers/CoursesGetController
     arguments: ["@Shared.QueryBus"]
+
+  Apps.mooc.controllers.CourseLikePostController:
+    class: ../../../controllers/CourseLikePostController
+    arguments: ["@Shared.CommandBus"]

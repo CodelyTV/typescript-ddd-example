@@ -5,6 +5,8 @@ import { CourseId } from '../../Shared/domain/Courses/CourseId';
 import { CourseName } from '../../Shared/domain/Courses/CourseName';
 import { CourseRenamedDomainEvent } from './CourseRenamedDomainEvent';
 import { CourseDescription } from './CourseDescription';
+import { CourseLikedDomainEvent } from './CourseLikedDomainEvent';
+import { UserId } from './UserId';
 
 export class Course extends AggregateRoot {
   readonly id: CourseId;
@@ -45,10 +47,19 @@ export class Course extends AggregateRoot {
         oldName: oldName.value,
         newName: name.value
       })
-    )
+    );
   }
 
-  static fromPrimitives(plainData: { id: string; name: string; duration: string, description: string }): Course {
+  like(userId: UserId) {
+    this.record(
+      new CourseLikedDomainEvent({
+        id: this.id.value,
+        userId: userId.value
+      })
+    );
+  }
+
+  static fromPrimitives(plainData: { id: string; name: string; duration: string; description: string }): Course {
     return new Course(
       new CourseId(plainData.id),
       new CourseName(plainData.name),

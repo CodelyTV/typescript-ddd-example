@@ -48,3 +48,13 @@ services:
     tags:
       - { name: 'queryHandler' }
 
+  Mooc.courses.CourseLiker:
+    class: ../../../../../Contexts/Mooc/Courses/application/LikeCourse/CourseLiker
+    arguments: ["@Mooc.courses.DomainCourseFinder", "@Mooc.courses.CourseRepository"]
+
+  Mooc.courses.LikeCourseCommandHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/LikeCourse/LikeCourseCommandHandler
+    arguments: ['@Mooc.courses.CourseLiker']
+    tags:
+      - { name: 'commandHandler' }
+

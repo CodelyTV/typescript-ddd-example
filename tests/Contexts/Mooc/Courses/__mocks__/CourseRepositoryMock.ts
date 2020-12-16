@@ -4,7 +4,6 @@ import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses
 import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
 
 export class CourseRepositoryMock implements CourseRepository {
-
   private mockSave = jest.fn();
   private mockSearch = jest.fn();
   private mockGetAll = jest.fn();
@@ -20,6 +19,14 @@ export class CourseRepositoryMock implements CourseRepository {
     const lastSavedCourse = mock.calls[mock.calls.length - 1][0] as Course;
     expect(lastSavedCourse).toBeInstanceOf(Course);
     expect(lastSavedCourse.toPrimitives()).toEqual(expected.toPrimitives());
+  }
+
+  assertLastSavedCourseEventIs(expected: Course): void {
+    const mock = this.mockSave.mock;
+    const lastSavedCourse = mock.calls[mock.calls.length - 1][0] as Course;
+    expect(lastSavedCourse).toBeInstanceOf(Course);
+    expect(lastSavedCourse.toPrimitives()).toEqual(expected.toPrimitives());
+    expect(lastSavedCourse.pullDomainEvents()).toEqual(expected.pullDomainEvents());
   }
 
   async search(id: CourseId): Promise<Nullable<Course>> {
