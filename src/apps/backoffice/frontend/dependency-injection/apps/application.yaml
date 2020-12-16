@@ -1,0 +1,11 @@
+services:
+  Apps.Backoffice.Frontend.controllers.HomeGetController:
+    class:  ../../controllers/HomeGetController
+
+  Apps.Backoffice.Frontend.controllers.CoursesGetController:
+    class:  ../../controllers/CoursesGetController
+    arguments: ['@Shared.QueryBus']
+
+  Apps.Backoffice.Frontend.controllers.CoursesPostController:
+    class:  ../../controllers/CoursesPostController
+    arguments: ['@Shared.CommandBus']

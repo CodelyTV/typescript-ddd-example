@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import container from '../config/dependency-injection';
+import container from '../dependency-injection';
 import { CoursesGetController } from '../controllers/CoursesGetController';
 import { CoursesPostController } from '../controllers/CoursesPostController';
 

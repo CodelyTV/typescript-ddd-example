@@ -1,4 +1,4 @@
-import container from './config/dependency-injection';
+import container from './dependency-injection';
 import { InMemoryAsyncEventBus } from '../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus';
 import { Definition } from 'node-dependency-injection';
 import { DomainEventSubscriber } from '../../Contexts/Shared/domain/DomainEventSubscriber';
