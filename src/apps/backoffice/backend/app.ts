@@ -1,23 +1,13 @@
-import bodyParser from 'body-parser';
-import express from 'express';
-import helmet from 'helmet';
-import compress from 'compression';
-import { registerRoutes } from './routes';
 import { registerSubscribers } from './subscribers';
+import { Server } from './server';
 
-const app: express.Express = express();
+export class Application {
+  private server?: Server;
 
-app.set('port', process.env.PORT || 3000);
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
-app.use(helmet.hidePoweredBy());
-app.use(helmet.frameguard({ action: 'deny' }));
-app.use(compress());
-
-registerRoutes(app);
-registerSubscribers();
-
-export default app;
+  async start() {
+    const port = process.env.PORT || '3000';
+    this.server = new Server(port);
+    await registerSubscribers();
+    return this.server.listen();
+  }
+}

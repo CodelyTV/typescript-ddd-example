@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import * as http from 'http';
 import Logger from '../../../Contexts/Shared/domain/Logger';
-// import { registerRoutes } from './routes';
+import { registerRoutes } from './routes';
 
 export class Server {
   private express: express.Express;
@@ -25,7 +25,7 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
-    // registerRoutes(this.express);
+    registerRoutes(this.express);
     this.express.use(errorHandler());
   }
 

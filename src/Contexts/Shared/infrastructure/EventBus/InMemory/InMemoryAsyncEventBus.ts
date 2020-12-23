@@ -1,6 +1,7 @@
 import { DomainEvent } from '../../../domain/DomainEvent';
 import { DomainEventSubscriber } from '../../../domain/DomainEventSubscriber';
 import { EventBus } from '../../../domain/EventBus';
+import { DomainEventMapping } from '../DomainEventMapping';
 import { EventEmitterBus } from '../EventEmitterBus';
 
 export class InMemoryAsyncEventBus implements EventBus {
@@ -19,4 +20,6 @@ export class InMemoryAsyncEventBus implements EventBus {
   addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
     this.bus.registerSubscribers(subscribers);
   }
+
+  setDomainEventMapping(domainEventMapping: DomainEventMapping): void {}
 }

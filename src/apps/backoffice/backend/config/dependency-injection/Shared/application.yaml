@@ -24,7 +24,7 @@ services:
     arguments: ['@Shared.QueryHandlersInformation']
 
   Shared.EventBus:
-    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
     arguments: []
 
   Shared.EventBus.DomainEventMapping:

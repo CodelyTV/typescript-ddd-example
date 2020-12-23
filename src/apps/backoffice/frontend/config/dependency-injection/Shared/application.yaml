@@ -15,7 +15,7 @@ services:
     arguments: ['mooc', '@Shared.MongoConfig']
 
   Shared.EventBus:
-    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus
+    class: ../../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
     arguments: []
 
   Shared.QueryBus:

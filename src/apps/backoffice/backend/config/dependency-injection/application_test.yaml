@@ -9,3 +9,7 @@ services:
   Backoffice.Backend.ElasticEnvironmentArranger:
     class: ../../../../../../tests/Contexts/Shared/infrastructure/elastic/ElasticEnvironmentArranger
     arguments: ['@Shared.ElasticConnectionManager']
+
+  Shared.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
+    arguments: []

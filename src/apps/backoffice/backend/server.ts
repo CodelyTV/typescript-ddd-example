@@ -1,21 +1,47 @@
-import errorHandler from 'errorhandler';
-import app from './app';
 import container from './config/dependency-injection';
+import errorHandler from 'errorhandler';
+import helmet from 'helmet';
+import compress from 'compression';
+import bodyParser from 'body-parser';
+import express from 'express';
+import * as http from 'http';
+import Logger from '../../../Contexts/Shared/domain/Logger';
+import { registerRoutes } from './routes';
 
-/**
- * Error Handler. Provides full stack - remove for production
- */
-app.use(errorHandler());
+export class Server {
+  private express: express.Express;
+  private port: string;
+  private logger: Logger;
+  private httpServer?: http.Server;
 
-/**
- * Start Express server.
- */
-const server = app.listen(app.get('port'), () => {
-  // tslint:disable: no-console
-  const logger = container.get('Shared.Logger');
+  constructor(port: string) {
+    this.port = port;
+    this.logger = container.get('Shared.Logger');
+    this.express = express();
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(helmet.xssFilter());
+    this.express.use(helmet.noSniff());
+    this.express.use(helmet.hidePoweredBy());
+    this.express.use(helmet.frameguard({ action: 'deny' }));
+    this.express.use(compress());
+    registerRoutes(this.express);
+    this.express.use(errorHandler());
+  }
 
-  logger.info(`  App is running at http://localhost:${app.get('port')} in ${app.get('env')} mode`);
-  console.log('  Press CTRL-C to stop\n');
-});
+  async listen(): Promise<void> {
+    return new Promise(resolve => {
+      this.httpServer = this.express.listen(this.port, () => {
+        this.logger.info(`  App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`);
+        this.logger.info('  Press CTRL-C to stop\n');
+        resolve();
+      });
+    });
+  }
 
-export default server;
+  stop() {
+    if (this.httpServer) {
+      this.httpServer.close();
+    }
+  }
+}

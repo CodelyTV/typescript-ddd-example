@@ -12,8 +12,8 @@
   },
   "scripts": {
     "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules --inspect=0.0.0.0:9267 ./src/apps/mooc/backend/start.ts",
-    "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/server.ts",
-    "dev:backoffice:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/backend/server.ts",
+    "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/start.ts",
+    "dev:backoffice:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/backend/start.ts",
     "test": "npm run test:unit && npm run test:features && npm run cypress:run",
     "test:unit": "NODE_ENV=test jest",
     "test:features": "npm run test:mooc:backend:features && npm run test:backoffice:backend:features",
