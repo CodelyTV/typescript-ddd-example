@@ -1,3 +1,4 @@
+import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
 import { ElasticRepository } from '../../../../Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
 import { BackofficeCourse } from '../../domain/BackofficeCourse';
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
@@ -15,5 +16,9 @@ export class ElasticBackofficeCourseRepository
 
   async save(course: BackofficeCourse): Promise<void> {
     return this.persist(course);
+  }
+
+  matching(criteria: Criteria): Promise<BackofficeCourse[]> {
+    throw new Error('Method not implemented.');
   }
 }
