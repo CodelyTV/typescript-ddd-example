@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import container from '../config/dependency-injection';
+import container from '../dependency-injection';
 import StatusController from '../controllers/StatusGetController';
 
 export const register = (router: Router) => {

@@ -1,0 +1,9 @@
+services:
+
+  Apps.Backoffice.Backend.controllers.StatusGetController:
+    class: ../../controllers/StatusGetController
+    arguments: []
+
+  Apps.Backoffice.Backend.controllers.CoursesGetController:
+    class: ../../controllers/CoursesGetController
+    arguments: ['@Shared.QueryBus']

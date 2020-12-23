@@ -1,4 +1,4 @@
-import config from '../../../../../../apps/mooc/backend/config/config';
+import config from '../../config';
 import MongoConfig from '../../../../../Shared/infrastructure/persistence/mongo/MongoConfig';
 
 export class MongoConfigFactory {

@@ -1,0 +1,14 @@
+services:
+  Mooc.notifications.EmailSender:
+    class: ../../../../../Contexts/Mooc/Notifications/infrastructure/FakeEmailSender
+    arguments: []
+
+  Mooc.notifications.SendWelcomeUserEmail:
+    class: ../../../../../Contexts/Mooc/Notifications/application/SendWelcomeUserEmail/SendWelcomeUserEmail
+    arguments: ["@Mooc.notifications.EmailSender"]
+
+  Mooc.notifications.SendWelcomeUserEmailOnUserRegistered:
+    class: ../../../../../Contexts/Mooc/Notifications/application/SendWelcomeUserEmail/SendWelcomeUserEmailOnUserRegistered
+    arguments: ["@Mooc.notifications.SendWelcomeUserEmail"]
+    tags:
+      - { name: 'domainEventSubscriber' }

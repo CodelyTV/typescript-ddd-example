@@ -1,4 +1,6 @@
 import { Client as ElasticClient } from '@elastic/elasticsearch';
+import { ResponseError } from '@elastic/elasticsearch/lib/errors';
+import httpStatus from 'http-status';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 
 type Hit = { _source: any };
@@ -15,16 +17,27 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
   protected async searchAllInElastic(unserializer: (data: any) => T): Promise<T[]> {
     const client = await this.client();
 
-    const response = await client.search({
-      index: this.moduleName(),
-      body: {
-        query: {
-          match_all: {}
+    try {
+      const response = await client.search({
+        index: this.moduleName(),
+        body: {
+          query: {
+            match_all: {}
+          }
         }
+      });
+      return response.body.hits.hits.map((hit: Hit) => unserializer({ ...hit._source }));
+    } catch (e) {
+      if (this.isNotFoundError(e)) {
+        return [];
       }
-    });
 
-    return response.body.hits.hits.map((hit: Hit) => unserializer({ ...hit._source }));
+      throw e;
+    }
+  }
+
+  private isNotFoundError(e: any) {
+    return e instanceof ResponseError && (e as ResponseError).meta.statusCode === httpStatus.NOT_FOUND;
   }
 
   protected async persist(aggregateRoot: T): Promise<void> {

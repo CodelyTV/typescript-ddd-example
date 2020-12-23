@@ -1,6 +1,6 @@
 import errorHandler from 'errorhandler';
 import app from './app';
-import container from './config/dependency-injection';
+import container from './dependency-injection';
 import { seed } from './seed';
 
 /**
