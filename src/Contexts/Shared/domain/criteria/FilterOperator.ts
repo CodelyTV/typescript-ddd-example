@@ -1,4 +1,4 @@
-import { Nullable } from '../Nullable';
+import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
 
 export enum FilterOperators {
   EQUAL = '=',
@@ -10,13 +10,14 @@ export enum FilterOperators {
 }
 
 export class FilterOperator {
-  readonly value: FilterOperators;
+  readonly value: string;
 
-  constructor(value: FilterOperators) {
+  constructor(value: string) {
     this.value = value;
+    this.ensureIsBetweenAcceptedValues(value);
   }
 
-  static fromValue(value: string): Nullable<FilterOperator> {
+  static fromValue(value: string): FilterOperator {
     switch (value) {
       case FilterOperators.EQUAL:
         return new FilterOperator(FilterOperators.EQUAL);
@@ -31,11 +32,24 @@ export class FilterOperator {
       case FilterOperators.NOT_CONTAINS:
         return new FilterOperator(FilterOperators.NOT_CONTAINS);
       default:
-        return null;
+        return new FilterOperator('');
     }
   }
 
   public isPositive(): boolean {
     return this.value !== FilterOperators.NOT_EQUAL && this.value !== FilterOperators.NOT_CONTAINS;
+  }
+
+  private ensureIsBetweenAcceptedValues(value: string): void {
+    const allOperators: string[] = Object.values(FilterOperators);
+    const operatorsIncludeValue = allOperators.includes(value);
+
+    if (!operatorsIncludeValue) {
+      this.throwExceptionForInvalidValue(value);
+    }
+  }
+
+  private throwExceptionForInvalidValue(value: string): void {
+    throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
   }
 }

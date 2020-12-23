@@ -1,5 +1,6 @@
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
-import { SearchAllCoursesResponse } from './SearchAllCoursesResponse';
+import { BackofficeCourseResponse } from '../BackofficeCourseResponse';
+import { BackofficeCoursesResponse } from '../BackofficeCoursesResponse';
 
 export class CoursesFinder {
   constructor(private coursesRepository: BackofficeCourseRepository) {}
@@ -7,6 +8,8 @@ export class CoursesFinder {
   async run() {
     const courses = await this.coursesRepository.searchAll();
 
-    return new SearchAllCoursesResponse(courses);
+    const backofficeCourseResponses = courses.map(BackofficeCourseResponse.fromAggregate);
+
+    return new BackofficeCoursesResponse(backofficeCourseResponses);
   }
 }

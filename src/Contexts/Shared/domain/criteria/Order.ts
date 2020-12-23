@@ -10,6 +10,13 @@ export class Order {
     this.orderType = orderType;
   }
 
+  static fromValues(orderBy?: string, orderType?: string): Order {
+    if (!orderBy) {
+      return Order.none();
+    }
+
+    return new Order(new OrderBy(orderBy), OrderType.fromValue(orderType || OrderTypes.ASC));
+  }
   static none(): Order {
     return new Order(new OrderBy(''), new OrderType(OrderTypes.NONE));
   }
