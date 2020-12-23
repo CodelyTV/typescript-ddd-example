@@ -32,7 +32,7 @@ export class FilterOperator {
       case FilterOperators.NOT_CONTAINS:
         return new FilterOperator(FilterOperators.NOT_CONTAINS);
       default:
-        return new FilterOperator('');
+        return new FilterOperator(value);
     }
   }
 

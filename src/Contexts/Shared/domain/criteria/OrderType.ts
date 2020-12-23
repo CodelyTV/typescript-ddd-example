@@ -21,7 +21,7 @@ export class OrderType {
       case OrderTypes.DESC:
         return new OrderType(OrderTypes.DESC);
       default:
-        return new OrderType('');
+        return new OrderType(value);
     }
   }
 
@@ -43,6 +43,6 @@ export class OrderType {
   }
 
   private throwExceptionForInvalidValue(value: string): void {
-    throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
+    throw new InvalidArgumentError(`The order type ${value} is invalid`);
   }
 }
