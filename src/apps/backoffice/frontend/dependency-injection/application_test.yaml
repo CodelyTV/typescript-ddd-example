@@ -3,5 +3,5 @@ imports:
 
 services:
   Shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
+    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
     arguments: []

@@ -33,6 +33,18 @@ const moocConfig = convict({
       format: String,
       env: 'RABBITMQ_DEFAULT_PASS',
       default: 'guest'
+    },
+    queue: {
+      doc: 'Queue where subscribers listen on',
+      format: String,
+      env: 'RABBITMQ_QUEUE',
+      default: 'Mooc-DomainEvents'
+    },
+    exchange: {
+      doc: 'Exchange where events are published',
+      format: String,
+      env: 'RABBITMQ_EXCHANGE',
+      default: 'DomainEvents'
     }
   }
 });

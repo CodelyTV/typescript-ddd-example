@@ -39,6 +39,10 @@ export class Server {
     });
   }
 
+  getHTTPServer() {
+    return this.httpServer;
+  }
+
   stop() {
     if (this.httpServer) {
       this.httpServer.close();

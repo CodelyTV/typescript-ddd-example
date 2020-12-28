@@ -5,7 +5,7 @@ import { DomainEvent } from '../../Contexts/Shared/domain/DomainEvent';
 import { EventBus } from '../../Contexts/Shared/domain/EventBus';
 
 export function registerSubscribers() {
-  const eventBus = container.get('Shared.EventBus') as EventBus;
+  const eventBus = container.get('Retention.campaign.EventBus') as EventBus;
   const subscriberDefinitions = container.findTaggedServiceIds('domainEventSubscriber') as Map<String, Definition>;
   const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
 

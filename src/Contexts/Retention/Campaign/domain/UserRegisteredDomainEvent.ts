@@ -13,7 +13,7 @@ export class UserRegisteredDomainEvent extends DomainEvent {
   }
 
   toPrimitive(): Object {
-    return { userEmailAddress: this.userEmailAddress };
+    return { userEmailAddress: this.userEmailAddress, eventName: UserRegisteredDomainEvent.EVENT_NAME };
   }
 
   static fromPrimitives(

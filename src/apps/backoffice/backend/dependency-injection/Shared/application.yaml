@@ -18,8 +18,8 @@ services:
     arguments: ['@Shared.QueryHandlersInformation']
 
   Shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
-    arguments: []
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Backoffice.courses.RabbitMqConfig']
 
   Shared.EventBus.DomainEventMapping:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping

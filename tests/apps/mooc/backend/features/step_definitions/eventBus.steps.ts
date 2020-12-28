@@ -9,5 +9,5 @@ const deserializer = container.get('Shared.EventBus.DomainEventJsonDeserializer'
 Given('I send an event to the event bus:', async (event: any) => {
   const domainEvent = deserializer.deserialize(event);
 
-  await eventBus.publish([domainEvent]);
+  await eventBus.publish([domainEvent!]);
 });

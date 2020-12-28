@@ -14,9 +14,14 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
 
+  Shared.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Mooc/Shared/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
   Shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
-    arguments: []
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Shared.RabbitMqConfig']
 
   Shared.CommandHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation
