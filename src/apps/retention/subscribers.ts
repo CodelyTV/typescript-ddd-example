@@ -1,4 +1,4 @@
-import container from './config/dependency-injection';
+import container from './dependency-injection';
 import { Definition } from 'node-dependency-injection';
 import { DomainEventSubscriber } from '../../Contexts/Shared/domain/DomainEventSubscriber';
 import { DomainEvent } from '../../Contexts/Shared/domain/DomainEvent';

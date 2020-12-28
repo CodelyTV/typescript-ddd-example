@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import container from '../config/dependency-injection';
+import container from '../dependency-injection';
 
 export const register = (router: Router) => {
   const coursePutController = container.get('Apps.mooc.controllers.CoursePutController');

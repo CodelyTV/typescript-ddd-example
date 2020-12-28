@@ -1,5 +1,5 @@
 import { Given } from 'cucumber';
-import container from '../../../../../../src/apps/backoffice/backend/config/dependency-injection';
+import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
 import { Course } from '../../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseDuration } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
 import { CourseName } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseName';

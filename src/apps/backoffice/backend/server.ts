@@ -1,4 +1,3 @@
-import container from './config/dependency-injection';
 import errorHandler from 'errorhandler';
 import helmet from 'helmet';
 import compress from 'compression';
@@ -7,6 +6,7 @@ import express from 'express';
 import * as http from 'http';
 import Logger from '../../../Contexts/Shared/domain/Logger';
 import { registerRoutes } from './routes';
+import container from './dependency-injection';
 
 export class Server {
   private express: express.Express;

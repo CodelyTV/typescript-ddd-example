@@ -1,5 +1,3 @@
-import container from './config/dependency-injection';
-import errorHandler from 'errorhandler';
 import helmet from 'helmet';
 import compress from 'compression';
 import bodyParser from 'body-parser';
@@ -12,6 +10,8 @@ import { registerRoutes } from './routes';
 import cookieSession from 'cookie-session';
 import nunjucks from 'nunjucks';
 import path from 'path';
+import errorHandler from 'errorhandler';
+import container from './dependency-injection';
 
 export class Server {
   private express: express.Express;

@@ -1,5 +1,5 @@
 import { Given } from 'cucumber';
-import container from '../../../../../../src/apps/backoffice/backend/config/dependency-injection';
+import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
 import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
 import { DomainEventJsonDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
 
