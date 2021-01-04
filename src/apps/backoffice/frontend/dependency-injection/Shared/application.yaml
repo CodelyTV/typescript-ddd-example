@@ -16,7 +16,7 @@ services:
 
   Shared.EventBus:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
-    arguments: ['@Backoffice.courses.RabbitMqConfig']
+    arguments: ['@Backoffice.courses.RabbitMqConfig', '@Shared.Logger']
 
   Shared.QueryBus:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus

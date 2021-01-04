@@ -20,4 +20,8 @@ services:
 
   Retention.campaign.EventBus:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
-    arguments: ['@Retention.campaign.RabbitMqConfig']
+    arguments: ['@Retention.campaign.RabbitMqConfig', '@Retention.campaign.Logger']
+
+  Retention.campaign.Logger:
+    class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []

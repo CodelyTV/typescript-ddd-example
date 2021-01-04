@@ -21,7 +21,7 @@ services:
 
   Shared.EventBus:
     class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
-    arguments: ['@Shared.RabbitMqConfig']
+    arguments: ['@Shared.RabbitMqConfig', '@Shared.Logger']
 
   Shared.CommandHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation

@@ -1,13 +1,12 @@
 import { DomainEventClass, DomainEvent } from '../../domain/DomainEvent';
 import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
-import Logger from '../../domain/Logger';
 
 type Mapping = Map<string, DomainEventClass>;
 
 export class DomainEventMapping {
   private mapping: Mapping;
 
-  constructor(mapping: DomainEventSubscriber<DomainEvent>[], private logger: Logger) {
+  constructor(mapping: DomainEventSubscriber<DomainEvent>[]) {
     this.mapping = mapping.reduce(this.eventsExtractor(), new Map<string, DomainEventClass>());
   }
 
@@ -29,7 +28,6 @@ export class DomainEventMapping {
     const domainEvent = this.mapping.get(name);
 
     if (!domainEvent) {
-      this.logger.info(`The Domain Event Class for ${name} doesn't exist or have no subscrribers`);
       return;
     }
 

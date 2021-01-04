@@ -5,15 +5,18 @@ import { DomainEventSubscriber } from '../../../domain/DomainEventSubscriber';
 import { DomainEventJsonDeserializer } from '../DomainEventJsonDeserializer';
 import { DomainEventMapping } from '../DomainEventMapping';
 import RabbitMqConfig from './RabbitMqConfig';
+import Logger from '../../../domain/Logger';
 
 export default class RabbitMqEventbus implements EventBus {
   private connection: Connection;
   private exchange: Exchange;
   private queue: Queue;
+  private logger: Logger;
   private deserializer?: DomainEventJsonDeserializer;
   private subscribers: Map<string, Array<DomainEventSubscriber<DomainEvent>>>;
 
-  constructor(config: RabbitMqConfig) {
+  constructor(config: RabbitMqConfig, logger: Logger) {
+    this.logger = logger;
     this.connection = new Connection(`amqp://${config.user}:${config.password}@${config.host}`);
     this.exchange = this.connection.declareExchange(config.exchange, 'fanout', { durable: false });
     this.queue = this.connection.declareQueue(config.queue);
@@ -31,10 +34,14 @@ export default class RabbitMqEventbus implements EventBus {
         const event = this.deserializer!.deserialize(message.content.toString());
         if (event) {
           const subscribers = this.subscribers.get(event.eventName);
-          const subscribersExecutions = subscribers!.map(subscriber => subscriber.on(event));
-          await Promise.all(subscribersExecutions);
-          message.ack();
+          if (subscribers && subscribers.length) {
+            const subscribersNames = subscribers.map(subscriber => subscriber.constructor.name);
+            this.logger.info(`[RabbitMqEventBus] Message processed: ${event.eventName} by ${subscribersNames}`);
+            const subscribersExecutions = subscribers.map(subscriber => subscriber.on(event));
+            await Promise.all(subscribersExecutions);
+          }
         }
+        message.ack();
       },
       { noAck: false }
     );
@@ -52,6 +59,7 @@ export default class RabbitMqEventbus implements EventBus {
         },
         meta: {}
       });
+      this.logger.info(`[RabbitMqEventBus] Event to be published: ${event.eventName}`);
       executions.push(this.exchange.send(message));
     });
 
