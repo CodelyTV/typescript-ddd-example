@@ -2,6 +2,8 @@ import { Client as ElasticClient } from '@elastic/elasticsearch';
 import { ResponseError } from '@elastic/elasticsearch/lib/errors';
 import httpStatus from 'http-status';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
+import { Criteria } from '../../../domain/criteria/Criteria';
+import bodybuilder, { Bodybuilder } from 'bodybuilder';
 
 type Hit = { _source: any };
 
@@ -15,17 +17,27 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
   }
 
   protected async searchAllInElastic(unserializer: (data: any) => T): Promise<T[]> {
+    const body = bodybuilder().query('match_all');
+    body.build();
+    return this.searchInElasticWithSourceBuilder(unserializer, body);
+  }
+
+  protected async searchByCriteria(criteria: Criteria, unserializer: (data: any) => T): Promise<T[]> {
+    // TODO elastic search converter from Criteria
+    const body = bodybuilder().query('match_all');
+    body.build();
+    return this.searchInElasticWithSourceBuilder(unserializer, body);
+  }
+
+  private async searchInElasticWithSourceBuilder(unserializer: (data: any) => T, body: Bodybuilder): Promise<T[]> {
     const client = await this.client();
 
     try {
       const response = await client.search({
         index: this.moduleName(),
-        body: {
-          query: {
-            match_all: {}
-          }
-        }
+        body
       });
+
       return response.body.hits.hits.map((hit: Hit) => unserializer({ ...hit._source }));
     } catch (e) {
       if (this.isNotFoundError(e)) {

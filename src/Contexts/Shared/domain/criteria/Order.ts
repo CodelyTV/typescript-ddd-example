@@ -17,6 +17,7 @@ export class Order {
 
     return new Order(new OrderBy(orderBy), OrderType.fromValue(orderType || OrderTypes.ASC));
   }
+
   static none(): Order {
     return new Order(new OrderBy(''), new OrderType(OrderTypes.NONE));
   }

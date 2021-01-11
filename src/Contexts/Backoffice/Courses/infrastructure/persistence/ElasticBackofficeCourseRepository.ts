@@ -19,6 +19,6 @@ export class ElasticBackofficeCourseRepository
   }
 
   matching(criteria: Criteria): Promise<BackofficeCourse[]> {
-    throw new Error('Method not implemented.');
+    return this.searchByCriteria(criteria, BackofficeCourse.fromPrimitives);
   }
 }
