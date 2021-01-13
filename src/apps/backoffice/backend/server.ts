@@ -10,7 +10,7 @@ import container from './dependency-injection';
 
 export class Server {
   private express: express.Express;
-  private port: string;
+  readonly port: string;
   private logger: Logger;
   private httpServer?: http.Server;
 
@@ -32,16 +32,27 @@ export class Server {
   async listen(): Promise<void> {
     return new Promise(resolve => {
       this.httpServer = this.express.listen(this.port, () => {
-        this.logger.info(`  App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`);
+        this.logger.info(
+          `  Backoffice Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`
+        );
         this.logger.info('  Press CTRL-C to stop\n');
         resolve();
       });
     });
   }
 
-  stop() {
-    if (this.httpServer) {
-      this.httpServer.close();
-    }
+  async stop(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (this.httpServer) {
+        this.httpServer.close(error => {
+          if (error) {
+            return reject(error);
+          }
+          return resolve();
+        });
+      }
+
+      return resolve();
+    });
   }
 }

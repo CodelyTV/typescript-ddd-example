@@ -20,15 +20,15 @@
     "test:mooc:backend:features": "NODE_ENV=test cucumber-js -p mooc_backend",
     "test:backoffice:backend:features": "NODE_ENV=test cucumber-js -p backoffice_backend",
     "lint": "tslint src/**/*.ts{,x}",
-    "start": "NODE_ENV=production node dist/src/apps/mooc/backend/server",
-    "start:backoffice:frontend": "NODE_ENV=production node dist/src/apps/backoffice/frontend/server",
-    "start:backoffice:backend": "NODE_ENV=production node dist/src/apps/backoffice/backend/server",
+    "start:mooc:backend": "NODE_ENV=production node dist/src/apps/mooc/backend/start",
+    "start:backoffice:frontend": "NODE_ENV=production node dist/src/apps/backoffice/frontend/start",
+    "start:backoffice:backend": "NODE_ENV=production node dist/src/apps/backoffice/backend/start",
     "build": "npm run build:clean && npm run build:tsc && npm run build:di",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
-    "cypress:open": "NODE_ENV=test ts-node tests/utils/cypress/open",
-    "cypress:run": "NODE_ENV=test ts-node tests/utils/cypress/run"
+    "cypress:open": "NODE_ENV=end2end ts-node tests/utils/cypress/open",
+    "cypress:run": "NODE_ENV=end2end ts-node tests/utils/cypress/run"
   },
   "dependencies": {
     "@types/amqplib": "^0.5.16",

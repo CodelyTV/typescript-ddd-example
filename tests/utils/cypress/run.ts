@@ -1,22 +1,21 @@
-import frontendApp from '../../../src/apps/backoffice/frontend/app';
 import cypress from 'cypress';
 import cypressConfig from '../../../cypress.json';
 import { startBackofficeFrontend } from './startBackofficeFrontend';
 import { startBackofficeBackend } from './startBackofficeBackend';
+import { startMoocBackend } from './startMoocBackend';
 
 async function run() {
-  const backofficeFrontendServer = await startBackofficeFrontend();
-  const backofficeBackendServer = await startBackofficeBackend();
-  await runCypress();
-  backofficeFrontendServer.close(() => {
-    process.exit(0);
-  });
-  backofficeBackendServer.close(() => {
-    process.exit(0);
-  });
+  const moockBackend = await startMoocBackend();
+  const backofficeFrontend = await startBackofficeFrontend();
+  const backofficeBackend = await startBackofficeBackend();
+  const port = backofficeFrontend.port;
+  await runCypress(port);
+
+  await Promise.all([backofficeFrontend.stop(), backofficeBackend.stop(), moockBackend]);
+  process.exit(0);
 }
 
-async function runCypress() {
+async function runCypress(port: string) {
   return cypress.run({
     reporter: 'junit',
     browser: 'chrome',
@@ -24,7 +23,7 @@ async function runCypress() {
     config: {
       ...cypressConfig,
       supportFile: false,
-      baseUrl: `http://localhost:${frontendApp.get('port')}`
+      baseUrl: `http://localhost:${port}`
     }
   });
 }

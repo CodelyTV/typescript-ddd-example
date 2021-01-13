@@ -25,13 +25,14 @@ export default class RabbitMqEventbus implements EventBus {
 
   async start(): Promise<void> {
     if (!this.deserializer) {
-      throw new Error('RabbitMqEventbus has not being properly initialized, deserializer is missing');
+      throw new Error('RabbitMqEventBus has not being properly initialized, deserializer is missing');
     }
 
-    this.queue.bind(this.exchange);
-    this.queue.activateConsumer(
+    await this.queue.bind(this.exchange);
+    await this.queue.activateConsumer(
       async message => {
         const event = this.deserializer!.deserialize(message.content.toString());
+        console.log(`========message ${event?.eventName} in ${this.queue.name}`);
         if (event) {
           const subscribers = this.subscribers.get(event.eventName);
           if (subscribers && subscribers.length) {

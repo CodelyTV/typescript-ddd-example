@@ -1,13 +1,16 @@
-import { Application } from './app';
+import { BackofficeBackendApp } from './BackofficeBackendApp';
 
 try {
-  new Application().start();
+  new BackofficeBackendApp().start().catch(handleError);
 } catch (e) {
-  console.log(e);
-  process.exit(1);
+  handleError(e);
 }
 
 process.on('uncaughtException', err => {
   console.log('uncaughtException', err);
   process.exit(1);
 });
+function handleError(e: any) {
+  console.log(e);
+  process.exit(1);
+}

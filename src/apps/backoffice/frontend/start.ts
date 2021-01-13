@@ -1,7 +1,7 @@
-import { Application } from './app';
+import { BackofficeFrontendApp } from './BackofficeFrontendApp';
 
 try {
-  new Application().start();
+  new BackofficeFrontendApp().start();
 } catch (e) {
   console.log(e);
   process.exit(1);
