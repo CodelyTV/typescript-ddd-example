@@ -18,7 +18,7 @@ export class ElasticBackofficeCourseRepository
     return this.persist(course);
   }
 
-  matching(criteria: Criteria): Promise<BackofficeCourse[]> {
+  async matching(criteria: Criteria): Promise<BackofficeCourse[]> {
     return this.searchByCriteria(criteria, BackofficeCourse.fromPrimitives);
   }
 }

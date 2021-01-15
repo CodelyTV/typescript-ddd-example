@@ -33,12 +33,10 @@ describe('SearchAllCourses QueryHandler', () => {
     const filters: Array<Map<string, string>> = new Array(filterName, filterDuration);
 
     const query = new SearchCoursesByCriteriaQuery(filters);
-
     const response = await handler.handle(query);
 
-    repository.assertMatchingHasBeenCalledWith();
-
     const expected = SearchCoursesByCriteriaResponseMother.create(courses);
+    repository.assertMatchingHasBeenCalledWith();
     expect(expected).toEqual(response);
   });
 
@@ -60,17 +58,14 @@ describe('SearchAllCourses QueryHandler', () => {
     ]);
 
     const filters: Array<Map<string, string>> = new Array(filterName, filterDuration);
-
     const orderBy = 'name';
     const orderType = OrderTypes.ASC;
 
     const query = new SearchCoursesByCriteriaQuery(filters, orderBy, orderType, 10, 1);
-
     const response = await handler.handle(query);
 
-    repository.assertMatchingHasBeenCalledWith();
-
     const expected = SearchCoursesByCriteriaResponseMother.create(courses);
+    repository.assertMatchingHasBeenCalledWith();
     expect(expected).toEqual(response);
   });
 });

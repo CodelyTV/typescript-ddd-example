@@ -1,14 +1,19 @@
 import { Client as ElasticClient } from '@elastic/elasticsearch';
 import { ResponseError } from '@elastic/elasticsearch/lib/errors';
+import bodybuilder, { Bodybuilder } from 'bodybuilder';
 import httpStatus from 'http-status';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 import { Criteria } from '../../../domain/criteria/Criteria';
-import bodybuilder, { Bodybuilder } from 'bodybuilder';
+import { ElasticCriteriaConverter, TypeQueryEnum } from './ElasticCriteriaConverter';
 
 type Hit = { _source: any };
 
 export abstract class ElasticRepository<T extends AggregateRoot> {
-  constructor(private _client: Promise<ElasticClient>) {}
+  private criteriaConverter: ElasticCriteriaConverter;
+
+  constructor(private _client: Promise<ElasticClient>) {
+    this.criteriaConverter = new ElasticCriteriaConverter();
+  }
 
   protected abstract moduleName(): string;
 
@@ -17,15 +22,14 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
   }
 
   protected async searchAllInElastic(unserializer: (data: any) => T): Promise<T[]> {
-    const body = bodybuilder().query('match_all');
-    body.build();
+    const body = bodybuilder().query(TypeQueryEnum.MATCH_ALL);
+
     return this.searchInElasticWithSourceBuilder(unserializer, body);
   }
 
   protected async searchByCriteria(criteria: Criteria, unserializer: (data: any) => T): Promise<T[]> {
-    // TODO elastic search converter from Criteria
-    const body = bodybuilder().query('match_all');
-    body.build();
+    const body = this.criteriaConverter.convert(criteria);
+
     return this.searchInElasticWithSourceBuilder(unserializer, body);
   }
 
@@ -35,7 +39,7 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
     try {
       const response = await client.search({
         index: this.moduleName(),
-        body
+        body: body.build()
       });
 
       return response.body.hits.hits.map((hit: Hit) => unserializer({ ...hit._source }));

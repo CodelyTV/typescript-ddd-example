@@ -2,6 +2,7 @@ import container from '../../../../../src/apps/backoffice/backend/dependency-inj
 import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
 import { ElasticBackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository';
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
+import { BackofficeCourseCriteriaMother } from '../domain/BackofficeCourseCriteriaMother';
 import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';
 
 const repository: ElasticBackofficeCourseRepository = container.get('Backoffice.courses.BackofficeCourseRepository');
@@ -26,6 +27,24 @@ describe('BackofficeCourseRepository', () => {
 
       expect(courses).toHaveLength(expectedCourses.length);
       expect(courses.sort(sort)).toEqual(expectedCourses.sort(sort));
+    });
+  });
+
+  describe('#searchByCriteria', () => {
+    it('should return courses using a criteria', async () => {
+      const courses = [
+        BackofficeCourseMother.withNameAndDuration('DDD in Typescript', '8 days'),
+        BackofficeCourseMother.withNameAndDuration('DDD in Golang', '3 days'),
+        BackofficeCourseMother.random()
+      ];
+
+      await Promise.all(courses.map(async course => repository.save(course)));
+
+      const expectedCourses = await repository.matching(
+        BackofficeCourseCriteriaMother.nameAndDurationContains('DDD', 'days')
+      );
+
+      expect(expectedCourses).toHaveLength(2);
     });
   });
 });

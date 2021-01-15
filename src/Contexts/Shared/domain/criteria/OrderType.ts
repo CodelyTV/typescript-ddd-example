@@ -1,3 +1,4 @@
+import { EnumValueObject } from '../value-object/EnumValueObject';
 import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
 
 export enum OrderTypes {
@@ -6,12 +7,9 @@ export enum OrderTypes {
   NONE = 'none'
 }
 
-export class OrderType {
-  readonly value: string;
-
-  constructor(type: string) {
-    this.value = type;
-    this.ensureIsBetweenAcceptedValues(type);
+export class OrderType extends EnumValueObject<OrderTypes> {
+  constructor(value: OrderTypes) {
+    super(value, Object.values(OrderTypes));
   }
 
   static fromValue(value: string): OrderType {
@@ -21,7 +19,7 @@ export class OrderType {
       case OrderTypes.DESC:
         return new OrderType(OrderTypes.DESC);
       default:
-        return new OrderType(value);
+        throw new InvalidArgumentError(`The order type ${value} is invalid`);
     }
   }
 
@@ -33,16 +31,7 @@ export class OrderType {
     return this.value === OrderTypes.ASC;
   }
 
-  private ensureIsBetweenAcceptedValues(value: string): void {
-    const allOperators: string[] = Object.values(OrderTypes);
-    const operatorsIncludeValue = allOperators.includes(value);
-
-    if (!operatorsIncludeValue) {
-      this.throwExceptionForInvalidValue(value);
-    }
-  }
-
-  private throwExceptionForInvalidValue(value: string): void {
+  protected throwErrorForInvalidValue(value: OrderTypes): void {
     throw new InvalidArgumentError(`The order type ${value} is invalid`);
   }
 }

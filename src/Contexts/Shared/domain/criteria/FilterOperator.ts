@@ -1,3 +1,4 @@
+import { EnumValueObject } from '../value-object/EnumValueObject';
 import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
 
 export enum FilterOperators {
@@ -9,12 +10,9 @@ export enum FilterOperators {
   NOT_CONTAINS = 'NOT_CONTAINS'
 }
 
-export class FilterOperator {
-  readonly value: string;
-
-  constructor(value: string) {
-    this.value = value;
-    this.ensureIsBetweenAcceptedValues(value);
+export class FilterOperator extends EnumValueObject<FilterOperators> {
+  constructor(value: FilterOperators) {
+    super(value, Object.values(FilterOperators));
   }
 
   static fromValue(value: string): FilterOperator {
@@ -32,7 +30,7 @@ export class FilterOperator {
       case FilterOperators.NOT_CONTAINS:
         return new FilterOperator(FilterOperators.NOT_CONTAINS);
       default:
-        return new FilterOperator(value);
+        throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
     }
   }
 
@@ -40,16 +38,7 @@ export class FilterOperator {
     return this.value !== FilterOperators.NOT_EQUAL && this.value !== FilterOperators.NOT_CONTAINS;
   }
 
-  private ensureIsBetweenAcceptedValues(value: string): void {
-    const allOperators: string[] = Object.values(FilterOperators);
-    const operatorsIncludeValue = allOperators.includes(value);
-
-    if (!operatorsIncludeValue) {
-      this.throwExceptionForInvalidValue(value);
-    }
-  }
-
-  private throwExceptionForInvalidValue(value: string): void {
+  protected throwErrorForInvalidValue(value: FilterOperators): void {
     throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
   }
 }
