@@ -8,9 +8,10 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [12.x, 15.x]
         mongodb-version: [4.0, 4.2]
         elasticsearch-version: ['7.9.3']
+        rabbitmq-version: ['3.8.2-management-alpine']
 
     steps:
       - uses: actions/checkout@v1
@@ -37,11 +38,19 @@ jobs:
           host node port: 9300
           node port: 9300
           discovery type: 'single-node'
-      - name: npm install, build, and test
+      - name: npm install
         run: |
           npm install
+        env:
+          CI: true
+      - name: npm run build
+        run: |
           npm run build --if-present
           npm run lint
+        env:
+          CI: true
+      - name: npm test
+        run: |
           npm test
         env:
           CI: true
