@@ -41,13 +41,11 @@
 
 <script>
   function addCoursesList(url) {
-      console.log(url);
 
       const tableBody = document.getElementById("courses-list");
 
       fetch(url)
           .then(function (response) {
-              console.log(response)
               return response.json();
           })
           .then(function (courses) {

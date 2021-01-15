@@ -32,7 +32,6 @@ export default class RabbitMqEventbus implements EventBus {
     await this.queue.activateConsumer(
       async message => {
         const event = this.deserializer!.deserialize(message.content.toString());
-        console.log(`========message ${event?.eventName} in ${this.queue.name}`);
         if (event) {
           const subscribers = this.subscribers.get(event.eventName);
           if (subscribers && subscribers.length) {

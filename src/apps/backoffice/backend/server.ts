@@ -12,7 +12,7 @@ export class Server {
   private express: express.Express;
   readonly port: string;
   private logger: Logger;
-  private httpServer?: http.Server;
+  httpServer?: http.Server;
 
   constructor(port: string) {
     this.port = port;

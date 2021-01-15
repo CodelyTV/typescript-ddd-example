@@ -1,6 +1,7 @@
 describe('List courses', () => {
   before(() => {
     cy.task('reset:backoffice:db');
+    cy.task('reset:mooc:db');
   });
 
   beforeEach(() => {
@@ -11,6 +12,8 @@ describe('List courses', () => {
     cy.get('input[name="name"]').type('DDD en Typescript');
     cy.get('input[name="duration"]').type('25 hours');
     cy.get('form').submit();
+    cy.wait(1000);
+    cy.reload();
 
     cy.contains('Cursos existentes');
     cy.get('#courses-list').find('tr').should('have.length', 1);
