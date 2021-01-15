@@ -14,7 +14,7 @@
     "dev:mooc:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/mooc/backend/start.ts",
     "dev:backoffice:frontend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/frontend/start.ts",
     "dev:backoffice:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/backend/start.ts",
-    "test": "npm run test:unit && npm run test:features && npm run cypress:run",
+    "test": "npm run test:unit && npm run test:features",
     "test:unit": "NODE_ENV=test jest",
     "test:features": "npm run test:mooc:backend:features && npm run test:backoffice:backend:features",
     "test:mooc:backend:features": "NODE_ENV=test cucumber-js -p mooc_backend",
@@ -28,7 +28,8 @@
     "build:di": "copy 'src/**/*.{json,yaml,html,png}' dist/src",
     "build:clean": "rm -r dist; exit 0",
     "cypress:open": "NODE_ENV=end2end ts-node tests/utils/cypress/open",
-    "cypress:run": "NODE_ENV=end2end ts-node tests/utils/cypress/run"
+    "cypress:run": "NODE_ENV=end2end ts-node tests/utils/cypress/run",
+    "cypress:ci:start": "NODE_ENV=end2end ts-node tests/utils/cypress/startApps"
   },
   "dependencies": {
     "@types/amqplib": "^0.5.17",

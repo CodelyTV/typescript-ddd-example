@@ -16,7 +16,7 @@ export class MoocBackendApp {
     return this.server.listen();
   }
 
-  async close() {
+  async stop() {
     return this.server?.stop();
   }
 

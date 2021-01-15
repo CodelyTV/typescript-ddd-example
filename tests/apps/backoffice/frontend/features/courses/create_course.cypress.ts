@@ -6,6 +6,11 @@ describe('Create courses', () => {
     cy.task('reset:backoffice:db');
   });
 
+  after(() => {
+    cy.task('reset:mooc:db');
+    cy.task('reset:backoffice:db');
+  });
+
   beforeEach(() => {
     cy.visit('courses');
   });

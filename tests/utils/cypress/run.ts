@@ -1,17 +1,12 @@
 import cypress from 'cypress';
 import cypressConfig from '../../../cypress.json';
-import { startBackofficeFrontend } from './startBackofficeFrontend';
-import { startBackofficeBackend } from './startBackofficeBackend';
-import { startMoocBackend } from './startMoocBackend';
+import { Applications } from './Applications';
 
 async function run() {
-  const moockBackend = await startMoocBackend();
-  const backofficeFrontend = await startBackofficeFrontend();
-  const backofficeBackend = await startBackofficeBackend();
-  const port = backofficeFrontend.port;
+  const port = await Applications.start();
   await runCypress(port);
 
-  await Promise.all([backofficeFrontend.stop(), backofficeBackend.stop(), moockBackend]);
+  await Applications.stop();
   process.exit(0);
 }
 

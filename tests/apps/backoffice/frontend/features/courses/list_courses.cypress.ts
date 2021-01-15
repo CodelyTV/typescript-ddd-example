@@ -8,6 +8,11 @@ describe('List courses', () => {
     cy.visit('courses');
   });
 
+  after(() => {
+    cy.task('reset:mooc:db');
+    cy.task('reset:backoffice:db');
+  });
+
   it('can list courses', () => {
     cy.get('input[name="name"]').type('DDD en Typescript');
     cy.get('input[name="duration"]').type('25 hours');

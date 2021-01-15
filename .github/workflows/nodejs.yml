@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 15.x]
-        mongodb-version: [4.0, 4.2]
+        mongodb-version: [4.2]
         elasticsearch-version: ['7.9.3']
         rabbitmq-version: ['3.8.2-management-alpine']
 
@@ -23,6 +23,10 @@ jobs:
         uses: wbari/start-mongoDB@v0.2
         with:
           mongoDBVersion: ${{ matrix.mongodb-version }}
+      - name: Launch RabbitMQ
+        uses: nijel/rabbitmq-action@v1.0.0
+        with:
+          rabbitmq version: ${{ matrix.rabbitmq-version }}
       - name: Configure sysctl limits
         run: |
           sudo swapoff -a
@@ -41,16 +45,17 @@ jobs:
       - name: npm install
         run: |
           npm install
-        env:
-          CI: true
       - name: npm run build
         run: |
           npm run build --if-present
           npm run lint
-        env:
-          CI: true
       - name: npm test
         run: |
           npm test
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
         env:
-          CI: true
+          NODE_ENV: end2end
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        with:
+          start: npm run cypress:ci:start
