@@ -1,4 +1,4 @@
-import { Bodybuilder } from 'bodybuilder';
+import bodybuilder, { Bodybuilder } from 'bodybuilder';
 import { Criteria } from '../../../domain/criteria/Criteria';
 import { Filter } from '../../../domain/criteria/Filter';
 import { FilterOperators } from '../../../domain/criteria/FilterOperator';
