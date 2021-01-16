@@ -3,6 +3,8 @@ import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 type CreateCourseDomainEventBody = {
   readonly duration: string;
   readonly name: string;
+  readonly eventName: string;
+  readonly id: string;
 };
 
 export class CourseCreatedDomainEvent extends DomainEvent {
@@ -30,10 +32,12 @@ export class CourseCreatedDomainEvent extends DomainEvent {
   }
 
   toPrimitive(): CreateCourseDomainEventBody {
-    const { name, duration } = this;
+    const { name, duration, aggregateId } = this;
     return {
       name,
-      duration
+      duration,
+      eventName: CourseCreatedDomainEvent.EVENT_NAME,
+      id: aggregateId
     };
   }
 

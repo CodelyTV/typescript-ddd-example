@@ -4,7 +4,7 @@ import { DomainEventSubscriber } from '../../domain/DomainEventSubscriber';
 type Mapping = Map<string, DomainEventClass>;
 
 export class DomainEventMapping {
-  mapping: Mapping;
+  private mapping: Mapping;
 
   constructor(mapping: DomainEventSubscriber<DomainEvent>[]) {
     this.mapping = mapping.reduce(this.eventsExtractor(), new Map<string, DomainEventClass>());
@@ -24,11 +24,11 @@ export class DomainEventMapping {
     };
   }
 
-  for(name: string): DomainEventClass {
+  for(name: string) {
     const domainEvent = this.mapping.get(name);
 
     if (!domainEvent) {
-      throw new Error(`The Domain Event Class for ${name} doesn't exists or have no subscribers`);
+      return;
     }
 
     return domainEvent;

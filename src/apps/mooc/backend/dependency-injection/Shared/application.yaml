@@ -14,9 +14,14 @@ services:
     class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
     arguments: []
 
+  Shared.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Mooc/Shared/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
   Shared.EventBus:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus
-    arguments: []
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Shared.RabbitMqConfig', '@Shared.Logger']
 
   Shared.CommandHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlersInformation
@@ -25,14 +30,6 @@ services:
   Shared.CommandBus:
     class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
     arguments: ['@Shared.CommandHandlersInformation']
-
-  Shared.EventBus.DomainEventMapping:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventMapping
-    arguments: ['!tagged domainEventSubscriber']
-
-  Shared.EventBus.DomainEventJsonDeserializer:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer
-    arguments: ['@Shared.EventBus.DomainEventMapping']
 
   Shared.QueryHandlersInformation:
     class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation

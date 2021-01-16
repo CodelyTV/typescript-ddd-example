@@ -5,6 +5,11 @@ services:
       class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeElasticConfigFactory
       method: 'createConfig'
 
+  Backoffice.courses.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
   Backoffice.courses.BackofficeCourseRepository:
     class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
     arguments: ['@Shared.ElasticConnectionManager']

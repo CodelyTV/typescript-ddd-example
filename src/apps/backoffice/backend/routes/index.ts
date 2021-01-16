@@ -7,6 +7,6 @@ export function registerRoutes(app: Express) {
 }
 
 function register(routePath: string, app: Express) {
-    const route = require(routePath);
-    route.register(app);
+  const route = require(routePath);
+  route.register(app);
 }

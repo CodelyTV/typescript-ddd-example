@@ -1,8 +1,14 @@
 import faker from 'faker';
 
 describe('Create courses', () => {
-  before(() => {
+  beforeEach(() => {
     cy.task('reset:mooc:db');
+    cy.task('reset:backoffice:db');
+  });
+
+  after(() => {
+    cy.task('reset:mooc:db');
+    cy.task('reset:backoffice:db');
   });
 
   beforeEach(() => {
@@ -13,7 +19,8 @@ describe('Create courses', () => {
     cy.contains('Actualmente CodelyTV Pro cuenta con 0 cursos.');
 
     let i = 0;
-    while (i <= 3) {
+    const numberOfCourses = 5;
+    while (i < numberOfCourses) {
       i++;
       const courseName = faker.random.words(1);
       cy.get('input[name="name"]').type(courseName);
@@ -21,8 +28,14 @@ describe('Create courses', () => {
       cy.get('form').submit();
 
       cy.get('div[role="alert"]').contains(`Felicidades, el curso ${courseName} ha sido creado!`);
+
+      // As the web application is not reactive, we need to wait for
+      // the asynchronous operations to finish to reload the page
+      cy.wait(500);
+      cy.reload();
       cy.contains(`Actualmente CodelyTV Pro cuenta con ${i} cursos.`);
     }
+    cy.get('#courses-list').find('tr').should('have.length', numberOfCourses);
   });
 
   describe('Course id field', () => {
