@@ -17,6 +17,6 @@ export class BackofficeCourseCriteriaMother {
     const nameFilter = new Filter(filterFieldName, filterOperator, valueName);
     const durationFilter = new Filter(filterFieldDuration, filterOperator, valueDuration);
 
-    return new Criteria(new Filters([nameFilter, durationFilter]), Order.asc('name'));
+    return new Criteria(new Filters([nameFilter, durationFilter]), Order.asc('id'));
   }
 }

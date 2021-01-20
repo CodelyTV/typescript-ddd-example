@@ -24,16 +24,16 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
   protected async searchAllInElastic(unserializer: (data: any) => T): Promise<T[]> {
     const body = bodybuilder().query(TypeQueryEnum.MATCH_ALL);
 
-    return this.searchInElasticWithSourceBuilder(unserializer, body);
+    return this.searchInElasticWithBuilder(unserializer, body);
   }
 
   protected async searchByCriteria(criteria: Criteria, unserializer: (data: any) => T): Promise<T[]> {
     const body = this.criteriaConverter.convert(criteria);
 
-    return this.searchInElasticWithSourceBuilder(unserializer, body);
+    return this.searchInElasticWithBuilder(unserializer, body);
   }
 
-  private async searchInElasticWithSourceBuilder(unserializer: (data: any) => T, body: Bodybuilder): Promise<T[]> {
+  private async searchInElasticWithBuilder(unserializer: (data: any) => T, body: Bodybuilder): Promise<T[]> {
     const client = await this.client();
 
     try {
@@ -47,7 +47,6 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
       if (this.isNotFoundError(e)) {
         return [];
       }
-
       throw e;
     }
   }

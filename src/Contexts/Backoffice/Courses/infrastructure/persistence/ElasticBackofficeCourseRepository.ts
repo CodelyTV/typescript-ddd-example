@@ -2,12 +2,13 @@ import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
 import { ElasticRepository } from '../../../../Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
 import { BackofficeCourse } from '../../domain/BackofficeCourse';
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
+import config from '../config';
 
 export class ElasticBackofficeCourseRepository
   extends ElasticRepository<BackofficeCourse>
   implements BackofficeCourseRepository {
   protected moduleName(): string {
-    return 'backofficecourses';
+    return config.get('elastic.indexName');
   }
 
   async searchAll(): Promise<BackofficeCourse[]> {

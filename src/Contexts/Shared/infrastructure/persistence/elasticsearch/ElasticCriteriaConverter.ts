@@ -73,7 +73,7 @@ export class ElasticCriteriaConverter {
   }
 
   private termsQuery(filter: Filter): QueryObject {
-    return { type: TypeQueryEnum.TERMS, field: filter.field.value, value: filter.value.value };
+    return { type: TypeQueryEnum.TERMS, field: filter.field.value, value: [filter.value.value] };
   }
 
   private greaterThanQuery(filter: Filter): QueryObject {

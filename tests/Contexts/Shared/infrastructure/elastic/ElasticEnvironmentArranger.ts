@@ -12,8 +12,15 @@ export class ElasticEnvironmentArranger extends EnvironmentArranger {
 
   protected async dropAllIndex(): Promise<void> {
     const client = await this.client();
-    await client.indices.delete({
-      index: '*'
+
+    await client.deleteByQuery({
+      index: 'backofficecourses',
+      body: {
+        query: {
+          match_all: {}
+        }
+      },
+      refresh: true
     });
   }
 
