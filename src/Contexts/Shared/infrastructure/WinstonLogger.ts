@@ -1,5 +1,5 @@
 import Logger from '../domain/Logger';
-import winston, { Logger as WinstonLoggerType } from 'winston';
+import winston, { format, Logger as WinstonLoggerType } from 'winston';
 
 enum Levels {
   DEBUG = 'debug',
@@ -12,6 +12,7 @@ class WinstonLogger implements Logger {
 
   constructor() {
     this.logger = winston.createLogger({
+      format: format.combine(format.splat(), format.simple()),
       transports: [
         new winston.transports.Console(),
         new winston.transports.File({ filename: `logs/${Levels.DEBUG}.log`, level: Levels.DEBUG }),

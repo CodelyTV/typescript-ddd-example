@@ -7,5 +7,5 @@ services:
     arguments: ['@Shared.ConnectionManager']
 
   Shared.EventBus:
-    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemorySyncEventBus
+    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
     arguments: []

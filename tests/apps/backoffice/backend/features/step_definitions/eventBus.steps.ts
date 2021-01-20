@@ -1,12 +1,26 @@
 import { Given } from 'cucumber';
+import { Definition } from 'node-dependency-injection';
 import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
+import { DomainEvent } from '../../../../../../src/Contexts/Shared/domain/DomainEvent';
+import { DomainEventSubscriber } from '../../../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
 import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
 import { DomainEventJsonDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
+import { DomainEventMapping } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventMapping';
 
 const eventBus = container.get('Shared.EventBus') as EventBus;
-const deserializer = container.get('Shared.EventBus.DomainEventJsonDeserializer') as DomainEventJsonDeserializer;
+const deserializer = buildDeserializer();
 
 Given('the following event is received:', async (event: any) => {
-  const domainEvent = deserializer.deserialize(event);
+  const domainEvent = deserializer.deserialize(event)!;
   await eventBus.publish([domainEvent]);
 });
+
+function buildDeserializer() {
+  const subscriberDefinitions = container.findTaggedServiceIds('domainEventSubscriber') as Map<String, Definition>;
+  const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
+
+  subscriberDefinitions.forEach((value: any, key: any) => subscribers.push(container.get(key)));
+  const domainEventMapping = new DomainEventMapping(subscribers);
+
+  return new DomainEventJsonDeserializer(domainEventMapping);
+}

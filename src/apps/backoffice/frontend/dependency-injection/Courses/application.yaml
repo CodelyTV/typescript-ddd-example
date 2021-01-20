@@ -12,3 +12,8 @@ services:
     arguments: ['@Mooc.courses.CourseCreator']
     tags:
       - { name: 'commandHandler' }
+
+  Backoffice.courses.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'

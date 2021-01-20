@@ -62,6 +62,12 @@ services:
     ports:
       - 5601:5601
 
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
+
 volumes:
   node_modules:
   esdata:

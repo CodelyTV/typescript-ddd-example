@@ -12,3 +12,16 @@ services:
     arguments: ["@Retention.campaign.SendWelcomeUserEmail"]
     tags:
       - { name: 'domainEventSubscriber' }
+
+  Retention.campaign.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Retention/Campaign/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
+  Retention.campaign.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Retention.campaign.RabbitMqConfig', '@Retention.campaign.Logger']
+
+  Retention.campaign.Logger:
+    class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []

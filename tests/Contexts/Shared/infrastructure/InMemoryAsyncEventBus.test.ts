@@ -1,7 +1,7 @@
 import { DomainEvent } from '../../../../src/Contexts/Shared/domain/DomainEvent';
 import { DomainEventSubscriber } from '../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
 import { Uuid } from '../../../../src/Contexts/Shared/domain/value-object/Uuid';
-import { InMemoryAsyncEventBus } from '../../../../src/Contexts/Shared/infrastructure/EventBus/InMemoryAsyncEventBus';
+import { InMemoryAsyncEventBus } from '../../../../src/Contexts/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus';
 
 describe('InMemoryAsyncEventBus', () => {
   let subscriber: DomainEventSubscriberDummy;

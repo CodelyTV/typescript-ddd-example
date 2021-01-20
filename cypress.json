@@ -1,4 +1,5 @@
 {
+  "baseUrl": "http://localhost:8032",
   "video": false,
   "screenshotOnRunFailure": false,
   "testFiles": "**/*.cypress.*",
