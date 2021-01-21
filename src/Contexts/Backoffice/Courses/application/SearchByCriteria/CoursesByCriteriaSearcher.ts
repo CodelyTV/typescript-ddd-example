@@ -2,7 +2,6 @@ import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
 import { Filters } from '../../../../Shared/domain/criteria/Filters';
 import { Order } from '../../../../Shared/domain/criteria/Order';
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
-import { BackofficeCourseResponse } from '../BackofficeCourseResponse';
 import { BackofficeCoursesResponse } from '../BackofficeCoursesResponse';
 
 export class CoursesByCriteriaSearcher {
@@ -13,8 +12,6 @@ export class CoursesByCriteriaSearcher {
 
     const courses = await this.repository.matching(criteria);
 
-    const backofficeCourseResponses = courses.map(BackofficeCourseResponse.fromAggregate);
-
-    return new BackofficeCoursesResponse(backofficeCourseResponses);
+    return new BackofficeCoursesResponse(courses);
   }
 }

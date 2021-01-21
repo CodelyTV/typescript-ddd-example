@@ -1,7 +1,7 @@
 import { EnumValueObject } from '../value-object/EnumValueObject';
 import { InvalidArgumentError } from '../value-object/InvalidArgumentError';
 
-export enum FilterOperators {
+export enum Operator {
   EQUAL = '=',
   NOT_EQUAL = '!=',
   GT = '>',
@@ -10,35 +10,35 @@ export enum FilterOperators {
   NOT_CONTAINS = 'NOT_CONTAINS'
 }
 
-export class FilterOperator extends EnumValueObject<FilterOperators> {
-  constructor(value: FilterOperators) {
-    super(value, Object.values(FilterOperators));
+export class FilterOperator extends EnumValueObject<Operator> {
+  constructor(value: Operator) {
+    super(value, Object.values(Operator));
   }
 
   static fromValue(value: string): FilterOperator {
     switch (value) {
-      case FilterOperators.EQUAL:
-        return new FilterOperator(FilterOperators.EQUAL);
-      case FilterOperators.NOT_EQUAL:
-        return new FilterOperator(FilterOperators.NOT_EQUAL);
-      case FilterOperators.GT:
-        return new FilterOperator(FilterOperators.GT);
-      case FilterOperators.LT:
-        return new FilterOperator(FilterOperators.LT);
-      case FilterOperators.CONTAINS:
-        return new FilterOperator(FilterOperators.CONTAINS);
-      case FilterOperators.NOT_CONTAINS:
-        return new FilterOperator(FilterOperators.NOT_CONTAINS);
+      case Operator.EQUAL:
+        return new FilterOperator(Operator.EQUAL);
+      case Operator.NOT_EQUAL:
+        return new FilterOperator(Operator.NOT_EQUAL);
+      case Operator.GT:
+        return new FilterOperator(Operator.GT);
+      case Operator.LT:
+        return new FilterOperator(Operator.LT);
+      case Operator.CONTAINS:
+        return new FilterOperator(Operator.CONTAINS);
+      case Operator.NOT_CONTAINS:
+        return new FilterOperator(Operator.NOT_CONTAINS);
       default:
         throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
     }
   }
 
   public isPositive(): boolean {
-    return this.value !== FilterOperators.NOT_EQUAL && this.value !== FilterOperators.NOT_CONTAINS;
+    return this.value !== Operator.NOT_EQUAL && this.value !== Operator.NOT_CONTAINS;
   }
 
-  protected throwErrorForInvalidValue(value: FilterOperators): void {
+  protected throwErrorForInvalidValue(value: Operator): void {
     throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
   }
 }

@@ -1,16 +1,16 @@
 import { Criteria } from '../../../../../src/Contexts/Shared/domain/criteria/Criteria';
 import { Filter } from '../../../../../src/Contexts/Shared/domain/criteria/Filter';
 import { FilterField } from '../../../../../src/Contexts/Shared/domain/criteria/FilterField';
-import { FilterOperator, FilterOperators } from '../../../../../src/Contexts/Shared/domain/criteria/FilterOperator';
+import { FilterOperator, Operator } from '../../../../../src/Contexts/Shared/domain/criteria/FilterOperator';
 import { Filters } from '../../../../../src/Contexts/Shared/domain/criteria/Filters';
 import { FilterValue } from '../../../../../src/Contexts/Shared/domain/criteria/FilterValue';
 import { Order } from '../../../../../src/Contexts/Shared/domain/criteria/Order';
 
 export class BackofficeCourseCriteriaMother {
-  static nameAndDurationContains(name: string, duration: string): Criteria {
+  static nameAndDurationContainsSortAscById(name: string, duration: string): Criteria {
     const filterFieldName = new FilterField('name');
     const filterFieldDuration = new FilterField('duration');
-    const filterOperator = new FilterOperator(FilterOperators.CONTAINS);
+    const filterOperator = new FilterOperator(Operator.CONTAINS);
     const valueName = new FilterValue(name);
     const valueDuration = new FilterValue(duration);
 

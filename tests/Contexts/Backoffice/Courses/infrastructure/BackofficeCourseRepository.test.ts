@@ -38,7 +38,9 @@ describe('BackofficeCourseRepository', () => {
         BackofficeCourseMother.random()
       ];
       await Promise.all(courses.map(async course => repository.save(course)));
-      const result = await repository.matching(BackofficeCourseCriteriaMother.nameAndDurationContains('DDD', 'days'));
+      const result = await repository.matching(
+        BackofficeCourseCriteriaMother.nameAndDurationContainsSortAscById('DDD', 'days')
+      );
 
       const expectedCourses = courses.slice(0, 2);
       expect(result).toHaveLength(2);

@@ -1,7 +1,7 @@
 import bodybuilder, { Bodybuilder } from 'bodybuilder';
 import { Criteria } from '../../../domain/criteria/Criteria';
 import { Filter } from '../../../domain/criteria/Filter';
-import { FilterOperators } from '../../../domain/criteria/FilterOperator';
+import { Operator } from '../../../domain/criteria/FilterOperator';
 import { Filters } from '../../../domain/criteria/Filters';
 
 export enum TypeQueryEnum {
@@ -13,21 +13,21 @@ export enum TypeQueryEnum {
 
 type QueryObject = { type: TypeQueryEnum; field: string; value: string | object };
 
-interface FunctionTransformer<T, K> {
+interface TransformerFunction<T, K> {
   (value: T): K;
 }
 
 export class ElasticCriteriaConverter {
-  private queryTransformers: Map<FilterOperators, FunctionTransformer<Filter, QueryObject>>;
+  private queryTransformers: Map<Operator, TransformerFunction<Filter, QueryObject>>;
 
   constructor() {
-    this.queryTransformers = new Map<FilterOperators, FunctionTransformer<Filter, QueryObject>>([
-      [FilterOperators.EQUAL, this.termsQuery],
-      [FilterOperators.NOT_EQUAL, this.termsQuery],
-      [FilterOperators.GT, this.greaterThanQuery],
-      [FilterOperators.LT, this.lowerThanQuery],
-      [FilterOperators.CONTAINS, this.matchQuery],
-      [FilterOperators.NOT_CONTAINS, this.matchQuery]
+    this.queryTransformers = new Map<Operator, TransformerFunction<Filter, QueryObject>>([
+      [Operator.EQUAL, this.termsQuery],
+      [Operator.NOT_EQUAL, this.termsQuery],
+      [Operator.GT, this.greaterThanQuery],
+      [Operator.LT, this.lowerThanQuery],
+      [Operator.CONTAINS, this.matchQuery],
+      [Operator.NOT_CONTAINS, this.matchQuery]
     ]);
   }
 
