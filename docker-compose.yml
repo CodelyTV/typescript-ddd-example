@@ -19,7 +19,7 @@ services:
 
   mooc-backend:
     <<: *default-app
-    command: bash -c "npm run build && npm run start"
+    command: bash -c "npm run build && npm run start:mooc:backend"
     ports:
       - 3000:3000
 
