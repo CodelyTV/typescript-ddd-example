@@ -4,6 +4,7 @@ import bodybuilder, { Bodybuilder } from 'bodybuilder';
 import httpStatus from 'http-status';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 import { Criteria } from '../../../domain/criteria/Criteria';
+import ElasticConfig from './ElasticConfig';
 import { ElasticCriteriaConverter, TypeQueryEnum } from './ElasticCriteriaConverter';
 
 type Hit = { _source: any };
@@ -11,11 +12,13 @@ type Hit = { _source: any };
 export abstract class ElasticRepository<T extends AggregateRoot> {
   private criteriaConverter: ElasticCriteriaConverter;
 
-  constructor(private _client: Promise<ElasticClient>) {
+  constructor(private _client: Promise<ElasticClient>, private config: ElasticConfig) {
     this.criteriaConverter = new ElasticCriteriaConverter();
   }
 
-  protected abstract moduleName(): string;
+  protected moduleName(): string {
+    return this.config.indexName;
+  }
 
   protected client(): Promise<ElasticClient> {
     return this._client;

@@ -1,5 +1,4 @@
 services:
-
   Backoffice.courses.ElasticConfig:
     factory:
       class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeElasticConfigFactory
@@ -12,7 +11,7 @@ services:
 
   Backoffice.courses.BackofficeCourseRepository:
     class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
-    arguments: ['@Shared.ElasticConnectionManager']
+    arguments: ['@Shared.ElasticConnectionManager', '@Backoffice.courses.ElasticConfig']
 
   Backoffice.courses.CoursesFinder:
     class: ../../../../../Contexts/Backoffice/Courses/application/SearchAll/CoursesFinder

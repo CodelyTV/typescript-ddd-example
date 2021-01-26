@@ -14,28 +14,38 @@ const backofficeConfig = convict({
       env: 'ELASTIC_URL',
       default: 'http://localhost:9200'
     },
-    indexName: 'backofficecourses',
+    indexName: {
+      doc: 'The Elastic index name for this context',
+      format: String,
+      env: 'ELASTIC_INDEX_NAME',
+      default: 'backofficecourses'
+    },
     config: {
-      settings: {
-        index: {
-          number_of_replicas: 0 // for local development
-        }
-      },
-      mappings: {
-        properties: {
-          id: {
-            type: 'keyword',
-            index: true
-          },
-          name: {
-            type: 'text',
-            index: true,
-            fielddata: true
-          },
-          duration: {
-            type: 'text',
-            index: true,
-            fielddata: true
+      doc: 'The Elastic config for this context',
+      format: '*',
+      env: 'ELASTIC_CONFIG',
+      default: {
+        settings: {
+          index: {
+            number_of_replicas: 0 // for local development
+          }
+        },
+        mappings: {
+          properties: {
+            id: {
+              type: 'keyword',
+              index: true
+            },
+            name: {
+              type: 'text',
+              index: true,
+              fielddata: true
+            },
+            duration: {
+              type: 'text',
+              index: true,
+              fielddata: true
+            }
           }
         }
       }
