@@ -29,6 +29,12 @@ services:
     ports:
       - 8032:8032
 
+  backoffice-backend:
+    <<: *default-app
+    command: bash -c "npm run build && npm run start:backoffice:backend"
+    ports:
+      - 3001:3000
+
   mongo:
     image: mongo:3.4.6
     volumes:

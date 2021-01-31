@@ -1,6 +1,6 @@
 <h3 class="font-sans text-gray-800 text-center text-3xl mb-10">Cursos existentes</h3>
 
-<!-- <form action="" method="get" id="courses-filters" name="filter-courses">
+<form action="" method="get" id="courses-filters" name="filter-courses">
   <div id="filter-rows">
 
   </div>
@@ -18,7 +18,7 @@
           👉 Filtrar 👈
       </button>
   </div>
-</form> -->
+</form> 
 
 <table class="text-left w-full border-collapse">
   <thead>
@@ -139,7 +139,7 @@
 
       const urlParts = inputs.map(input => input.name + "=" + input.value);
 
-      const url = "http://localhost:8040/courses?" + urlParts.join("&");
+      const url = "http://localhost:3000/courses?" + urlParts.join("&");
 
       addCoursesList(url);
   }

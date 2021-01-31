@@ -6,9 +6,9 @@ import { Filters } from '../../../domain/criteria/Filters';
 
 export enum TypeQueryEnum {
   TERMS = 'terms',
-  MATCH = 'match',
   MATCH_ALL = 'match_all',
-  RANGE = 'range'
+  RANGE = 'range',
+  WILDCARD = 'wildcard'
 }
 
 type QueryObject = { type: TypeQueryEnum; field: string; value: string | object };
@@ -26,8 +26,8 @@ export class ElasticCriteriaConverter {
       [Operator.NOT_EQUAL, this.termsQuery],
       [Operator.GT, this.greaterThanQuery],
       [Operator.LT, this.lowerThanQuery],
-      [Operator.CONTAINS, this.matchQuery],
-      [Operator.NOT_CONTAINS, this.matchQuery]
+      [Operator.CONTAINS, this.wildcardQuery],
+      [Operator.NOT_CONTAINS, this.wildcardQuery]
     ]);
   }
 
@@ -84,7 +84,7 @@ export class ElasticCriteriaConverter {
     return { type: TypeQueryEnum.RANGE, field: filter.field.value, value: { lt: filter.value.value } };
   }
 
-  private matchQuery(filter: Filter): QueryObject {
-    return { type: TypeQueryEnum.MATCH, field: filter.field.value, value: filter.value.value };
+  private wildcardQuery(filter: Filter): QueryObject {
+    return { type: TypeQueryEnum.WILDCARD, field: filter.field.value, value: `*${filter.value.value}*` };
   }
 }

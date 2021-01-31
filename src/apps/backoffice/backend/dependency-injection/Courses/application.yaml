@@ -23,6 +23,16 @@ services:
     tags:
       - { name: 'queryHandler' }
 
+  Backoffice.courses.CoursesByCriteriaSearcher:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler
+    arguments: ['@Backoffice.courses.CoursesByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }
+
   Backoffice.courses.BackofficeCourseCreator:
     class: ../../../../../Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator
     arguments: ['@Backoffice.courses.BackofficeCourseRepository']
