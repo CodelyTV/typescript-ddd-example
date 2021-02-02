@@ -31,7 +31,7 @@ describe('Create courses', () => {
 
       // As the web application is not reactive, we need to wait for
       // the asynchronous operations to finish to reload the page
-      cy.wait(500);
+      cy.wait(1000);
       cy.reload();
       cy.contains(`Actualmente CodelyTV Pro cuenta con ${i} cursos.`);
     }
