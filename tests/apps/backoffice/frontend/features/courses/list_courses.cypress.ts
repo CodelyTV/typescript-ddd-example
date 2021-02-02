@@ -16,7 +16,7 @@ describe('List courses', () => {
   it('can list courses', () => {
     cy.get('input[name="name"]').type('DDD en Typescript');
     cy.get('input[name="duration"]').type('25 hours');
-    cy.get('form').submit();
+    cy.get('form[data-cy="create-course"]').submit();
     cy.wait(1000);
     cy.reload();
 

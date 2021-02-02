@@ -45,14 +45,14 @@ describe('Create courses', () => {
 
     it('has flash messages when is invalid', () => {
       cy.get('input[name="id"]').clear().type('invalid course id');
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="id"] + p').contains('Invalid course id');
     });
 
     it('maintain the value introduced by the user when invalid', () => {
       cy.get('input[name="id"]').clear().type('invalid course id');
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="id"]').should('have.value', 'invalid course id');
     });
@@ -61,7 +61,7 @@ describe('Create courses', () => {
       const uuid = faker.random.uuid();
 
       cy.get('input[name="id"]').clear().type(uuid);
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="id"]').should('have.value', uuid);
     });
@@ -69,7 +69,7 @@ describe('Create courses', () => {
 
   describe('Name field', () => {
     it('has flash messages when is empty', () => {
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="name"] + p').contains('Invalid name');
     });
@@ -77,7 +77,7 @@ describe('Create courses', () => {
     it('has flash messages when is longer than 30 character', () => {
       cy.get('input[name="name"]').type(faker.random.alphaNumeric(31));
 
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="name"] + p').contains('Invalid name');
     });
@@ -86,7 +86,7 @@ describe('Create courses', () => {
       const invalidCourseName = faker.random.alphaNumeric(3);
 
       cy.get('input[name="name"]').clear().type(invalidCourseName);
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="name"]').should('have.value', invalidCourseName);
     });
@@ -95,7 +95,7 @@ describe('Create courses', () => {
       const validCourseName = faker.random.alphaNumeric(1);
 
       cy.get('input[name="name"]').clear().type(validCourseName);
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="name"]').should('have.value', validCourseName);
     });
@@ -103,7 +103,7 @@ describe('Create courses', () => {
 
   describe('Duration field', () => {
     it('has flash messages when is empty', () => {
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="duration"] + p').contains('Invalid duration');
     });
@@ -111,7 +111,7 @@ describe('Create courses', () => {
     it('has flash messages when is shorter than 4 character', () => {
       cy.get('input[name="duration"]').type(faker.random.alphaNumeric(3));
 
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="duration"] + p').contains('Invalid duration');
     });
@@ -119,7 +119,7 @@ describe('Create courses', () => {
     it('has flash messages when is longer than 100 character', () => {
       cy.get('input[name="duration"]').type(faker.random.alphaNumeric(101));
 
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="duration"] + p').contains('Invalid duration');
     });
@@ -128,7 +128,7 @@ describe('Create courses', () => {
       const invalidCourseDuration = faker.random.alphaNumeric(101);
 
       cy.get('input[name="duration"]').clear().type(invalidCourseDuration);
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="duration"]').should('have.value', invalidCourseDuration);
     });
@@ -137,7 +137,7 @@ describe('Create courses', () => {
       const validCourseDuration = faker.random.alphaNumeric(5);
 
       cy.get('input[name="duration"]').clear().type(validCourseDuration);
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('input[name="duration"]').should('have.value', validCourseDuration);
     });
