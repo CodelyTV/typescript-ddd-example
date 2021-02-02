@@ -7,6 +7,10 @@ import { FilterValue } from '../../../../../src/Contexts/Shared/domain/criteria/
 import { Order } from '../../../../../src/Contexts/Shared/domain/criteria/Order';
 
 export class BackofficeCourseCriteriaMother {
+  static whithoutFilter(): Criteria {
+    return new Criteria(new Filters([]), Order.fromValues());
+  }
+
   static nameAndDurationContainsSortAscById(name: string, duration: string): Criteria {
     const filterFieldName = new FilterField('name');
     const filterFieldDuration = new FilterField('duration');

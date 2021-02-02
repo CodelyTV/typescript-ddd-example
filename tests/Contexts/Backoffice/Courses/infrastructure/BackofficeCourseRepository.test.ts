@@ -31,6 +31,19 @@ describe('BackofficeCourseRepository', () => {
   });
 
   describe('#searchByCriteria', () => {
+    it('should return all courses', async () => {
+      const courses = [
+        BackofficeCourseMother.withNameAndDuration('DDD in Typescript', '8 days'),
+        BackofficeCourseMother.withNameAndDuration('DDD in Golang', '3 days'),
+        BackofficeCourseMother.random()
+      ];
+
+      await Promise.all(courses.map(async course => repository.save(course)));
+      const result = await repository.matching(BackofficeCourseCriteriaMother.whithoutFilter());
+
+      expect(result).toHaveLength(3);
+    });
+
     it('should return courses using a criteria sorting by id', async () => {
       const courses = [
         BackofficeCourseMother.withNameAndDuration('DDD in Typescript', '8 days'),

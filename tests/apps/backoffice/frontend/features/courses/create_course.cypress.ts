@@ -25,7 +25,7 @@ describe('Create courses', () => {
       const courseName = faker.random.words(1);
       cy.get('input[name="name"]').type(courseName);
       cy.get('input[name="duration"]').type('8 days');
-      cy.get('form').submit();
+      cy.get('form[data-cy="create-course"]').submit();
 
       cy.get('div[role="alert"]').contains(`Felicidades, el curso ${courseName} ha sido creado!`);
 

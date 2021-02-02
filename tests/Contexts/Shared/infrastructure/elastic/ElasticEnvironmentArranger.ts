@@ -14,7 +14,7 @@ export class ElasticEnvironmentArranger extends EnvironmentArranger {
     const client = await this.client();
 
     await client.deleteByQuery({
-      index: 'backofficecourses',
+      index: 'backofficecourses-test',
       body: {
         query: {
           match_all: {}
