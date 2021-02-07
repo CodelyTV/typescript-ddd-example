@@ -8,6 +8,7 @@
   <div class="mt-10 inline-block relative w-2/4">
       <button class="md:w-1/4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               id="add-field-button"
+              data-cy="add-field-button"
               onclick="addFilter(event)">
           Añadir filtro
       </button>
@@ -18,7 +19,7 @@
           👉 Filtrar 👈
       </button>
   </div>
-</form> 
+</form>
 
 <table class="text-left w-full border-collapse">
   <thead>
@@ -82,7 +83,7 @@
                                 "        <label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"field\">\n" +
                                 "            Campo\n" +
                                 "        </label>\n" +
-                                "        <select name=\"filters[" +
+                                "        <select data-cy=\"field-filter\" name=\"filters[" +
                                 totalRows +
                                 "][field]\" id=\"field\"\n" +
                                 "                class=\"block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline\">\n" +
@@ -100,7 +101,7 @@
                                 "        <label class=\"block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2\" for=\"operator\">\n" +
                                 "            Operador\n" +
                                 "        </label>\n" +
-                                "        <select id=\"operator\" name=\"filters[" +
+                                "        <select data-cy=\"field-filter-type\" id=\"operator\" name=\"filters[" +
                                 totalRows +
                                 "][operator]\"\n" +
                                 "                class=\"block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline\">\n" +
@@ -120,7 +121,7 @@
                                 "            Valor\n" +
                                 "        </label>\n" +
                                 "        <input class=\"appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500\"\n" +
-                                "               id=\"value\" type=\"text\" name=\"filters[" +
+                                "               data-cy=\"filter-value\" id=\"value\" type=\"text\" name=\"filters[" +
                                 totalRows +
                                 "][value]\" placeholder=\"Lo que sea...\">\n" +
                                 "    </div>\n" +

@@ -5,5 +5,6 @@
   "testFiles": "**/*.cypress.*",
   "integrationFolder": "tests/apps",
   "fixturesFolder": "tests/utils/cypress/fixtures",
-  "pluginsFile": "tests/utils/cypress/plugins/index.ts"
+  "pluginsFile": "tests/utils/cypress/plugins/index.ts",
+  "experimentalStudio": true
 }

@@ -41,4 +41,8 @@ export class FilterOperator extends EnumValueObject<Operator> {
   protected throwErrorForInvalidValue(value: Operator): void {
     throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
   }
+
+  static equal() {
+    return this.fromValue(Operator.EQUAL);
+  }
 }
