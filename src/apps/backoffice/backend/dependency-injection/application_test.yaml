@@ -4,7 +4,7 @@ imports:
 services:
   Backoffice.Backend.EnvironmentArranger:
     class: ../../../../../tests/Contexts/Shared/infrastructure/elastic/ElasticEnvironmentArranger
-    arguments: ['@Shared.ElasticConnectionManager']
+    arguments: ['@Shared.ElasticConnectionManager', '@Backoffice.courses.ElasticConfig']
 
   Shared.EventBus:
     class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus

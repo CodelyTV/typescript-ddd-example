@@ -16,7 +16,7 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
     this.criteriaConverter = new ElasticCriteriaConverter();
   }
 
-  protected moduleName(): string {
+  protected indexName(): string {
     return this.config.indexName;
   }
 
@@ -41,7 +41,7 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
 
     try {
       const response = await client.search({
-        index: this.moduleName(),
+        index: this.indexName(),
         body: body.build()
       });
 
@@ -62,6 +62,6 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
     const client = await this.client();
     const document = { ...aggregateRoot.toPrimitives() };
 
-    await client.index({ index: this.moduleName(), body: document, refresh: 'wait_for' }); // wait_for wait for a refresh to make this operation visible to search
+    await client.index({ index: this.indexName(), body: document, refresh: 'wait_for' }); // wait_for wait for a refresh to make this operation visible to search
   }
 }
