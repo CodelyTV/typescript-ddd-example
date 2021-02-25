@@ -40,20 +40,6 @@ describe('List courses', () => {
     cy.get('#courses-list tr').eq(0).should('contain', 'Random Course');
     cy.get('#courses-list tr').eq(0).should('contain', '2 hours');
   });
-
-  it('handle invalid filters', () => {
-    createCourses();
-
-    cy.get('button[data-cy="add-field-button"').click();
-    cy.get('[data-cy=field-filter]').select('name');
-    cy.get('[data-cy=field-filter-type]').select('CONTAINS');
-    cy.get('#filter-button').click();
-
-    cy.contains('Cursos existentes');
-    cy.get('#courses-list').find('tr').should('have.length', 1);
-    cy.get('#courses-list tr').eq(0).should('contain', 'Random Course');
-    cy.get('#courses-list tr').eq(0).should('contain', '2 hours');
-  });
 });
 function createCourses() {
   cy.get('input[name="name"]').type('DDD en Typescript');
