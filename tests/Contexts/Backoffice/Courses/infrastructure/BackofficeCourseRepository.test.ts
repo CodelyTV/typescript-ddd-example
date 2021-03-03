@@ -17,6 +17,20 @@ afterEach(async () => {
 });
 
 describe('BackofficeCourseRepository', () => {
+  describe('#save', () => {
+    it('should be able to persist the same course twice', async () => {
+      const course = BackofficeCourseMother.random();
+
+      await repository.save(course);
+      await repository.save(course);
+
+      const persistedCourses = await repository.searchAll();
+
+      expect(persistedCourses).toHaveLength(1);
+      expect(persistedCourses).toEqual([course]);
+    });
+  });
+
   describe('#searchAll', () => {
     it('should return the existing courses', async () => {
       const courses = [BackofficeCourseMother.random(), BackofficeCourseMother.random()];
