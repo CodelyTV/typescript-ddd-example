@@ -4,7 +4,6 @@ import bodybuilder, { Bodybuilder } from 'bodybuilder';
 import httpStatus from 'http-status';
 import { AggregateRoot } from '../../../domain/AggregateRoot';
 import { Criteria } from '../../../domain/criteria/Criteria';
-import { Nullable } from '../../../domain/Nullable';
 import ElasticConfig from './ElasticConfig';
 import { ElasticCriteriaConverter, TypeQueryEnum } from './ElasticCriteriaConverter';
 
@@ -64,25 +63,5 @@ export abstract class ElasticRepository<T extends AggregateRoot> {
     const document = { ...aggregateRoot.toPrimitives() };
 
     await client.index({ index: this.indexName(), id, body: document, refresh: 'wait_for' }); // wait_for wait for a refresh to make this operation visible to search
-  }
-
-  update(id: string, course: T): Promise<void> {
-    return this.persist(id, course);
-  }
-
-  protected async findById(id: string, unserializer: (data: any) => T): Promise<Nullable<T>> {
-    const client = await this.client();
-    try {
-      const { body } = await client.get({
-        index: this.indexName(),
-        id
-      });
-      return unserializer(body._source);
-    } catch (e) {
-      if (this.isNotFoundError(e)) {
-        return null;
-      }
-      throw e;
-    }
   }
 }

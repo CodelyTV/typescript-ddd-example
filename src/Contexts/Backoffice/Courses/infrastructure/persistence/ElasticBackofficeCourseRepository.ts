@@ -11,11 +11,6 @@ export class ElasticBackofficeCourseRepository
   }
 
   async save(course: BackofficeCourse): Promise<void> {
-    const currentCourse = await this.findById(course.id.value, BackofficeCourse.fromPrimitives);
-    if (currentCourse) {
-      return this.update(course.id.value, course);
-    }
-
     return this.persist(course.id.value, course);
   }
 
