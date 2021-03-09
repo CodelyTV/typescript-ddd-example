@@ -38,6 +38,10 @@ start-mooc-backend: build
 start-backoffice-frontend: build
 	docker-compose up $(BACKOFFICE_APP_NAME)-frontend && docker-compose down
 
+# Start backoffice backend app
+start-backoffice-backend: build
+	docker-compose up $(BACKOFFICE_APP_NAME)-backend && docker-compose down
+
 # Clean containers
 clean:
 	docker-compose down --rmi local --volumes --remove-orphans

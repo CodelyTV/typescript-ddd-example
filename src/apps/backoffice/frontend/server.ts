@@ -1,17 +1,19 @@
-import helmet from 'helmet';
-import compress from 'compression';
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
+import compress from 'compression';
 import flash from 'connect-flash';
-import express from 'express';
-import * as http from 'http';
-import Logger from '../../../Contexts/Shared/domain/Logger';
-import { registerRoutes } from './routes';
+import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
+import errorHandler from 'errorhandler';
+import express, { Request, Response } from 'express';
+import Router from 'express-promise-router';
+import helmet from 'helmet';
+import * as http from 'http';
+import httpStatus from 'http-status';
 import nunjucks from 'nunjucks';
 import path from 'path';
-import errorHandler from 'errorhandler';
+import Logger from '../../../Contexts/Shared/domain/Logger';
 import container from './dependency-injection';
+import { registerRoutes } from './routes';
 
 export class Server {
   private express: express.Express;
@@ -47,8 +49,15 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
-    registerRoutes(this.express);
-    this.express.use(errorHandler());
+    const router = Router();
+    router.use(errorHandler());
+    this.express.use(router);
+    registerRoutes(router);
+
+    router.use((err: Error, req: Request, res: Response, next: Function) => {
+      this.logger.error(err);
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+    });
   }
 
   async listen(): Promise<void> {

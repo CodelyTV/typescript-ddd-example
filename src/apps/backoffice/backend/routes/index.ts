@@ -1,12 +1,12 @@
-import { Express } from 'express';
+import { Router } from 'express';
 import glob from 'glob';
 
-export function registerRoutes(app: Express) {
+export function registerRoutes(router: Router) {
   const routes = glob.sync(__dirname + '/**/*.route.*');
-  routes.map(route => register(route, app));
+  routes.map(route => register(route, router));
 }
 
-function register(routePath: string, app: Express) {
+function register(routePath: string, app: Router) {
   const route = require(routePath);
   route.register(app);
 }

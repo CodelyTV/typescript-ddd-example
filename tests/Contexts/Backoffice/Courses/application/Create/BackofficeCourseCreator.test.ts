@@ -1,6 +1,6 @@
 import { BackofficeCourseCreator } from '../../../../../../src/Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator';
-import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';
 import { BackofficeCourseMother } from '../../domain/BackofficeCourseMother';
+import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';
 
 describe('BackofficeCourseCreator', () => {
   it('creates a backoffice course', async () => {

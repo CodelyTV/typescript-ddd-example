@@ -11,6 +11,8 @@ export class ElasticClientFactory {
     if (!client) {
       client = await ElasticClientFactory.createAndConnectClient(config);
 
+      await ElasticClientFactory.createIndexWithSettingsIfNotExists(client, config);
+
       ElasticClientFactory.registerClient(client, contextName);
     }
 
@@ -29,5 +31,16 @@ export class ElasticClientFactory {
 
   private static registerClient(client: ElasticClient, contextName: string): void {
     ElasticClientFactory.clients[contextName] = client;
+  }
+
+  private static async createIndexWithSettingsIfNotExists(client: ElasticClient, config: ElasticConfig): Promise<void> {
+    const { body: exist } = await client.indices.exists({ index: config.indexName });
+
+    if (!exist) {
+      await client.indices.create({
+        index: config.indexName,
+        body: config.indexConfig
+      });
+    }
   }
 }

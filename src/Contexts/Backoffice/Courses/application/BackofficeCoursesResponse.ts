@@ -1,6 +1,6 @@
-import { BackofficeCourse } from '../../domain/BackofficeCourse';
+import { BackofficeCourse } from '../domain/BackofficeCourse';
 
-export class SearchAllCoursesResponse {
+export class BackofficeCoursesResponse {
   readonly courses: Array<BackofficeCourse>;
 
   constructor(courses: Array<BackofficeCourse>) {
