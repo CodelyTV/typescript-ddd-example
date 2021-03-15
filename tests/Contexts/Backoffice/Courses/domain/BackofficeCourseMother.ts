@@ -15,6 +15,14 @@ export class BackofficeCourseMother {
     return new BackofficeCourse(id, name, duration);
   }
 
+  static withNameAndDuration(name: string, duration: string): BackofficeCourse {
+    return this.create(
+      BackofficeCourseIdMother.random(),
+      BackofficeCourseNameMother.create(name),
+      BackofficeCourseDurationMother.create(duration)
+    );
+  }
+
   static random(): BackofficeCourse {
     return this.create(
       BackofficeCourseIdMother.random(),

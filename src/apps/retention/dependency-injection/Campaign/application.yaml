@@ -1,0 +1,27 @@
+services:
+  Retention.campaign.EmailSender:
+    class: ../../../../Contexts/Retention/Campaign/infrastructure/FakeEmailSender
+    arguments: []
+
+  Retention.campaign.SendWelcomeUserEmail:
+    class: ../../../../Contexts/Retention/Campaign/application/SendWelcomeUserEmail/SendWelcomeUserEmail
+    arguments: ["@Retention.campaign.EmailSender"]
+
+  Retention.campaign.SendWelcomeUserEmailOnUserRegistered:
+    class: ../../../../Contexts/Retention/Campaign/application/SendWelcomeUserEmail/SendWelcomeUserEmailOnUserRegistered
+    arguments: ["@Retention.campaign.SendWelcomeUserEmail"]
+    tags:
+      - { name: 'domainEventSubscriber' }
+
+  Retention.campaign.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Retention/Campaign/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
+  Retention.campaign.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Retention.campaign.RabbitMqConfig', '@Retention.campaign.Logger']
+
+  Retention.campaign.Logger:
+    class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []

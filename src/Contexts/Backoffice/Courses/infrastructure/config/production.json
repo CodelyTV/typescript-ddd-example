@@ -1,0 +1,5 @@
+{
+  "elastic": {
+    "url": "http://elasticsearch:9200"
+  }
+}

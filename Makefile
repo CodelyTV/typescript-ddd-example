@@ -38,10 +38,14 @@ start-mooc-backend: build
 start-backoffice-frontend: build
 	docker-compose up $(BACKOFFICE_APP_NAME)-frontend && docker-compose down
 
+# Start backoffice backend app
+start-backoffice-backend: build
+	docker-compose up $(BACKOFFICE_APP_NAME)-backend && docker-compose down
+
 # Clean containers
 clean:
 	docker-compose down --rmi local --volumes --remove-orphans
 
 # Start databases containers in background
 start_database:
-	docker-compose up -d mongo elasticsearch
+	docker-compose up -d mongo elasticsearch rabbitmq

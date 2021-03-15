@@ -1,5 +1,5 @@
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
-import { SearchAllCoursesResponse } from './SearchAllCoursesResponse';
+import { BackofficeCoursesResponse } from '../BackofficeCoursesResponse';
 
 export class CoursesFinder {
   constructor(private coursesRepository: BackofficeCourseRepository) {}
@@ -7,6 +7,6 @@ export class CoursesFinder {
   async run() {
     const courses = await this.coursesRepository.searchAll();
 
-    return new SearchAllCoursesResponse(courses);
+    return new BackofficeCoursesResponse(courses);
   }
 }

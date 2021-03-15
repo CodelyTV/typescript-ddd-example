@@ -1,4 +1,3 @@
-import { DomainEvent } from '../../domain/DomainEvent';
 import { DomainEventMapping } from './DomainEventMapping';
 
 export class DomainEventJsonDeserializer {
@@ -8,13 +7,13 @@ export class DomainEventJsonDeserializer {
     this.mapping = mapping;
   }
 
-  deserialize(event: string): DomainEvent {
+  deserialize(event: string) {
     const eventData = JSON.parse(event).data;
     const eventName = eventData.type;
     const eventClass = this.mapping.for(eventName);
 
     if (!eventClass) {
-      throw new Error(`The event ${eventName} doesn't exist or has no subscribers`);
+      return;
     }
 
     return eventClass.fromPrimitives(

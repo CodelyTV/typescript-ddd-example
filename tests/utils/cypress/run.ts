@@ -1,22 +1,16 @@
-import frontendApp from '../../../src/apps/backoffice/frontend/app';
 import cypress from 'cypress';
 import cypressConfig from '../../../cypress.json';
-import { startBackofficeFrontend } from './startBackofficeFrontend';
-import { startBackofficeBackend } from './startBackofficeBackend';
+import { Applications } from './Applications';
 
 async function run() {
-  const backofficeFrontendServer = await startBackofficeFrontend();
-  const backofficeBackendServer = await startBackofficeBackend();
-  await runCypress();
-  backofficeFrontendServer.close(() => {
-    process.exit(0);
-  });
-  backofficeBackendServer.close(() => {
-    process.exit(0);
-  });
+  const port = await Applications.start();
+  await runCypress(port);
+
+  await Applications.stop();
+  process.exit(0);
 }
 
-async function runCypress() {
+async function runCypress(port: string) {
   return cypress.run({
     reporter: 'junit',
     browser: 'chrome',
@@ -24,7 +18,7 @@ async function runCypress() {
     config: {
       ...cypressConfig,
       supportFile: false,
-      baseUrl: `http://localhost:${frontendApp.get('port')}`
+      baseUrl: `http://localhost:${port}`
     }
   });
 }

@@ -19,7 +19,7 @@ services:
 
   mooc-backend:
     <<: *default-app
-    command: bash -c "npm run build && npm run start"
+    command: bash -c "npm run build && npm run start:mooc:backend"
     ports:
       - 3000:3000
 
@@ -28,6 +28,12 @@ services:
     command: bash -c "npm run build && npm run start:backoffice:frontend"
     ports:
       - 8032:8032
+
+  backoffice-backend:
+    <<: *default-app
+    command: bash -c "npm run build && npm run start:backoffice:backend"
+    ports:
+      - 3001:3000
 
   mongo:
     image: mongo:3.4.6
@@ -61,6 +67,12 @@ services:
       ELASTICSEARCH_HOSTS: http://codely-elasticsearch:9200
     ports:
       - 5601:5601
+
+  rabbitmq:
+    image: 'rabbitmq:3.8-management'
+    ports:
+      - 5672:5672
+      - 15672:15672
 
 volumes:
   node_modules:

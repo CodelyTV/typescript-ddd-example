@@ -1,0 +1,44 @@
+services:
+  Backoffice.courses.ElasticConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeElasticConfigFactory
+      method: 'createConfig'
+
+  Backoffice.courses.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'
+
+  Backoffice.courses.BackofficeCourseRepository:
+    class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
+    arguments: ['@Shared.ElasticConnectionManager', '@Backoffice.courses.ElasticConfig']
+
+  Backoffice.courses.CoursesFinder:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchAll/CoursesFinder
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.SearchAllCoursesQueryHandler:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQueryHandler
+    arguments: ['@Backoffice.courses.CoursesFinder']
+    tags:
+      - { name: 'queryHandler' }
+
+  Backoffice.courses.CoursesByCriteriaSearcher:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler
+    arguments: ['@Backoffice.courses.CoursesByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }
+
+  Backoffice.courses.BackofficeCourseCreator:
+    class: ../../../../../Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator
+    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+
+  Backoffice.courses.CreateBackofficeCourseOnCourseCreated:
+    class: ../../../../../Contexts/Backoffice/Courses/application/Create/CreateBackofficeCourseOnCourseCreated
+    arguments: ['@Backoffice.courses.BackofficeCourseCreator']
+    tags:
+      - { name: 'domainEventSubscriber' }

@@ -11,11 +11,12 @@ export class CoursesCounterIncrementedDomainEvent extends DomainEvent {
 
   toPrimitive(): Object {
     return {
-      total: this.total
+      total: this.total,
+      eventName: CoursesCounterIncrementedDomainEvent.EVENT_NAME
     };
   }
 
-  static fromPrimitive(
+  static fromPrimitives(
     aggregateId: string,
     body: { total: number },
     eventId: string,

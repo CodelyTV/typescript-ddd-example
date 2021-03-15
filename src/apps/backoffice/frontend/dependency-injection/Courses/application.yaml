@@ -1,0 +1,19 @@
+services:
+  Mooc.courses.CourseRepository:
+    class: ../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ['@Shared.ConnectionManager']
+
+  Mooc.courses.CourseCreator:
+    class: ../../../../../Contexts/Mooc/Courses/application/CourseCreator
+    arguments: ['@Mooc.courses.CourseRepository', '@Shared.EventBus']
+
+  Mooc.courses.CreateCourseCommandHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/CreateCourseCommandHandler
+    arguments: ['@Mooc.courses.CourseCreator']
+    tags:
+      - { name: 'commandHandler' }
+
+  Backoffice.courses.RabbitMqConfig:
+    factory:
+      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
+      method: 'createConfig'

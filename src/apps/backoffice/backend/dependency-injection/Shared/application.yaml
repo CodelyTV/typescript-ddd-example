@@ -1,0 +1,24 @@
+services:
+  Shared.Logger:
+    class: ../../../../../Contexts/Shared/infrastructure/WinstonLogger
+    arguments: []
+
+  Shared.ElasticConnectionManager:
+    factory:
+      class: ../../../../../Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticClientFactory
+      method: 'createClient'
+    arguments: ['backoffice', '@Backoffice.courses.ElasticConfig']
+
+  Shared.QueryHandlersInformation:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlersInformation
+    arguments: ['!tagged queryHandler']
+
+  Shared.QueryBus:
+    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Shared.QueryHandlersInformation']
+
+  Shared.EventBus:
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMq/RabbitMqEventBus
+    arguments: ['@Backoffice.courses.RabbitMqConfig', '@Shared.Logger']
+
+
