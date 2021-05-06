@@ -27,11 +27,16 @@ describe('RabbitMqEventBus', () => {
 });
 
 async function waitUntil(condition: Function): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    const timeWas = new Date();
+    const timeoutMs = 5000;
     const wait = setInterval(function () {
       if (condition()) {
         clearInterval(wait);
         return resolve();
+      } else if (Number(new Date()) - Number(timeWas) > timeoutMs) {
+        clearInterval(wait);
+        return reject();
       }
     }, 20);
   });
