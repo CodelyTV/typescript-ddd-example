@@ -7,8 +7,8 @@ import { EventEmitterBus } from '../EventEmitterBus';
 export class InMemoryAsyncEventBus implements EventBus {
   private bus: EventEmitterBus;
 
-  constructor(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
-    this.bus = new EventEmitterBus(subscribers);
+  constructor() {
+    this.bus = new EventEmitterBus([]);
   }
 
   async start(): Promise<void> {}
