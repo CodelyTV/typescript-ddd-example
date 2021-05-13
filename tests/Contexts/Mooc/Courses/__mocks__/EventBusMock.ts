@@ -12,6 +12,8 @@ export default class EventBusMock implements EventBus {
 
   async start(): Promise<void> {}
 
+  async stop(): Promise<void> {}
+
   addSubscribers(subscribers: DomainEventSubscriber<DomainEvent>[]): void {}
 
   setDomainEventMapping(domainEventMapping: DomainEventMapping): void {}

@@ -16,6 +16,10 @@ describe('RabbitMqEventBus', () => {
     eventBus.setDomainEventMapping(domainEventMapping);
   });
 
+  afterAll(async () => {
+    await eventBus.stop();
+  });
+
   it('publish and consume domain events', async () => {
     const event = new DummyEvent(Uuid.random().value);
 

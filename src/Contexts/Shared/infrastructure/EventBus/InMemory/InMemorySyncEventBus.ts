@@ -17,6 +17,8 @@ export class InMemorySyncEventBus implements EventBus {
 
   async start(): Promise<void> {}
 
+  async stop(): Promise<void> {}
+
   async publish(events: Array<DomainEvent>): Promise<void> {
     const executions: any = [];
     events.map(event => {

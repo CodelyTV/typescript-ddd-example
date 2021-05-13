@@ -66,6 +66,10 @@ export default class RabbitMqEventbus implements EventBus {
     await Promise.all(executions);
   }
 
+  async stop(): Promise<void> {
+    await this.connection.close();
+  }
+
   addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>): void {
     subscribers.map(subscriber => {
       this.addSubscriber(subscriber);

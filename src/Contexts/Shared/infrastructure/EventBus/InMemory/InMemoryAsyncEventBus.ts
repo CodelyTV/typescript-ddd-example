@@ -17,6 +17,8 @@ export class InMemoryAsyncEventBus implements EventBus {
     this.bus.publish(events);
   }
 
+  async stop(): Promise<void> {}
+
   addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
     this.bus.registerSubscribers(subscribers);
   }
