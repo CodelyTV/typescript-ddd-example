@@ -7,6 +7,10 @@ export class CourseNameMother {
   }
 
   static random(): CourseName {
-    return this.create(WordMother.random());
+    return this.create(WordMother.random({ maxLength: 20 }));
+  }
+
+  static invalidName(): string {
+    return "a".repeat(40);
   }
 }

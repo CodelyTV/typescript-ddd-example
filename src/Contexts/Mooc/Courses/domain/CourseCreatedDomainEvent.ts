@@ -1,10 +1,8 @@
 import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
-type CreateCourseDomainEventBody = {
+type CreateCourseDomainEventAttributes = {
   readonly duration: string;
   readonly name: string;
-  readonly eventName: string;
-  readonly id: string;
 };
 
 export class CourseCreatedDomainEvent extends DomainEvent {
@@ -14,43 +12,42 @@ export class CourseCreatedDomainEvent extends DomainEvent {
   readonly name: string;
 
   constructor({
-    id,
+    aggregateId,
     name,
     duration,
     eventId,
     occurredOn
   }: {
-    id: string;
+    aggregateId: string;
     eventId?: string;
     duration: string;
     name: string;
     occurredOn?: Date;
   }) {
-    super(CourseCreatedDomainEvent.EVENT_NAME, id, eventId, occurredOn);
+    super({ eventName: CourseCreatedDomainEvent.EVENT_NAME, aggregateId, eventId, occurredOn });
     this.duration = duration;
     this.name = name;
   }
 
-  toPrimitive(): CreateCourseDomainEventBody {
-    const { name, duration, aggregateId } = this;
+  toPrimitives(): CreateCourseDomainEventAttributes {
+    const { name, duration } = this;
     return {
       name,
-      duration,
-      eventName: CourseCreatedDomainEvent.EVENT_NAME,
-      id: aggregateId
+      duration
     };
   }
 
-  static fromPrimitives(
-    aggregateId: string,
-    body: CreateCourseDomainEventBody,
-    eventId: string,
-    occurredOn: Date
-  ): DomainEvent {
+  static fromPrimitives(params: {
+    aggregateId: string;
+    attributes: CreateCourseDomainEventAttributes;
+    eventId: string;
+    occurredOn: Date;
+  }): DomainEvent {
+    const { aggregateId, attributes, occurredOn, eventId } = params;
     return new CourseCreatedDomainEvent({
-      id: aggregateId,
-      duration: body.duration,
-      name: body.name,
+      aggregateId,
+      duration: attributes.duration,
+      name: attributes.name,
       eventId,
       occurredOn
     });

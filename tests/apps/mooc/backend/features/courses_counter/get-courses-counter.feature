@@ -11,8 +11,8 @@ Feature: Obtain the total number of courses
         "id": "c77fa036-cbc7-4414-996b-c6a7a93cae09",
         "type": "course.created",
         "occurred_on": "2019-08-08T08:37:32+00:00",
+        "aggregateId": "8c900b20-e04a-4777-9183-32faab6d2fb5",
         "attributes": {
-          "id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
           "name": "DDD en PHP!",
           "duration": "25 hours"
         },
@@ -31,6 +31,7 @@ Feature: Obtain the total number of courses
     }
     """
 
+
   Scenario: With more than one course having duplicates
     Given I send an event to the event bus:
     """
@@ -39,8 +40,8 @@ Feature: Obtain the total number of courses
         "id": "c77fa036-cbc7-4414-996b-c6a7a93cae09",
         "type": "course.created",
         "occurred_on": "2019-08-08T08:37:32+00:00",
+        "aggregateId": "8c900b20-e04a-4777-9183-32faab6d2fb5",
         "attributes": {
-          "id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
           "name": "DDD en PHP!",
           "duration": "25 hours"
         },
@@ -57,8 +58,8 @@ Feature: Obtain the total number of courses
         "id": "8c4a4ed8-9458-489e-a167-b099d81fa096",
         "type": "course.created",
         "occurred_on": "2019-08-09T08:36:32+00:00",
+        "aggregateId": "8c4a4ed8-9458-489e-a167-b099d81fa096",
         "attributes": {
-          "id": "8c4a4ed8-9458-489e-a167-b099d81fa096",
           "name": "DDD en Java!",
           "duration": "24 hours"
         },
@@ -75,8 +76,8 @@ Feature: Obtain the total number of courses
         "id": "8c4a4ed8-9458-489e-a167-b099d81fa096",
         "type": "course.created",
         "occurred_on": "2019-08-09T08:36:32+00:00",
+        "aggregateId": "8c4a4ed8-9458-489e-a167-b099d81fa096",
         "attributes": {
-          "id": "8c4a4ed8-9458-489e-a167-b099d81fa096",
           "name": "DDD en Java!",
           "duration": "24 hours"
         },

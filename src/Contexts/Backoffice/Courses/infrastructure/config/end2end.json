@@ -1,8 +1,1 @@
-{
-  "mongo": {
-    "url": "mongodb://localhost:27017/backoffice-backend-test"
-  },
-  "elastic": {
-    "indexName": "backofficecourses-test"
-  }
-}
+{}

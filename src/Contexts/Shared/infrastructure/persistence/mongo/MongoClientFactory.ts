@@ -1,5 +1,4 @@
 import { MongoClient } from 'mongodb';
-import { Nullable } from '../../../domain/Nullable';
 import MongoConfig from './MongoConfig';
 
 export class MongoClientFactory {
@@ -17,12 +16,12 @@ export class MongoClientFactory {
     return client;
   }
 
-  private static getClient(contextName: string): Nullable<MongoClient> {
+  private static getClient(contextName: string): MongoClient | null {
     return MongoClientFactory.clients[contextName];
   }
 
   private static async createAndConnectClient(config: MongoConfig): Promise<MongoClient> {
-    const client = new MongoClient(config.url, { useUnifiedTopology: true, ignoreUndefined: true });
+    const client = new MongoClient(config.url, { ignoreUndefined: true });
 
     await client.connect();
 

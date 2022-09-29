@@ -1,32 +1,35 @@
-import { CourseRepository } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
 import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
-import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
-import { Nullable } from '../../../../../src/Contexts/Shared/domain/Nullable';
+import { CourseRepository } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
 
 export class CourseRepositoryMock implements CourseRepository {
-  private mockSave = jest.fn();
-  private mockSearch = jest.fn();
+  private saveMock: jest.Mock;
+  private searchAllMock: jest.Mock;
+  private courses: Array<Course> = [];
+
+  constructor() {
+    this.saveMock = jest.fn();
+    this.searchAllMock = jest.fn();
+  }
 
   async save(course: Course): Promise<void> {
-    this.mockSave(course);
+    this.saveMock(course);
   }
 
-  assertLastSavedCourseIs(expected: Course): void {
-    const mock = this.mockSave.mock;
-    const lastSavedCourse = mock.calls[mock.calls.length - 1][0] as Course;
-    expect(lastSavedCourse).toBeInstanceOf(Course);
-    expect(lastSavedCourse.toPrimitives()).toEqual(expected.toPrimitives());
+  assertSaveHaveBeenCalledWith(expected: Course): void {
+    expect(this.saveMock).toHaveBeenCalledWith(expected);
   }
 
-  async search(id: CourseId): Promise<Nullable<Course>> {
-    return this.mockSearch(id);
+  returnOnSearchAll(courses: Array<Course>) {
+    this.courses = courses;
   }
 
-  whenSearchThenReturn(value: Nullable<Course>): void {
-    this.mockSearch.mockReturnValue(value);
+  assertSearchAll() {
+    expect(this.searchAllMock).toHaveBeenCalled();
   }
 
-  assertLastSearchedCourseIs(expected: CourseId): void {
-    expect(this.mockSearch).toHaveBeenCalledWith(expected);
+  async searchAll(): Promise<Course[]> {
+    this.searchAllMock();
+    return this.courses;
   }
+
 }

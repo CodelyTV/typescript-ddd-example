@@ -4,7 +4,7 @@ import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/Env
 import { CoursesCounterMother } from '../domain/CoursesCounterMother';
 
 const environmentArranger: Promise<EnvironmentArranger> = container.get('Mooc.EnvironmentArranger');
-const repository: CoursesCounterRepository = container.get('Mooc.coursesCounter.CoursesCounterRepository');
+const repository: CoursesCounterRepository = container.get('Mooc.CoursesCounter.CoursesCounterRepository');
 
 beforeEach(async () => {
   await (await environmentArranger).arrange();

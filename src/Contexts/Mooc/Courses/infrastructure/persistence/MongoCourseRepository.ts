@@ -4,6 +4,12 @@ import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { Course } from '../../domain/Course';
 import { CourseRepository } from '../../domain/CourseRepository';
 
+interface CourseDocument {
+  _id: string;
+  name: string;
+  duration: string;
+};
+
 export class MongoCourseRepository extends MongoRepository<Course> implements CourseRepository {
   public save(course: Course): Promise<void> {
     return this.persist(course.id.value, course);
@@ -11,12 +17,21 @@ export class MongoCourseRepository extends MongoRepository<Course> implements Co
 
   public async search(id: CourseId): Promise<Nullable<Course>> {
     const collection = await this.collection();
-    const document = await collection.findOne({ _id: id.value });
+    const document = await collection.findOne<CourseDocument>({ _id: id.value });
 
-    return document ? Course.fromPrimitives({ ...document, id: id.value }) : null;
+    return document ? Course.fromPrimitives({ name: document.name, duration: document.duration, id: id.value }) : null;
   }
 
-  protected moduleName(): string {
+  protected collectionName(): string {
     return 'courses';
+  }
+
+  public async searchAll(): Promise<Course[]> {
+    const collection = await this.collection();
+    const documents = await collection.find<CourseDocument>({}).toArray();
+
+    return documents.map(document =>
+      Course.fromPrimitives({ name: document.name, duration: document.duration, id: document._id })
+    );
   }
 }

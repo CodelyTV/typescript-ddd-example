@@ -2,10 +2,6 @@ imports:
   - { resource: ./application.yaml }
 
 services:
-  Backoffice.Backend.EnvironmentArranger:
-    class: ../../../../../tests/Contexts/Shared/infrastructure/elastic/ElasticEnvironmentArranger
-    arguments: ['@Shared.ElasticConnectionManager', '@Backoffice.courses.ElasticConfig']
-
-  Shared.EventBus:
-    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
-    arguments: []
+  Backoffice.EnvironmentArranger:
+    class: ../../../../../tests/Contexts/Shared/infrastructure/mongo/MongoEnvironmentArranger
+    arguments: ['@Backoffice.Shared.ConnectionManager']

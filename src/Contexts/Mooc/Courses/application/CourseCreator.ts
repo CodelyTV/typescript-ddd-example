@@ -5,24 +5,11 @@ import { CourseDuration } from '../domain/CourseDuration';
 import { CourseName } from '../domain/CourseName';
 import { CourseRepository } from '../domain/CourseRepository';
 
-type Params = {
-  courseId: CourseId;
-  courseName: CourseName;
-  courseDuration: CourseDuration;
-};
-
 export class CourseCreator {
-  private repository: CourseRepository;
-  private eventBus: EventBus;
+  constructor(private repository: CourseRepository, private eventBus: EventBus) {}
 
-  constructor(repository: CourseRepository, eventBus: EventBus) {
-    this.repository = repository;
-    this.eventBus = eventBus;
-  }
-
-  async run({ courseId, courseName, courseDuration }: Params): Promise<void> {
-    const course = Course.create(courseId, courseName, courseDuration);
-
+  async run(params: { id: CourseId; name: CourseName; duration: CourseDuration }): Promise<void> {
+    const course = Course.create(params.id, params.name, params.duration);
     await this.repository.save(course);
     await this.eventBus.publish(course.pullDomainEvents());
   }

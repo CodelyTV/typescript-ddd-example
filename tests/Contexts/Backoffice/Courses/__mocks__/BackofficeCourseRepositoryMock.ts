@@ -1,6 +1,6 @@
-import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
-import { BackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseRepository';
-import { Criteria } from '../../../../../src/Contexts/Shared/domain/criteria/Criteria';
+import { BackofficeCourse } from "../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse";
+import { BackofficeCourseRepository } from "../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseRepository";
+import { Criteria } from "../../../../../src/Contexts/Shared/domain/criteria/Criteria";
 
 export class BackofficeCourseRepositoryMock implements BackofficeCourseRepository {
   private mockSearchAll = jest.fn();

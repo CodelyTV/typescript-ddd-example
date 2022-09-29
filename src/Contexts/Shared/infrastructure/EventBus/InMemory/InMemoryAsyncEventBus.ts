@@ -1,25 +1,18 @@
+import { EventEmitter } from 'events';
 import { DomainEvent } from '../../../domain/DomainEvent';
-import { DomainEventSubscriber } from '../../../domain/DomainEventSubscriber';
 import { EventBus } from '../../../domain/EventBus';
-import { DomainEventMapping } from '../DomainEventMapping';
-import { EventEmitterBus } from '../EventEmitterBus';
+import { DomainEventSubscribers } from '../DomainEventSubscribers';
 
-export class InMemoryAsyncEventBus implements EventBus {
-  private bus: EventEmitterBus;
-
-  constructor(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
-    this.bus = new EventEmitterBus(subscribers);
-  }
-
-  async start(): Promise<void> {}
-
+export class InMemoryAsyncEventBus extends EventEmitter implements EventBus {
   async publish(events: DomainEvent[]): Promise<void> {
-    this.bus.publish(events);
+    events.map(event => this.emit(event.eventName, event));
   }
 
-  addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>) {
-    this.bus.registerSubscribers(subscribers);
+  addSubscribers(subscribers: DomainEventSubscribers) {
+    subscribers.items.forEach(subscriber => {
+      subscriber.subscribedTo().forEach(event => {
+        this.on(event.EVENT_NAME, subscriber.on.bind(subscriber));
+      });
+    });
   }
-
-  setDomainEventMapping(domainEventMapping: DomainEventMapping): void {}
 }

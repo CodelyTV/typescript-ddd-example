@@ -1,9 +1,15 @@
-import { BackofficeCourse } from '../domain/BackofficeCourse';
+import { BackofficeCourse } from "../domain/BackofficeCourse";
+
+interface BackofficeCourseResponse {
+  id: string;
+  name: string;
+  duration: string;
+}
 
 export class BackofficeCoursesResponse {
-  readonly courses: Array<BackofficeCourse>;
+  public readonly courses: Array<BackofficeCourseResponse>;
 
   constructor(courses: Array<BackofficeCourse>) {
-    this.courses = courses;
+    this.courses = courses.map(course => course.toPrimitives());
   }
 }

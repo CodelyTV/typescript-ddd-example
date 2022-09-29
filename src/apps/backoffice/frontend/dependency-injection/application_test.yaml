@@ -1,7 +1,0 @@
-imports:
-  - { resource: ./application.yaml }
-
-services:
-  Shared.EventBus:
-    class: ../../../../Contexts/Shared/infrastructure/EventBus/InMemory/InMemorySyncEventBus
-    arguments: []

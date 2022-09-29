@@ -6,19 +6,15 @@ import Router from 'express-promise-router';
 import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
-import Logger from '../../../Contexts/Shared/domain/Logger';
-import container from './dependency-injection';
 import { registerRoutes } from './routes';
 
 export class Server {
   private express: express.Express;
   private port: string;
-  private logger: Logger;
   private httpServer?: http.Server;
 
   constructor(port: string) {
     this.port = port;
-    this.logger = container.get('Shared.Logger');
     this.express = express();
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +30,7 @@ export class Server {
     registerRoutes(router);
 
     router.use((err: Error, req: Request, res: Response, next: Function) => {
-      this.logger.error(err);
+      console.log(err);
       res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
     });
   }
@@ -42,10 +38,10 @@ export class Server {
   async listen(): Promise<void> {
     return new Promise(resolve => {
       this.httpServer = this.express.listen(this.port, () => {
-        this.logger.info(
+        console.log(
           `  Mock Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`
         );
-        this.logger.info('  Press CTRL-C to stop\n');
+        console.log('  Press CTRL-C to stop\n');
         resolve();
       });
     });

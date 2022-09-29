@@ -1,44 +1,48 @@
 services:
-  Backoffice.courses.ElasticConfig:
-    factory:
-      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/BackofficeElasticConfigFactory
-      method: 'createConfig'
+  Mooc.Courses.domain.CourseRepository:
+    class: ../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    arguments: ['@Backoffice.Shared.ConnectionManager']
 
-  Backoffice.courses.RabbitMqConfig:
-    factory:
-      class: ../../../../../Contexts/Backoffice/Courses/infrastructure/EventBus/RabbitMq/RabbitMqConfigFactory
-      method: 'createConfig'
+  Mooc.Courses.application.CourseCreator:
+    class: ../../../../../Contexts/Mooc/Courses/application/Create/CourseCreator
+    arguments: ['@Mooc.Courses.domain.CourseRepository', '@Backoffice.Shared.domain.EventBus']
 
-  Backoffice.courses.BackofficeCourseRepository:
-    class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
-    arguments: ['@Shared.ElasticConnectionManager', '@Backoffice.courses.ElasticConfig']
+  Mooc.courses.CreateCourseCommandHandler:
+    class: ../../../../../Contexts/Mooc/Courses/application/Create/CreateCourseCommandHandler
+    arguments: ['@Mooc.Courses.application.CourseCreator']
+    tags:
+      - { name: 'commandHandler' }
 
-  Backoffice.courses.CoursesFinder:
+  Backoffice.Courses.application.CoursesFinder:
     class: ../../../../../Contexts/Backoffice/Courses/application/SearchAll/CoursesFinder
-    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+    arguments: ['@Backoffice.Courses.domain.BackofficeCourseRepository']
 
   Backoffice.courses.SearchAllCoursesQueryHandler:
     class: ../../../../../Contexts/Backoffice/Courses/application/SearchAll/SearchAllCoursesQueryHandler
-    arguments: ['@Backoffice.courses.CoursesFinder']
+    arguments: ['@Backoffice.Courses.application.CoursesFinder']
     tags:
       - { name: 'queryHandler' }
 
-  Backoffice.courses.CoursesByCriteriaSearcher:
-    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher
-    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+  Backoffice.Courses.domain.BackofficeCourseRepository:
+    class: ../../../../../Contexts/Backoffice/Courses/infrastructure/persistence/ElasticBackofficeCourseRepository
+    arguments: ['@Backoffice.Shared.ElasticConnectionManager', '@Backoffice.Shared.ElasticConfig']
 
-  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
-    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler
-    arguments: ['@Backoffice.courses.CoursesByCriteriaSearcher']
-    tags:
-      - { name: 'queryHandler' }
-
-  Backoffice.courses.BackofficeCourseCreator:
+  Backoffice.Courses.application.BackofficeCourseCreator:
     class: ../../../../../Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator
-    arguments: ['@Backoffice.courses.BackofficeCourseRepository']
+    arguments: ['@Backoffice.Courses.domain.BackofficeCourseRepository']
 
   Backoffice.courses.CreateBackofficeCourseOnCourseCreated:
     class: ../../../../../Contexts/Backoffice/Courses/application/Create/CreateBackofficeCourseOnCourseCreated
-    arguments: ['@Backoffice.courses.BackofficeCourseCreator']
+    arguments: ['@Backoffice.Courses.application.BackofficeCourseCreator']
     tags:
       - { name: 'domainEventSubscriber' }
+
+  Backoffice.courses.application.CoursesByCriteriaSearcher:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher
+    arguments: ['@Backoffice.Courses.domain.BackofficeCourseRepository']
+
+  Backoffice.courses.SearchCoursesByCriteriaQueryHandler:
+    class: ../../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler
+    arguments: ['@Backoffice.courses.application.CoursesByCriteriaSearcher']
+    tags:
+      - { name: 'queryHandler' }

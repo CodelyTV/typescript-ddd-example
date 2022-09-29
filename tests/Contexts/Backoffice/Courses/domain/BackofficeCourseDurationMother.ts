@@ -7,6 +7,6 @@ export class BackofficeCourseDurationMother {
   }
 
   static random(): BackofficeCourseDuration {
-    return this.create(WordMother.random());
+    return this.create(WordMother.random({ maxLength: 10 }));
   }
 }

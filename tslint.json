@@ -1,5 +1,10 @@
 {
   "extends": "tslint-eslint-rules",
+  "linterOptions": {
+      "exclude": [
+          "src/apps/backoffice/frontend/**"
+      ]
+  },
   "defaultSeverity": "error",
   "rules": {
     "adjacent-overload-signatures": true,

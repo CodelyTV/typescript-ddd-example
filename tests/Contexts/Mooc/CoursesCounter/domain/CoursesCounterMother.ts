@@ -9,7 +9,11 @@ import { CourseId } from '../../../../../src/Contexts/Mooc/Shared/domain/Courses
 export class CoursesCounterMother {
   static random() {
     const total = CoursesCounterTotalMother.random();
-    return new CoursesCounter(CoursesCounterId.random(), total, Repeater.random(CourseIdMother.creator(), total.value));
+    return new CoursesCounter(
+      CoursesCounterId.random(),
+      total,
+      Repeater.random(CourseIdMother.random.bind(CourseIdMother), total.value)
+    );
   }
 
   static withOne(courseId: CourseId) {

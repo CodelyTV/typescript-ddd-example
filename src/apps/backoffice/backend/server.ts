@@ -9,6 +9,7 @@ import httpStatus from 'http-status';
 import Logger from '../../../Contexts/Shared/domain/Logger';
 import container from './dependency-injection';
 import { registerRoutes } from './routes';
+import cors from 'cors';
 
 export class Server {
   private express: express.Express;
@@ -28,6 +29,7 @@ export class Server {
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
     const router = Router();
+    router.use(cors());
     router.use(errorHandler());
     this.express.use(router);
     registerRoutes(router);
@@ -48,6 +50,10 @@ export class Server {
         resolve();
       });
     });
+  }
+
+  getHTTPServer() {
+    return this.httpServer;
   }
 
   async stop(): Promise<void> {

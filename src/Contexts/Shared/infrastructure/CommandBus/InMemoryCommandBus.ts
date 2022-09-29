@@ -1,12 +1,12 @@
 import { Command } from '../../domain/Command';
 import { CommandBus } from './../../domain/CommandBus';
-import { CommandHandlersInformation } from './CommandHandlersInformation';
+import { CommandHandlers } from './CommandHandlers';
 
 export class InMemoryCommandBus implements CommandBus {
-  constructor(private commandHandlersInformation: CommandHandlersInformation) {}
+  constructor(private commandHandlers: CommandHandlers) {}
 
   async dispatch(command: Command): Promise<void> {
-    const handler = this.commandHandlersInformation.search(command);
+    const handler = this.commandHandlers.get(command);
 
     await handler.handle(command);
   }

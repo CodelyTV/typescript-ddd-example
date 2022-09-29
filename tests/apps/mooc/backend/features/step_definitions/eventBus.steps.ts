@@ -1,27 +1,24 @@
 import { Given } from 'cucumber';
-import { Definition } from 'node-dependency-injection';
 import container from '../../../../../../src/apps/mooc/backend/dependency-injection';
-import { DomainEvent } from '../../../../../../src/Contexts/Shared/domain/DomainEvent';
-import { DomainEventSubscriber } from '../../../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
-import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
-import { DomainEventJsonDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventJsonDeserializer';
-import { DomainEventMapping } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventMapping';
+import { DomainEventDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventDeserializer';
+import { DomainEventSubscribers } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers';
+import { eventBus } from './hooks.steps';
 
-const eventBus = container.get('Shared.EventBus') as EventBus;
 const deserializer = buildDeserializer();
 
 Given('I send an event to the event bus:', async (event: any) => {
   const domainEvent = deserializer.deserialize(event);
 
   await eventBus.publish([domainEvent!]);
+  await wait(500);
 });
 
 function buildDeserializer() {
-  const subscriberDefinitions = container.findTaggedServiceIds('domainEventSubscriber') as Map<String, Definition>;
-  const subscribers: Array<DomainEventSubscriber<DomainEvent>> = [];
+  const subscribers = DomainEventSubscribers.from(container);
 
-  subscriberDefinitions.forEach((value: any, key: any) => subscribers.push(container.get(key)));
-  const domainEventMapping = new DomainEventMapping(subscribers);
+  return DomainEventDeserializer.configure(subscribers);
+}
 
-  return new DomainEventJsonDeserializer(domainEventMapping);
+function wait(milliseconds: number) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
 }

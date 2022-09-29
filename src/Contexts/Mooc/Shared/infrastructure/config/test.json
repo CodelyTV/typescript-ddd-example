@@ -1,3 +1,4 @@
 {
-  "mongo": { "url": "mongodb://localhost:27017/mooc-backend-test" }
+  "mongo": { "url": "mongodb://localhost:27017/mooc-backend-test" },
+  "typeorm": {"database": "mooc-backend-dev"}
 }

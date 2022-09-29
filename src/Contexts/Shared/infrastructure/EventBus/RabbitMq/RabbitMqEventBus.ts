@@ -1,89 +1,72 @@
-import { Connection, Message, Exchange, Queue } from 'amqp-ts';
-import { EventBus } from '../../../domain/EventBus';
 import { DomainEvent } from '../../../domain/DomainEvent';
-import { DomainEventSubscriber } from '../../../domain/DomainEventSubscriber';
-import { DomainEventJsonDeserializer } from '../DomainEventJsonDeserializer';
-import { DomainEventMapping } from '../DomainEventMapping';
-import RabbitMqConfig from './RabbitMqConfig';
-import Logger from '../../../domain/Logger';
+import { EventBus } from '../../../domain/EventBus';
+import { DomainEventDeserializer } from '../DomainEventDeserializer';
+import { DomainEventFailoverPublisher } from '../DomainEventFailoverPublisher/DomainEventFailoverPublisher';
+import { DomainEventJsonSerializer } from '../DomainEventJsonSerializer';
+import { DomainEventSubscribers } from '../DomainEventSubscribers';
+import { RabbitMqConnection } from './RabbitMqConnection';
+import { RabbitMQConsumerFactory } from './RabbitMQConsumerFactory';
+import { RabbitMQqueueFormatter } from './RabbitMQqueueFormatter';
 
-export default class RabbitMqEventbus implements EventBus {
-  private connection: Connection;
-  private exchange: Exchange;
-  private queue: Queue;
-  private logger: Logger;
-  private deserializer?: DomainEventJsonDeserializer;
-  private subscribers: Map<string, Array<DomainEventSubscriber<DomainEvent>>>;
+export class RabbitMQEventBus implements EventBus {
+  private failoverPublisher: DomainEventFailoverPublisher;
+  private connection: RabbitMqConnection;
+  private exchange: string;
+  private queueNameFormatter: RabbitMQqueueFormatter;
+  private maxRetries: Number;
 
-  constructor(config: RabbitMqConfig, logger: Logger) {
-    this.logger = logger;
-    this.connection = new Connection(`amqp://${config.user}:${config.password}@${config.host}`);
-    this.exchange = this.connection.declareExchange(config.exchange, 'fanout', { durable: false });
-    this.queue = this.connection.declareQueue(config.queue);
-    this.subscribers = new Map();
+  constructor(params: {
+    failoverPublisher: DomainEventFailoverPublisher;
+    connection: RabbitMqConnection;
+    exchange: string;
+    queueNameFormatter: RabbitMQqueueFormatter;
+    maxRetries: Number;
+  }) {
+    const { failoverPublisher, connection, exchange } = params;
+    this.failoverPublisher = failoverPublisher;
+    this.connection = connection;
+    this.exchange = exchange;
+    this.queueNameFormatter = params.queueNameFormatter;
+    this.maxRetries = params.maxRetries;
   }
 
-  async start(): Promise<void> {
-    if (!this.deserializer) {
-      throw new Error('RabbitMqEventBus has not being properly initialized, deserializer is missing');
-    }
+  async addSubscribers(subscribers: DomainEventSubscribers): Promise<void> {
+    const deserializer = DomainEventDeserializer.configure(subscribers);
+    const consumerFactory = new RabbitMQConsumerFactory(deserializer, this.connection, this.maxRetries);
 
-    await this.queue.bind(this.exchange);
-    await this.queue.activateConsumer(
-      async message => {
-        const event = this.deserializer!.deserialize(message.content.toString());
-        if (event) {
-          const subscribers = this.subscribers.get(event.eventName);
-          if (subscribers && subscribers.length) {
-            const subscribersNames = subscribers.map(subscriber => subscriber.constructor.name);
-            this.logger.info(`[RabbitMqEventBus] Message processed: ${event.eventName} by ${subscribersNames}`);
-            const subscribersExecutions = subscribers.map(subscriber => subscriber.on(event));
-            await Promise.all(subscribersExecutions);
-          }
-        }
-        message.ack();
-      },
-      { noAck: false }
-    );
+    for (const subscriber of subscribers.items) {
+      const queueName = this.queueNameFormatter.format(subscriber);
+      const rabbitMQConsumer = consumerFactory.build(subscriber, this.exchange, queueName);
+
+      await this.connection.consume(queueName, rabbitMQConsumer.onMessage.bind(rabbitMQConsumer));
+    }
   }
 
   async publish(events: Array<DomainEvent>): Promise<void> {
-    const executions: any = [];
-    events.map(event => {
-      const message = new Message({
-        data: {
-          type: event.eventName,
-          occurred_on: event.occurredOn,
-          id: event.eventId,
-          attributes: event.toPrimitive()
-        },
-        meta: {}
-      });
-      this.logger.info(`[RabbitMqEventBus] Event to be published: ${event.eventName}`);
-      executions.push(this.exchange.send(message));
-    });
+    for (const event of events) {
+      try {
+        const routingKey = event.eventName;
+        const content = this.toBuffer(event);
+        const options = this.options(event);
 
-    await Promise.all(executions);
-  }
-
-  addSubscribers(subscribers: Array<DomainEventSubscriber<DomainEvent>>): void {
-    subscribers.map(subscriber => {
-      this.addSubscriber(subscriber);
-    });
-  }
-
-  setDomainEventMapping(domainEventMapping: DomainEventMapping): void {
-    this.deserializer = new DomainEventJsonDeserializer(domainEventMapping);
-  }
-
-  private addSubscriber(subscriber: DomainEventSubscriber<DomainEvent>): void {
-    subscriber.subscribedTo().map(event => {
-      const eventName = event.EVENT_NAME;
-      if (this.subscribers.has(eventName)) {
-        this.subscribers.get(eventName)!.push(subscriber);
-      } else {
-        this.subscribers.set(eventName, [subscriber]);
+        await this.connection.publish({ exchange: this.exchange, routingKey, content, options });
+      } catch (error: any) {
+        await this.failoverPublisher.publish(event);
       }
-    });
+    }
+  }
+
+  private options(event: DomainEvent) {
+    return {
+      messageId: event.eventId,
+      contentType: 'application/json',
+      contentEncoding: 'utf-8'
+    };
+  }
+
+  private toBuffer(event: DomainEvent): Buffer {
+    const eventPrimitives = DomainEventJsonSerializer.serialize(event);
+
+    return Buffer.from(eventPrimitives);
   }
 }

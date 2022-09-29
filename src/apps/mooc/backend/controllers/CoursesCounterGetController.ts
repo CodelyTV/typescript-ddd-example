@@ -1,24 +1,24 @@
-import { Controller } from './Controller';
 import { Request, Response } from 'express';
-import httpStatus = require('http-status');
-import { CoursesCounterNotExist } from '../../../../Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import httpStatus from 'http-status';
 import { FindCoursesCounterQuery } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
-import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
 import { FindCoursesCounterResponse } from '../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterResponse';
+import { CoursesCounterNotExist } from '../../../../Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
+import { Controller } from './Controller';
 
 export class CoursesCounterGetController implements Controller {
   constructor(private queryBus: QueryBus) {}
   async run(req: Request, res: Response): Promise<void> {
     try {
       const query = new FindCoursesCounterQuery();
-      const count = await this.queryBus.ask<FindCoursesCounterResponse>(query);
+      const { total } = await this.queryBus.ask<FindCoursesCounterResponse>(query);
 
-      res.status(httpStatus.OK).send(count);
+      res.json({ total });
     } catch (e) {
       if (e instanceof CoursesCounterNotExist) {
-        res.status(httpStatus.NOT_FOUND).send();
+        res.sendStatus(httpStatus.NOT_FOUND);
       } else {
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
+        res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
       }
     }
   }

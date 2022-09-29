@@ -1,5 +1,6 @@
 {
-  "elastic": {
-    "url": "http://elasticsearch:9200"
+    "elastic": {
+      "url": "http://elasticsearch:9200"
+    }
   }
-}
+  
