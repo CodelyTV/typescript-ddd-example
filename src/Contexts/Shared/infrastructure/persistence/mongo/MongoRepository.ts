@@ -33,6 +33,6 @@ export abstract class MongoRepository<T extends AggregateRoot> {
 
     const collection = await this.collection();
 
-    return await collection.find<D>(query.filter).sort(query.sort).skip(query.skip).limit(query.limit).toArray();
+    return await collection.find<D>(query.filter, {}).sort(query.sort).skip(query.skip).limit(query.limit).toArray();
   }
 }

@@ -7,7 +7,7 @@ interface CourseDocument {
   _id: string;
   name: string;
   duration: string;
-};
+}
 
 export class MongoBackofficeCourseRepository
   extends MongoRepository<BackofficeCourse>
@@ -23,7 +23,7 @@ export class MongoBackofficeCourseRepository
 
   public async searchAll(): Promise<BackofficeCourse[]> {
     const collection = await this.collection();
-    const documents = await collection.find<CourseDocument>({}).toArray();
+    const documents = await collection.find<CourseDocument>({}, {}).toArray();
 
     return documents.map(document =>
       BackofficeCourse.fromPrimitives({ name: document.name, duration: document.duration, id: document._id })
