@@ -1,4 +1,4 @@
-import { Course } from "../../domain/Course";
+import { Course } from '../../domain/Course';
 
 interface CourseResponse {
   id: string;

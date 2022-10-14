@@ -1,4 +1,4 @@
-import { BackofficeCourse } from "../domain/BackofficeCourse";
+import { BackofficeCourse } from '../domain/BackofficeCourse';
 
 interface BackofficeCourseResponse {
   id: string;

@@ -15,7 +15,7 @@ export class RabbitMQConsumer {
   constructor(params: {
     subscriber: DomainEventSubscriber<DomainEvent>;
     deserializer: DomainEventDeserializer;
-    connection: RabbitMqConnection
+    connection: RabbitMqConnection;
     queueName: string;
     exchange: string;
     maxRetries: Number;
@@ -43,18 +43,18 @@ export class RabbitMQConsumer {
 
   private async handleError(message: ConsumeMessage) {
     if (this.hasBeenRedeliveredTooMuch(message)) {
-      await this.deadLetter(message)
+      await this.deadLetter(message);
     } else {
       await this.retry(message);
     }
   }
 
   private async retry(message: ConsumeMessage) {
-    await this.connection.retry(message, this.queueName, this.exchange)
+    await this.connection.retry(message, this.queueName, this.exchange);
   }
 
   private async deadLetter(message: ConsumeMessage) {
-    await this.connection.deadLetter(message, this.queueName, this.exchange)
+    await this.connection.deadLetter(message, this.queueName, this.exchange);
   }
 
   private hasBeenRedeliveredTooMuch(message: ConsumeMessage) {

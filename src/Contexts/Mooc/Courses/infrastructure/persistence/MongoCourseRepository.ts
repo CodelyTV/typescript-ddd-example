@@ -8,7 +8,7 @@ interface CourseDocument {
   _id: string;
   name: string;
   duration: string;
-};
+}
 
 export class MongoCourseRepository extends MongoRepository<Course> implements CourseRepository {
   public save(course: Course): Promise<void> {

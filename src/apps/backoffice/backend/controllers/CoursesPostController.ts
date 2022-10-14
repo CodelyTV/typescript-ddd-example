@@ -8,7 +8,7 @@ type CreateCourseRequest = {
   id: string;
   name: string;
   duration: string;
-}
+};
 
 export class CoursesPostController implements Controller {
   constructor(private readonly commandBus: CommandBus) {}

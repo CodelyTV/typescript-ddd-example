@@ -5,7 +5,8 @@ import { BackofficeCourseRepository } from '../../domain/BackofficeCourseReposit
 
 export class ElasticBackofficeCourseRepository
   extends ElasticRepository<BackofficeCourse>
-  implements BackofficeCourseRepository {
+  implements BackofficeCourseRepository
+{
   async searchAll(): Promise<BackofficeCourse[]> {
     return this.searchAllInElastic(BackofficeCourse.fromPrimitives);
   }

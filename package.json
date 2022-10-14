@@ -14,7 +14,7 @@
     "dev:mooc:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/mooc/backend/start.ts",
     "dev:backoffice:frontend": "cd ./src/apps/backoffice/frontend && npm start",
     "dev:backoffice:backend": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/apps/backoffice/backend/start.ts",
-    "lint": "prettier --write --ignore-path src/apps/backoffice/frontend src/**/*.ts{,x}",
+    "lint": "prettier --write src/**/*.ts{,x}",
     "test": "npm run test:unit && npm run test:features",
     "test:unit": "NODE_ENV=test jest",
     "start:mooc:backend": "NODE_ENV=production node dist/src/apps/mooc/backend/start",
@@ -102,7 +102,7 @@
   },
   "lint-staged": {
     "{src,tests}/**/*.ts": [
-      "prettier --write --ignore-path src/apps/backoffice/frontend",
+      "prettier --write",
       "git add"
     ]
   }

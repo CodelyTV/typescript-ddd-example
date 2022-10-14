@@ -4,7 +4,6 @@ import { RabbitMQEventBus } from '../../../../Shared/infrastructure/EventBus/Rab
 import { RabbitMQqueueFormatter } from '../../../../Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter';
 import { RabbitMQConfig } from './RabbitMQConfigFactory';
 
-
 export class RabbitMQEventBusFactory {
   static create(
     failoverPublisher: DomainEventFailoverPublisher,

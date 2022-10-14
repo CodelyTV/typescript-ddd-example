@@ -5,7 +5,8 @@ import { Query } from '../../../../Shared/domain/Query';
 import { CoursesCounterFinder } from './CoursesCounterFinder';
 
 export class FindCoursesCounterQueryHandler
-  implements QueryHandler<FindCoursesCounterQuery, FindCoursesCounterResponse> {
+  implements QueryHandler<FindCoursesCounterQuery, FindCoursesCounterResponse>
+{
   constructor(private finder: CoursesCounterFinder) {}
 
   subscribedTo(): Query {

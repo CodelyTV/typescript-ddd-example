@@ -7,7 +7,8 @@ import { CoursesByCriteriaSearcher } from './CoursesByCriteriaSearcher';
 import { SearchCoursesByCriteriaQuery } from './SearchCoursesByCriteriaQuery';
 
 export class SearchCoursesByCriteriaQueryHandler
-  implements QueryHandler<SearchCoursesByCriteriaQuery, BackofficeCoursesResponse> {
+  implements QueryHandler<SearchCoursesByCriteriaQuery, BackofficeCoursesResponse>
+{
   constructor(private searcher: CoursesByCriteriaSearcher) {}
 
   subscribedTo(): Query {

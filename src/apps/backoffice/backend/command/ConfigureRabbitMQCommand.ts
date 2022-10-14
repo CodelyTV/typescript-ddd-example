@@ -20,4 +20,3 @@ export class ConfigureRabbitMQCommand {
     await connection.close();
   }
 }
-

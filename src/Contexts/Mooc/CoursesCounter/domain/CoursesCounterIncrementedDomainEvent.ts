@@ -14,7 +14,7 @@ export class CoursesCounterIncrementedDomainEvent extends DomainEvent {
 
   toPrimitives() {
     return {
-      total: this.total,
+      total: this.total
     };
   }
 

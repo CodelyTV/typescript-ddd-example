@@ -22,7 +22,7 @@ export class TypeOrmCourseRepository extends TypeOrmRepository<Course> implement
   protected entitySchema(): EntitySchema<Course> {
     return CourseEntity;
   }
-  
+
   public async searchAll(): Promise<Course[]> {
     const repository = await this.repository();
 
