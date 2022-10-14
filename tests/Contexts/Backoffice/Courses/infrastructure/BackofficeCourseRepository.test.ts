@@ -16,6 +16,10 @@ afterEach(async () => {
   await (await environmentArranger).arrange();
 });
 
+afterAll(async () => {
+  await (await environmentArranger).close();
+});
+
 describe('BackofficeCourseRepository', () => {
   describe('#save', () => {
     it('should be able to persist the same course twice', async () => {
@@ -66,6 +70,7 @@ describe('#searchByCriteria', () => {
       BackofficeCourseMother.random()
     ];
     await Promise.all(courses.map(async course => repository.save(course)));
+    
     const result = await repository.matching(
       BackofficeCourseCriteriaMother.nameAndDurationContainsSortAscById('DDD', 'days')
     );
