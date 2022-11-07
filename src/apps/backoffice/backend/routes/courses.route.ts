@@ -1,12 +1,13 @@
 import { Express } from 'express';
 import container from '../dependency-injection';
 import { CoursesPostController } from '../controllers/CoursesPostController';
+import { CoursesGetController } from '../controllers/CoursesGetController';
 
 export const register = (app: Express) => {
   const coursesPostController: CoursesPostController = container.get(
     'Apps.Backoffice.Backend.controllers.CoursesPostController'
   );
-  const coursesGetController: CoursesPostController = container.get(
+  const coursesGetController: CoursesGetController = container.get(
     'Apps.Backoffice.Backend.controllers.CoursesGetController'
   );
 
