@@ -19,7 +19,7 @@ export class OrderType extends EnumValueObject<OrderTypes> {
       }
     }
 
-    throw new InvalidArgumentError(`The filter operator ${value} is invalid`);
+    throw new InvalidArgumentError(`The order type ${value} is invalid`);
   }
 
   public isNone(): boolean {
