@@ -38,7 +38,7 @@
     "bson": "^4.4.0",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
-    "convict": "^6.2.0",
+    "convict": "^6.2.4",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
     "copy": "^0.3.2",
