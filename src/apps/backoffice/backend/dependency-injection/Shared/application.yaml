@@ -44,7 +44,7 @@ services:
     arguments: ['backoffice']
 
   Backoffice.Shared.RabbitMQConnection:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection
     arguments: ['@Backoffice.Shared.RabbitMQConfig']
 
   Backoffice.Shared.RabbitMQqueueFormatter:

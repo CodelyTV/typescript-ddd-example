@@ -32,7 +32,7 @@ services:
     arguments: ['mooc']
 
   Mooc.Shared.RabbitMQConnection:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection
+    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection
     arguments: ['@Mooc.Shared.RabbitMQConfig']
 
   Mooc.Shared.RabbitMQqueueFormatter:

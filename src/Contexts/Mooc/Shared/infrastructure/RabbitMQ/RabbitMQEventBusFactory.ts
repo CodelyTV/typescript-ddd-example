@@ -1,5 +1,5 @@
 import { DomainEventFailoverPublisher } from '../../../../Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher';
-import { RabbitMqConnection } from '../../../../Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection';
+import { RabbitMQConnection } from '../../../../Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection';
 import { RabbitMQEventBus } from '../../../../Shared/infrastructure/EventBus/RabbitMQ/RabbitMQEventBus';
 import { RabbitMQqueueFormatter } from '../../../../Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter';
 import { RabbitMQConfig } from './RabbitMQConfigFactory';
@@ -7,7 +7,7 @@ import { RabbitMQConfig } from './RabbitMQConfigFactory';
 export class RabbitMQEventBusFactory {
   static create(
     failoverPublisher: DomainEventFailoverPublisher,
-    connection: RabbitMqConnection,
+    connection: RabbitMQConnection,
     queueNameFormatter: RabbitMQqueueFormatter,
     config: RabbitMQConfig
   ): RabbitMQEventBus {
