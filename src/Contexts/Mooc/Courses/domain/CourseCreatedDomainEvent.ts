@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../../Shared/domain/DomainEvent';
+import { DomainEvent } from '@/Contexts/Shared/domain/DomainEvent';
 
 type CreateCourseDomainEventAttributes = {
   readonly duration: string;

@@ -1,6 +1,6 @@
-import { CommandNotRegisteredError } from '../../../../../src/Contexts/Shared/domain/CommandNotRegisteredError';
-import { CommandHandlers } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/CommandHandlers';
-import { InMemoryCommandBus } from '../../../../../src/Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus';
+import { CommandNotRegisteredError } from '@/Contexts/Shared/domain/CommandNotRegisteredError';
+import { CommandHandlers } from '@/Contexts/Shared/infrastructure/CommandBus/CommandHandlers';
+import { InMemoryCommandBus } from '@/Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus';
 import { CommandHandlerDummy } from './__mocks__/CommandHandlerDummy';
 import { DummyCommand } from './__mocks__/DummyCommand';
 import { UnhandledCommand } from './__mocks__/UnhandledCommand';

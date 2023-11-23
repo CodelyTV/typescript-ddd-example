@@ -1,7 +1,7 @@
-import { CoursesCounterFinder } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
-import { FindCoursesCounterQuery } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
-import { FindCoursesCounterQueryHandler } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler';
-import { CoursesCounterNotExist } from '../../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
+import { CoursesCounterFinder } from '@/Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder';
+import { FindCoursesCounterQuery } from '@/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQuery';
+import { FindCoursesCounterQueryHandler } from '@/Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler';
+import { CoursesCounterNotExist } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounterNotExist';
 import { CoursesCounterMother } from '../../domain/CoursesCounterMother';
 import { CoursesCounterRepositoryMock } from '../../__mocks__/CoursesCounterRepositoryMock';
 

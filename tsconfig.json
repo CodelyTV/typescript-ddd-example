@@ -11,14 +11,13 @@
     "noEmit": false,
     "resolveJsonModule": true,
     "noUnusedLocals": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@tests/*": ["tests/*"]
+    }
   },
-  "include": [
-    "src/**/**.ts",
-    "tests/**/**.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "src/apps/backoffice/frontend"
-  ]
+  "include": ["src/**/**.ts", "tests/**/**.ts"],
+  "exclude": ["node_modules", "src/apps/backoffice/frontend"]
 }

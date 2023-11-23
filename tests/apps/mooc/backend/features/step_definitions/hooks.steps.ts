@@ -1,9 +1,9 @@
-import { AfterAll, BeforeAll } from 'cucumber';
-import { ConfigureRabbitMQCommand } from '../../../../../../src/apps/mooc/backend/command/ConfigureRabbitMQCommand';
-import container from '../../../../../../src/apps/mooc/backend/dependency-injection';
-import { MoocBackendApp } from '../../../../../../src/apps/mooc/backend/MoocBackendApp';
-import { EventBus } from '../../../../../../src/Contexts/Shared/domain/EventBus';
-import { EnvironmentArranger } from '../../../../../Contexts/Shared/infrastructure/arranger/EnvironmentArranger';
+import { AfterAll, BeforeAll } from '@cucumber/cucumber';
+import { ConfigureRabbitMQCommand } from '@/apps/mooc/backend/command/ConfigureRabbitMQCommand';
+import container from '@/apps/mooc/backend/dependency-injection';
+import { MoocBackendApp } from '@/apps/mooc/backend/MoocBackendApp';
+import { EventBus } from '@/Contexts/Shared/domain/EventBus';
+import { EnvironmentArranger } from "@tests/Contexts/Shared/infrastructure/arranger/EnvironmentArranger";
 
 let application: MoocBackendApp;
 let environmentArranger: EnvironmentArranger;

@@ -1,10 +1,10 @@
-import { Given } from 'cucumber';
-import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
-import { Course } from '../../../../../../src/Contexts/Mooc/Courses/domain/Course';
-import { CourseDuration } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
-import { CourseName } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseName';
-import { CourseRepository } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseRepository';
-import { CourseId } from '../../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId';
+import { Given } from '@cucumber/cucumber';
+import container from '@/apps/backoffice/backend/dependency-injection';
+import { Course } from '@/Contexts/Mooc/Courses/domain/Course';
+import { CourseDuration } from '@/Contexts/Mooc/Courses/domain/CourseDuration';
+import { CourseName } from '@/Contexts/Mooc/Courses/domain/CourseName';
+import { CourseRepository } from '@/Contexts/Mooc/Courses/domain/CourseRepository';
+import { CourseId } from '@/Contexts/Mooc/Shared/domain/Courses/CourseId';
 
 const courseRepository: CourseRepository = container.get('Backoffice.Courses.domain.BackofficeCourseRepository');
 

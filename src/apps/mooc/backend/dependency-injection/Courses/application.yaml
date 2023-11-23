@@ -1,14 +1,14 @@
 services:
   Mooc.Courses.domain.CourseRepository:
-    class: ../../../../../Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
+    class: Contexts/Mooc/Courses/infrastructure/persistence/MongoCourseRepository
     arguments: ['@Mooc.Shared.ConnectionManager']
 
   Mooc.Courses.application.CourseCreator:
-    class: ../../../../../Contexts/Mooc/Courses/application/CourseCreator
+    class: Contexts/Mooc/Courses/application/CourseCreator
     arguments: ['@Mooc.Courses.domain.CourseRepository', '@Mooc.Shared.domain.EventBus']
 
   Mooc.courses.CreateCourseCommandHandler:
-    class: ../../../../../Contexts/Mooc/Courses/application/Create/CreateCourseCommandHandler
+    class: Contexts/Mooc/Courses/application/Create/CreateCourseCommandHandler
     arguments: ['@Mooc.Courses.application.CourseCreator']
     tags:
       - { name: 'commandHandler' }

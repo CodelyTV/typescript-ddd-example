@@ -1,4 +1,4 @@
-import { BackofficeCourseId } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseId';
+import { BackofficeCourseId } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseId';
 import { UuidMother } from '../../../Shared/domain/UuidMother';
 
 export class BackofficeCourseIdMother {

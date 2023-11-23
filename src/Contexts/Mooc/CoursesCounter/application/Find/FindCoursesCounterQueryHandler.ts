@@ -1,7 +1,7 @@
-import { QueryHandler } from '../../../../Shared/domain/QueryHandler';
+import { QueryHandler } from '@/Contexts/Shared/domain/QueryHandler';
 import { FindCoursesCounterQuery } from './FindCoursesCounterQuery';
 import { FindCoursesCounterResponse } from './FindCoursesCounterResponse';
-import { Query } from '../../../../Shared/domain/Query';
+import { Query } from '@/Contexts/Shared/domain/Query';
 import { CoursesCounterFinder } from './CoursesCounterFinder';
 
 export class FindCoursesCounterQueryHandler

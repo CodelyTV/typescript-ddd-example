@@ -1,5 +1,5 @@
-import { MongoRepository } from '../../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
-import { Nullable } from '../../../../../Shared/domain/Nullable';
+import { MongoRepository } from '@/Contexts/Shared/infrastructure/persistence/mongo/MongoRepository';
+import { Nullable } from '@/Contexts/Shared/domain/Nullable';
 import { CoursesCounter } from '../../../domain/CoursesCounter';
 import { CoursesCounterRepository } from '../../../domain/CoursesCounterRepository';
 

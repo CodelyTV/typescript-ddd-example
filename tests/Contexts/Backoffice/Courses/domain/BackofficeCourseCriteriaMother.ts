@@ -1,10 +1,10 @@
-import { Criteria } from '../../../../../src/Contexts/Shared/domain/criteria/Criteria';
-import { Filter } from '../../../../../src/Contexts/Shared/domain/criteria/Filter';
-import { FilterField } from '../../../../../src/Contexts/Shared/domain/criteria/FilterField';
-import { FilterOperator, Operator } from '../../../../../src/Contexts/Shared/domain/criteria/FilterOperator';
-import { Filters } from '../../../../../src/Contexts/Shared/domain/criteria/Filters';
-import { FilterValue } from '../../../../../src/Contexts/Shared/domain/criteria/FilterValue';
-import { Order } from '../../../../../src/Contexts/Shared/domain/criteria/Order';
+import { Criteria } from '@/Contexts/Shared/domain/criteria/Criteria';
+import { Filter } from '@/Contexts/Shared/domain/criteria/Filter';
+import { FilterField } from '@/Contexts/Shared/domain/criteria/FilterField';
+import { FilterOperator, Operator } from '@/Contexts/Shared/domain/criteria/FilterOperator';
+import { Filters } from '@/Contexts/Shared/domain/criteria/Filters';
+import { FilterValue } from '@/Contexts/Shared/domain/criteria/FilterValue';
+import { Order } from '@/Contexts/Shared/domain/criteria/Order';
 
 export class BackofficeCourseCriteriaMother {
   static whithoutFilter(): Criteria {

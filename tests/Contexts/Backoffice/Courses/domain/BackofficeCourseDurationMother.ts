@@ -1,4 +1,4 @@
-import { BackofficeCourseDuration } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseDuration';
+import { BackofficeCourseDuration } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseDuration';
 import { WordMother } from '../../../Shared/domain/WordMother';
 
 export class BackofficeCourseDurationMother {

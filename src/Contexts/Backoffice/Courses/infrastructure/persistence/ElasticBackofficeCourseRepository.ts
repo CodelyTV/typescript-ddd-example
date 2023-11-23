@@ -1,5 +1,5 @@
-import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
-import { ElasticRepository } from '../../../../Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
+import { Criteria } from '@/Contexts/Shared/domain/criteria/Criteria';
+import { ElasticRepository } from '@/Contexts/Shared/infrastructure/persistence/elasticsearch/ElasticRepository';
 import { BackofficeCourse } from '../../domain/BackofficeCourse';
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 

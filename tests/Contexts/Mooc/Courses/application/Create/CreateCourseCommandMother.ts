@@ -1,7 +1,7 @@
-import { CourseDuration } from "../../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration";
-import { CourseName } from "../../../../../../src/Contexts/Mooc/Courses/domain/CourseName";
-import { CreateCourseCommand } from "../../../../../../src/Contexts/Mooc/Courses/domain/CreateCourseCommand";
-import { CourseId } from "../../../../../../src/Contexts/Mooc/Shared/domain/Courses/CourseId";
+import { CourseDuration } from "@/Contexts/Mooc/Courses/domain/CourseDuration";
+import { CourseName } from "@/Contexts/Mooc/Courses/domain/CourseName";
+import { CreateCourseCommand } from "@/Contexts/Mooc/Courses/domain/CreateCourseCommand";
+import { CourseId } from "@/Contexts/Mooc/Shared/domain/Courses/CourseId";
 import { CourseIdMother } from "../../../Shared/domain/Courses/CourseIdMother";
 import { CourseDurationMother } from "../../domain/CourseDurationMother";
 import { CourseNameMother } from "../../domain/CourseNameMother";

@@ -1,5 +1,5 @@
-import { DomainEvent, DomainEventClass } from '../../../../../../src/Contexts/Shared/domain/DomainEvent';
-import { DomainEventSubscriber } from '../../../../../../src/Contexts/Shared/domain/DomainEventSubscriber';
+import { DomainEvent, DomainEventClass } from '@/Contexts/Shared/domain/DomainEvent';
+import { DomainEventSubscriber } from '@/Contexts/Shared/domain/DomainEventSubscriber';
 import { DomainEventDummy } from './DomainEventDummy';
 
 export class DomainEventSubscriberDummy implements DomainEventSubscriber<DomainEventDummy> {

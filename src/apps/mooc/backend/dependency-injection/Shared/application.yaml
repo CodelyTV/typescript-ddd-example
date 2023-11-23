@@ -1,17 +1,17 @@
 services:
   Mooc.Shared.MongoConfig:
     factory:
-      class: ../../../../../Contexts/Mooc/Shared/infrastructure/persistence/mongo/MongoConfigFactory
+      class: Contexts/Mooc/Shared/infrastructure/persistence/mongo/MongoConfigFactory
       method: 'createConfig'
 
   Mooc.Shared.RabbitMQConfig:
     factory:
-      class: ../../../../../Contexts/Mooc/Shared/infrastructure/RabbitMQ/RabbitMQConfigFactory
+      class: Contexts/Mooc/Shared/infrastructure/RabbitMQ/RabbitMQConfigFactory
       method: 'createConfig'
 
   Mooc.Shared.domain.EventBus:
     factory:
-      class: ../../../../../Contexts/Mooc/Shared/infrastructure/RabbitMQ/RabbitMQEventBusFactory
+      class: Contexts/Mooc/Shared/infrastructure/RabbitMQ/RabbitMQEventBusFactory
       method: 'create'
     arguments:
       [
@@ -23,42 +23,42 @@ services:
 
   Mooc.Shared.ConnectionManager:
     factory:
-      class: ../../../../../Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
+      class: Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory
       method: 'createClient'
     arguments: ['mooc', '@Mooc.Shared.MongoConfig']
 
   Mooc.Shared.RabbitMQQueueFormatter:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
+    class: Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
     arguments: ['mooc']
 
   Mooc.Shared.RabbitMQConnection:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection
+    class: Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection
     arguments: ['@Mooc.Shared.RabbitMQConfig']
 
   Mooc.Shared.RabbitMQqueueFormatter:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
+    class: Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQqueueFormatter
     arguments: ['mooc']
 
   Mooc.Shared.RabbitMQConfigurer:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConfigurer
+    class: Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConfigurer
     arguments: ["@Mooc.Shared.RabbitMQConnection", "@Mooc.Shared.RabbitMQQueueFormatter"]
 
   Mooc.Shared.DomainEventFailoverPublisher:
-    class: ../../../../../Contexts/Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher
+    class: Contexts/Shared/infrastructure/EventBus/DomainEventFailoverPublisher/DomainEventFailoverPublisher
     arguments: ['@Mooc.Shared.ConnectionManager']
 
   Mooc.Shared.CommandHandlers:
-    class: ../../../../../Contexts/Shared/infrastructure/CommandBus/CommandHandlers
+    class: Contexts/Shared/infrastructure/CommandBus/CommandHandlers
     arguments: ['!tagged commandHandler']
 
   Mooc.Shared.domain.CommandBus:
-    class: ../../../../../Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
+    class: Contexts/Shared/infrastructure/CommandBus/InMemoryCommandBus
     arguments: ['@Mooc.Shared.CommandHandlers']
 
   Mooc.Shared.QueryHandlers:
-    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/QueryHandlers
+    class: Contexts/Shared/infrastructure/QueryBus/QueryHandlers
     arguments: ['!tagged queryHandler']
 
   Mooc.Shared.domain.QueryBus:
-    class: ../../../../../Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    class: Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus
     arguments: ['@Mooc.Shared.QueryHandlers']
