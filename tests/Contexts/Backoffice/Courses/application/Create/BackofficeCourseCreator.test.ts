@@ -1,4 +1,4 @@
-import { BackofficeCourseCreator } from '../../../../../../src/Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator';
+import { BackofficeCourseCreator } from '@/Contexts/Backoffice/Courses/application/Create/BackofficeCourseCreator';
 import { BackofficeCourseMother } from '../../domain/BackofficeCourseMother';
 import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';
 

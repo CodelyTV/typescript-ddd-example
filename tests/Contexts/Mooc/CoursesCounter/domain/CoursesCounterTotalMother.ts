@@ -1,4 +1,4 @@
-import { CoursesCounterTotal } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterTotal';
+import { CoursesCounterTotal } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounterTotal';
 import { IntegerMother } from '../../../Shared/domain/IntegerMother';
 
 export class CoursesCounterTotalMother {

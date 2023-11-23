@@ -1,7 +1,7 @@
-import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
-import { BackofficeCourseDuration } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseDuration';
-import { BackofficeCourseId } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseId';
-import { BackofficeCourseName } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseName';
+import { BackofficeCourse } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourse';
+import { BackofficeCourseDuration } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseDuration';
+import { BackofficeCourseId } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseId';
+import { BackofficeCourseName } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseName';
 import { BackofficeCourseDurationMother } from './BackofficeCourseDurationMother';
 import { BackofficeCourseIdMother } from './BackofficeCourseIdMother';
 import { BackofficeCourseNameMother } from './BackofficeCourseNameMother';

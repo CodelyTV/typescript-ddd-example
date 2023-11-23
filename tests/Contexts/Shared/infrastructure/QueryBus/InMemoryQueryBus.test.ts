@@ -1,9 +1,9 @@
-import { Query } from '../../../../../src/Contexts/Shared/domain/Query';
-import { QueryHandlers } from '../../../../../src/Contexts/Shared/infrastructure/QueryBus/QueryHandlers';
-import { QueryNotRegisteredError } from '../../../../../src/Contexts/Shared/domain/QueryNotRegisteredError';
-import { QueryHandler } from '../../../../../src/Contexts/Shared/domain/QueryHandler';
-import { Response } from '../../../../../src/Contexts/Shared/domain/Response';
-import { InMemoryQueryBus } from '../../../../../src/Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus';
+import { Query } from '@/Contexts/Shared/domain/Query';
+import { QueryHandlers } from '@/Contexts/Shared/infrastructure/QueryBus/QueryHandlers';
+import { QueryNotRegisteredError } from '@/Contexts/Shared/domain/QueryNotRegisteredError';
+import { QueryHandler } from '@/Contexts/Shared/domain/QueryHandler';
+import { Response } from '@/Contexts/Shared/domain/Response';
+import { InMemoryQueryBus } from '@/Contexts/Shared/infrastructure/QueryBus/InMemoryQueryBus';
 
 class UnhandledQuery extends Query {
   static QUERY_NAME = 'unhandled.query';

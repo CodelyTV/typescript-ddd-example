@@ -1,8 +1,8 @@
-import { EventBus } from '../../../Contexts/Shared/domain/EventBus';
+import { EventBus } from '@/Contexts/Shared/domain/EventBus';
 import container from './dependency-injection';
-import { DomainEventSubscribers } from '../../../Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers';
+import { DomainEventSubscribers } from '@/Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers';
 import { Server } from './server';
-import { RabbitMqConnection } from '../../../Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection';
+import { RabbitMqConnection } from '@/Contexts/Shared/infrastructure/EventBus/RabbitMQ/RabbitMqConnection';
 
 export class MoocBackendApp {
   server?: Server;

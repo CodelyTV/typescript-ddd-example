@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../../../../../src/Contexts/Shared/domain/DomainEvent';
+import { DomainEvent } from '@/Contexts/Shared/domain/DomainEvent';
 import { UuidMother } from '../../../domain/UuidMother';
 
 export class DomainEventDummy extends DomainEvent {

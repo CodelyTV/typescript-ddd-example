@@ -1,6 +1,6 @@
-import { CoursesFinder } from "../../../../../../src/Contexts/Mooc/Courses/application/SearchAll/CoursesFinder";
-import { SearchAllCoursesQuery } from "../../../../../../src/Contexts/Mooc/Courses/application/SearchAll/SearchAllCoursesQuery";
-import { SearchAllCoursesQueryHandler } from "../../../../../../src/Contexts/Mooc/Courses/application/SearchAll/SearchAllCoursesQueryHandler";
+import { CoursesFinder } from "@/Contexts/Mooc/Courses/application/SearchAll/CoursesFinder";
+import { SearchAllCoursesQuery } from "@/Contexts/Mooc/Courses/application/SearchAll/SearchAllCoursesQuery";
+import { SearchAllCoursesQueryHandler } from "@/Contexts/Mooc/Courses/application/SearchAll/SearchAllCoursesQueryHandler";
 import { CourseMother } from "../../domain/CourseMother";
 import { CourseRepositoryMock } from "../../__mocks__/CourseRepositoryMock";
 import { SearchAllCoursesResponseMother } from "./SearchAllCoursesResponseMother";

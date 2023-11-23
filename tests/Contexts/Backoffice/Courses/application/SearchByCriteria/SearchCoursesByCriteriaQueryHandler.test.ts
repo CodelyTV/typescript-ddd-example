@@ -1,7 +1,7 @@
-import { CoursesByCriteriaSearcher } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher';
-import { SearchCoursesByCriteriaQuery } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQuery';
-import { SearchCoursesByCriteriaQueryHandler } from '../../../../../../src/Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler';
-import { OrderTypes } from '../../../../../../src/Contexts/Shared/domain/criteria/OrderType';
+import { CoursesByCriteriaSearcher } from '@/Contexts/Backoffice/Courses/application/SearchByCriteria/CoursesByCriteriaSearcher';
+import { SearchCoursesByCriteriaQuery } from '@/Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQuery';
+import { SearchCoursesByCriteriaQueryHandler } from '@/Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQueryHandler';
+import { OrderTypes } from '@/Contexts/Shared/domain/criteria/OrderType';
 import { BackofficeCourseMother } from '../../domain/BackofficeCourseMother';
 import { SearchCoursesByCriteriaResponseMother } from '../../domain/SearchCoursesByCriteriaResponseMother';
 import { BackofficeCourseRepositoryMock } from '../../__mocks__/BackofficeCourseRepositoryMock';

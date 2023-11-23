@@ -1,5 +1,5 @@
-import { CoursesCounterIncrementer } from '../../../../../../src/Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer';
-import { CoursesCounter } from '../../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
+import { CoursesCounterIncrementer } from '@/Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer';
+import { CoursesCounter } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
 import EventBusMock from '../../../Shared/domain/EventBusMock';
 import { CourseIdMother } from '../../../Shared/domain/Courses/CourseIdMother';
 import { CoursesCounterIncrementedDomainEventMother } from '../../domain/CoursesCounterIncrementedDomainEventMother';

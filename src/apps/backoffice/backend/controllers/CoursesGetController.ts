@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { BackofficeCoursesResponse } from '../../../../Contexts/Backoffice/Courses/application/BackofficeCoursesResponse';
-import { SearchCoursesByCriteriaQuery } from '../../../../Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQuery';
-import { QueryBus } from '../../../../Contexts/Shared/domain/QueryBus';
+import { BackofficeCoursesResponse } from '@/Contexts/Backoffice/Courses/application/BackofficeCoursesResponse';
+import { SearchCoursesByCriteriaQuery } from '@/Contexts/Backoffice/Courses/application/SearchByCriteria/SearchCoursesByCriteriaQuery';
+import { QueryBus } from '@/Contexts/Shared/domain/QueryBus';
 import { Controller } from './Controller';
 
 type FilterType = { value: string; operator: string; field: string };

@@ -1,4 +1,4 @@
-import { MongoClientFactory } from '../../../../../../src/Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory';
+import { MongoClientFactory } from '@/Contexts/Shared/infrastructure/persistence/mongo/MongoClientFactory';
 
 export class RabbitMQMongoClientMother {
   static async create() {

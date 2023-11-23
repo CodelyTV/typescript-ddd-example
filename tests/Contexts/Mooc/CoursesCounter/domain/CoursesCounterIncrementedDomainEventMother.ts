@@ -1,6 +1,6 @@
-import { CoursesCounter } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
-import { CoursesCounterIncrementedDomainEvent } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterIncrementedDomainEvent';
-import { DomainEvent } from '../../../../../src/Contexts/Shared/domain/DomainEvent';
+import { CoursesCounter } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounter';
+import { CoursesCounterIncrementedDomainEvent } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounterIncrementedDomainEvent';
+import { DomainEvent } from '@/Contexts/Shared/domain/DomainEvent';
 import { CoursesCounterMother } from './CoursesCounterMother';
 
 export class CoursesCounterIncrementedDomainEventMother {

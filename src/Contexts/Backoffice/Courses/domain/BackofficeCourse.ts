@@ -1,4 +1,4 @@
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
 import { BackofficeCourseDuration } from './BackofficeCourseDuration';
 import { BackofficeCourseId } from './BackofficeCourseId';
 import { BackofficeCourseName } from './BackofficeCourseName';

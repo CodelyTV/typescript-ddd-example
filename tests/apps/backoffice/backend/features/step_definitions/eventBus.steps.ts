@@ -1,7 +1,7 @@
-import { Given } from 'cucumber';
-import container from '../../../../../../src/apps/backoffice/backend/dependency-injection';
-import { DomainEventDeserializer } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventDeserializer';
-import { DomainEventSubscribers } from '../../../../../../src/Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers';
+import { Given } from '@cucumber/cucumber';
+import container from '@/apps/backoffice/backend/dependency-injection';
+import { DomainEventDeserializer } from '@/Contexts/Shared/infrastructure/EventBus/DomainEventDeserializer';
+import { DomainEventSubscribers } from '@/Contexts/Shared/infrastructure/EventBus/DomainEventSubscribers';
 import { eventBus } from './hooks.steps';
 
 const deserializer = buildDeserializer();

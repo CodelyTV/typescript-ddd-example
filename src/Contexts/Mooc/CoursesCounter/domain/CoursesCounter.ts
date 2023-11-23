@@ -1,9 +1,9 @@
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
 import { CoursesCounterTotal } from './CoursesCounterTotal';
 import { CoursesCounterId } from './CoursesCounterId';
 import { CoursesCounterIncrementedDomainEvent } from './CoursesCounterIncrementedDomainEvent';
-import { Uuid } from '../../../Shared/domain/value-object/Uuid';
+import { Uuid } from '@/Contexts/Shared/domain/value-object/Uuid';
 
 export class CoursesCounter extends AggregateRoot {
   readonly id: CoursesCounterId;

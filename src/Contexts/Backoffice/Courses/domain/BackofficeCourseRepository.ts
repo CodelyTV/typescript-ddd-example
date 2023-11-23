@@ -1,4 +1,4 @@
-import { Criteria } from '../../../Shared/domain/criteria/Criteria';
+import { Criteria } from '@/Contexts/Shared/domain/criteria/Criteria';
 import { BackofficeCourse } from './BackofficeCourse';
 
 export interface BackofficeCourseRepository {

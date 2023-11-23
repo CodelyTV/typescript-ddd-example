@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { Given, Then } from 'cucumber';
+import { Given, Then } from '@cucumber/cucumber';
 import request from 'supertest';
 import { application } from './hooks.steps';
 
