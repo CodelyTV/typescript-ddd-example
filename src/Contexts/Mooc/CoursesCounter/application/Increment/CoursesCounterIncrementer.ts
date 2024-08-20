@@ -1,4 +1,4 @@
-import { EventBus } from '../../../../Shared/domain/EventBus';
+import { EventBus } from '@/Contexts/Shared/domain/EventBus';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { CoursesCounterRepository } from '../../domain/CoursesCounterRepository';
 import { CoursesCounter } from '../../domain/CoursesCounter';

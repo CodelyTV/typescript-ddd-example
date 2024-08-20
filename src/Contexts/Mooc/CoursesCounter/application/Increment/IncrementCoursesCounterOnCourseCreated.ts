@@ -1,5 +1,5 @@
-import { DomainEventClass } from '../../../../Shared/domain/DomainEvent';
-import { DomainEventSubscriber } from '../../../../Shared/domain/DomainEventSubscriber';
+import { DomainEventClass } from '@/Contexts/Shared/domain/DomainEvent';
+import { DomainEventSubscriber } from '@/Contexts/Shared/domain/DomainEventSubscriber';
 import { CourseCreatedDomainEvent } from '../../../Courses/domain/CourseCreatedDomainEvent';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { CoursesCounterIncrementer } from './CoursesCounterIncrementer';

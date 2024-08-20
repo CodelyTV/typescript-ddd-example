@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { CreateCourseCommand } from '../../../../Contexts/Mooc/Courses/domain/CreateCourseCommand';
-import { CommandBus } from '../../../../Contexts/Shared/domain/CommandBus';
+import { CreateCourseCommand } from '@/Contexts/Mooc/Courses/domain/CreateCourseCommand';
+import { CommandBus } from '@/Contexts/Shared/domain/CommandBus';
 import { Controller } from './Controller';
 
 type CoursePutRequest = Request & {

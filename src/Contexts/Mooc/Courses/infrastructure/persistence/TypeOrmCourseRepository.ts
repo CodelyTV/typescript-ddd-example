@@ -1,6 +1,6 @@
 import { EntitySchema } from 'typeorm';
-import { Nullable } from '../../../../Shared/domain/Nullable';
-import { TypeOrmRepository } from '../../../../Shared/infrastructure/persistence/typeorm/TypeOrmRepository';
+import { Nullable } from '@/Contexts/Shared/domain/Nullable';
+import { TypeOrmRepository } from '@/Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmRepository';
 import { CourseId } from '../../../Shared/domain/Courses/CourseId';
 import { Course } from '../../domain/Course';
 import { CourseRepository } from '../../domain/CourseRepository';

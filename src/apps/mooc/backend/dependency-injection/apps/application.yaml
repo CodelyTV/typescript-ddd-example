@@ -1,12 +1,12 @@
 services:
   Apps.mooc.controllers.StatusGetController:
-    class: ../../controllers/StatusGetController
+    class: apps/mooc/backend/controllers/StatusGetController
     arguments: []
 
   Apps.mooc.controllers.CoursePutController:
-    class: ../../controllers/CoursePutController
+    class: apps/mooc/backend/controllers/CoursePutController
     arguments: ['@Mooc.Shared.domain.CommandBus']
 
   Apps.mooc.controllers.CoursesCounterGetController:
-    class: ../../controllers/CoursesCounterGetController
+    class: apps/mooc/backend/controllers/CoursesCounterGetController
     arguments: ['@Mooc.Shared.domain.QueryBus']

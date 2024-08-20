@@ -1,5 +1,5 @@
-import { Criteria } from '../../../../Shared/domain/criteria/Criteria';
-import { MongoRepository } from '../../../../Shared/infrastructure/persistence/mongo/MongoRepository';
+import { Criteria } from '@/Contexts/Shared/domain/criteria/Criteria';
+import { MongoRepository } from '@/Contexts/Shared/infrastructure/persistence/mongo/MongoRepository';
 import { BackofficeCourse } from '../../domain/BackofficeCourse';
 import { BackofficeCourseRepository } from '../../domain/BackofficeCourseRepository';
 

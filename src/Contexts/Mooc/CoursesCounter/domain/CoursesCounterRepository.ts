@@ -1,5 +1,5 @@
 import { CoursesCounter } from './CoursesCounter';
-import { Nullable } from '../../../Shared/domain/Nullable';
+import { Nullable } from '@/Contexts/Shared/domain/Nullable';
 
 export interface CoursesCounterRepository {
   search(): Promise<Nullable<CoursesCounter>>;

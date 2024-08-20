@@ -1,4 +1,4 @@
-import { AggregateRoot } from '../../../Shared/domain/AggregateRoot';
+import { AggregateRoot } from '@/Contexts/Shared/domain/AggregateRoot';
 import { CourseId } from '../../Shared/domain/Courses/CourseId';
 import { CourseCreatedDomainEvent } from './CourseCreatedDomainEvent';
 import { CourseDuration } from './CourseDuration';

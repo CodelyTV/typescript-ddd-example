@@ -1,5 +1,5 @@
 import { Connection } from 'typeorm';
-import { TypeOrmClientFactory } from '../../../../src/Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmClientFactory';
+import { TypeOrmClientFactory } from '@/Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmClientFactory';
 
 describe('TypeOrmClientFactory', () => {
   const factory = TypeOrmClientFactory;

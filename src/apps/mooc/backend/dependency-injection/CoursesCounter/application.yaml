@@ -1,24 +1,24 @@
 services:
   Mooc.CoursesCounter.CoursesCounterRepository:
-    class: ../../../../../Contexts/Mooc/CoursesCounter/infrastructure/persistence/mongo/MongoCoursesCounterRepository
+    class: Contexts/Mooc/CoursesCounter/infrastructure/persistence/mongo/MongoCoursesCounterRepository
     arguments: ['@Mooc.Shared.ConnectionManager']
 
   Mooc.CoursesCounter.CoursesCounterIncrementer:
-    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer
+    class: Contexts/Mooc/CoursesCounter/application/Increment/CoursesCounterIncrementer
     arguments: ['@Mooc.CoursesCounter.CoursesCounterRepository', '@Mooc.Shared.domain.EventBus']
 
   Mooc.CoursesCounter.IncrementCoursesCounterOnCourseCreated:
-    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Increment/IncrementCoursesCounterOnCourseCreated
+    class: Contexts/Mooc/CoursesCounter/application/Increment/IncrementCoursesCounterOnCourseCreated
     arguments: ['@Mooc.CoursesCounter.CoursesCounterIncrementer']
     tags:
       - { name: 'domainEventSubscriber' }
 
   Mooc.CoursesCounter.CoursesCounterFinder:
-    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
+    class: Contexts/Mooc/CoursesCounter/application/Find/CoursesCounterFinder
     arguments: ['@Mooc.CoursesCounter.CoursesCounterRepository']
 
   Mooc.CoursesCounter.FindCoursesCounterQueryHandler:
-    class: ../../../../../Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler
+    class: Contexts/Mooc/CoursesCounter/application/Find/FindCoursesCounterQueryHandler
     arguments: ['@Mooc.CoursesCounter.CoursesCounterFinder']
     tags:
       - { name: 'queryHandler' }

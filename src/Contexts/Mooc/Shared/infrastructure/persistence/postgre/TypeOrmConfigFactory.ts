@@ -1,4 +1,4 @@
-import { TypeOrmConfig } from '../../../../../Shared/infrastructure/persistence/typeorm/TypeOrmConfig';
+import { TypeOrmConfig } from '@/Contexts/Shared/infrastructure/persistence/typeorm/TypeOrmConfig';
 import config from '../../config';
 
 export class TypeOrmConfigFactory {

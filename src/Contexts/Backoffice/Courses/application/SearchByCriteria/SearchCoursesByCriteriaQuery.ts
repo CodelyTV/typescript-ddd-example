@@ -1,4 +1,4 @@
-import { Query } from '../../../../Shared/domain/Query';
+import { Query } from '@/Contexts/Shared/domain/Query';
 
 export class SearchCoursesByCriteriaQuery implements Query {
   readonly filters: Array<Map<string, string>>;

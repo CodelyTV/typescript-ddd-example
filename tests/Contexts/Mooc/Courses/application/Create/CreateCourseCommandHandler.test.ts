@@ -1,10 +1,10 @@
-import { CourseCreator } from '../../../../../../src/Contexts/Mooc/Courses/application/Create/CourseCreator';
+import { CourseCreator } from '@/Contexts/Mooc/Courses/application/Create/CourseCreator';
 import { CourseMother } from '../../domain/CourseMother';
-import { CourseNameLengthExceeded } from '../../../../../../src/Contexts/Mooc/Courses/domain/CourseNameLengthExceeded';
+import { CourseNameLengthExceeded } from '@/Contexts/Mooc/Courses/domain/CourseNameLengthExceeded';
 import { CourseRepositoryMock } from '../../__mocks__/CourseRepositoryMock';
 import EventBusMock from '../../../Shared/domain/EventBusMock';
 import { CourseCreatedDomainEventMother } from '../../domain/CourseCreatedDomainEventMother';
-import { CreateCourseCommandHandler } from '../../../../../../src/Contexts/Mooc/Courses/application/Create/CreateCourseCommandHandler';
+import { CreateCourseCommandHandler } from '@/Contexts/Mooc/Courses/application/Create/CreateCourseCommandHandler';
 import { CreateCourseCommandMother } from './CreateCourseCommandMother';
 
 let repository: CourseRepositoryMock;

@@ -1,4 +1,4 @@
-import { CourseDuration } from '../../../../../src/Contexts/Mooc/Courses/domain/CourseDuration';
+import { CourseDuration } from '@/Contexts/Mooc/Courses/domain/CourseDuration';
 import { WordMother } from '../../../Shared/domain/WordMother';
 
 export class CourseDurationMother {

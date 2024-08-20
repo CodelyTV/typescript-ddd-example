@@ -1,5 +1,5 @@
-import container from '../../../../../src/apps/mooc/backend/dependency-injection';
-import { CoursesCounterRepository } from '../../../../../src/Contexts/Mooc/CoursesCounter/domain/CoursesCounterRepository';
+import container from '@/apps/mooc/backend/dependency-injection';
+import { CoursesCounterRepository } from '@/Contexts/Mooc/CoursesCounter/domain/CoursesCounterRepository';
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
 import { CoursesCounterMother } from '../domain/CoursesCounterMother';
 

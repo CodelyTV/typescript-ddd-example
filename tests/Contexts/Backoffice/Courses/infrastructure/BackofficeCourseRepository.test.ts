@@ -1,6 +1,6 @@
-import container from '../../../../../src/apps/backoffice/backend/dependency-injection';
-import { BackofficeCourse } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourse';
-import { BackofficeCourseRepository } from '../../../../../src/Contexts/Backoffice/Courses/domain/BackofficeCourseRepository';
+import container from '@/apps/backoffice/backend/dependency-injection';
+import { BackofficeCourse } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourse';
+import { BackofficeCourseRepository } from '@/Contexts/Backoffice/Courses/domain/BackofficeCourseRepository';
 import { EnvironmentArranger } from '../../../Shared/infrastructure/arranger/EnvironmentArranger';
 import { BackofficeCourseCriteriaMother } from '../domain/BackofficeCourseCriteriaMother';
 import { BackofficeCourseMother } from '../domain/BackofficeCourseMother';

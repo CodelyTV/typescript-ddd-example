@@ -1,5 +1,6 @@
 const common = [
-  '--require-module ts-node/register' // Load TypeScript module
+  '--require-module ts-node/register', // Load TypeScript module
+  '--require-module tsconfig-paths/register' // Load tsconfig.json paths
 ];
 
 const mooc_backend = [
