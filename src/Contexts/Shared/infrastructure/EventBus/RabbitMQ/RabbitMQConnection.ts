@@ -2,7 +2,7 @@ import amqplib, { ConsumeMessage } from 'amqplib';
 import { ConnectionSettings } from './ConnectionSettings';
 import { RabbitMQExchangeNameFormatter } from './RabbitMQExchangeNameFormatter';
 
-export class RabbitMqConnection {
+export class RabbitMQConnection {
   private connectionSettings: ConnectionSettings;
   private channel?: amqplib.ConfirmChannel;
   private connection?: amqplib.Connection;
